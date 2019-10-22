@@ -1,0 +1,15 @@
+div{
+    width: 100px;
+    height: 100px;
+    background-color: skyblue;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.parent{
+    background-color: burlywood;
+}
+
+.absolute{
+    position: absolute;
+}

@@ -1,0 +1,17 @@
+div{
+    width: 100px;
+    height: 100px;
+    background-color: tan;
+    text-align: center;    
+    opacity: 0.5; /* 투명도 조절 */
+}
+
+.none{
+    display: none;
+    /* visibility: hidden; */
+}
+
+
+.hidden{
+    visibility: hidden;
+}

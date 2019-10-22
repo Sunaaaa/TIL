@@ -1,0 +1,37 @@
+.font-1{
+    font-size: 30px;
+    /* 공백이 있는 폰트 이름은 따음표로 묶어준다. */
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+}
+
+.font-2{
+    /* 최상위 폰트 크기 * 2 = 32px */
+    font-size: 2rem;
+    /* Value - Keyword */
+    font-weight: bolder;
+}
+
+.font-3{
+    font-size: 130%;
+    /* 공백이 있는 폰트 이름은 따음표로 묶어준다. */
+    font-family: 'Courier New', Courier, monospace;
+    /* Value - Number */
+    font-weight: 700;
+
+}
+
+.font-4{
+    /* Value - Keyword */
+    font-size: small;
+}
+
+.font-5{
+    /* 폰트로 shorthand 가능 */
+    /* 
+        font : 
+        font-style font-weight line-height
+        font-size (필수) font-family (필수) 
+    */
+    font: italic 2rem Courier;
+}

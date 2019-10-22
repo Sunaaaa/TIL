@@ -1,0 +1,17 @@
+div{
+    width: 100px;
+    height: 100px;
+    background-color: springgreen;
+}
+
+.ml-auto{
+    margin-left: auto;
+}
+
+.mr-auto{
+    margin-right: auto;
+}
+
+.mx-auto{
+    margin : 0 auto;
+}
