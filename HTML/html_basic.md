@@ -638,32 +638,6 @@
 
 <br><br>
 
-## CSS
-
-#### Inline (인라인)
-
-- HTML 요소의 style에 CSS 넣기
-
-<br>
-
-#### Embedding (내부 참조)
-
-- HTML 내부에 CSS 넣디
-
-<br>
-
-#### link File (외부 참조)
-
-- 외부에 있는 CSS 파일을 로드하기
-- 컴포넌트 화 
-
-<br>
-
-
-
-
-
-
 
 
 
