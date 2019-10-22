@@ -1,0 +1,47 @@
+div{
+    width: 100px;
+    height: 100px;
+    background-color: thistle;
+}
+
+.margin{
+    margin-top: 30px;
+    margin-right: 20px;
+    margin-bottom: 30px;
+    margin-left: 20px;
+}
+
+/* padding으로 주어진 값에 따라 content의 크기가 변경된다. */
+.padding{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    /* margin-bottom: 30px; */
+}
+
+.border{
+    border-width: 8px;
+    border-style: dotted;
+    border-color: slateblue;
+    border-top-color: beige;
+    border-radius: 25px;
+}
+
+.margin-shorthand-1{
+    /* 상하좌우 적용 */
+    margin: 15px;
+}
+
+.margin-shorthand-2{
+    /* 상하, 좌우 적용 */
+    margin: 25px 15px;
+}
+
+.margin-shorthand-3{
+    /* 상, 좌우, 하 적용 */
+    margin: 15px 20px 5px;
+}
+
+.margin-shorthand-4{
+    /* 시계방향 ( 상, 우, 하, 좌)  적용 */
+    margin: 5px 10px 15px 20px;
+}

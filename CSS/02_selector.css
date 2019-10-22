@@ -1,0 +1,36 @@
+/* 전체 선택자 */
+*{
+    color: yellowgreen;
+}
+
+/* 태그 선택자 */
+h1{
+    color: brown;
+}
+
+
+/* 클래스 선택자 */
+.aqua{
+    color: aqua;
+}
+
+
+/* 아이디 선택자 */
+#violet{
+    color: violet;
+}
+
+/* 아이디 > 클래스 */
+#yellow {
+    color: yellow;
+}
+
+.black{
+    color: black;
+}
+
+/* 클래스 > 태그*/
+
+.blueviolet {
+    color: blueviolet;
+}
