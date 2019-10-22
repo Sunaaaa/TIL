@@ -1,3 +1,7 @@
+body{
+    height: 10000px;
+}
+
 div{
     width: 100px;
     height: 100px;
@@ -12,4 +16,11 @@ div{
 
 .absolute{
     position: absolute;
+    top: 50px;
+    left: 30px;
+    background-color: blueviolet;
+}
+
+.relative{
+    position: relative;
 }
