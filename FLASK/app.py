@@ -3,8 +3,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    # return "Hello World!"
-    return render_template('index.html')
+    return "Hello World!"
+    # return render_template('index.html')
     
 @app.route('/dohyeon')
 def dohyeon():
@@ -41,6 +41,15 @@ def cube(num):
 @app.route('/cube2/<int:num>')
 def cube2(num):
     return render_template('cube.html', result=num**3)
+
+@app.route('/cube3/<int:num>')
+def cube3(num):
+    return render_template('cube3.html', number=num, result=num**3)
+
+@app.route('/movies')
+def movie():
+    movie_list = ['82년생 김지영', '조커', '엔드게임', '궁예']
+    return render_template('movies.html', movies=movie_list)
 
 
 # end of file !!!!!
