@@ -19,4 +19,5 @@ print('==== Q3-1 ====')
 '''
 
 for key, values in cities.items():
-    print(key, ':', sum(values)/len(values))
+    # print(key, ':', sum(values)/len(values))
+    print(f"{key} : {sum(values)/len(values)}")

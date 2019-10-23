@@ -9,12 +9,21 @@ cities = {
 # 3-3. 위에서 서울은 영상 2도였던 적이 있나요?
 
 # 아래에 코드를 작성해 주세요.
-print('==== Q3-3 ====')
+print('==== Q3-3 (나의 코드) ====')
 
 t_seoul = [v for v in cities.get('서울')]
-print(t_seoul)
 
 if 2 in t_seoul:
     print('예')
 else :
     print('아니요')
+
+
+print('==== Q3-3 (약식) ====')
+2 in city["서울"]
+
+print('==== Q3-3 (확장) ====')
+if 2 in city["서울"]:
+    print("네! 있어요")
+else:
+    print("없어요!")
