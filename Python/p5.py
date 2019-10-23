@@ -9,3 +9,5 @@ prices = input('물품 가격을 입력하세요: ')
 my_list = list(map(int, prices.split(';')))
 
 print(sorted(my_list, key=int, reverse=True)) # [300000, 20000, 10000]
+my_list.sort(reverse=True)
+print(my_list) # [300000, 20000, 10000]
