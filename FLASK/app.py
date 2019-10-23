@@ -76,6 +76,34 @@ def google():
     return render_template('google.html')
 
 
+# 사용자로부터 이름을 입력받을 Form 페이지
+@app.route('/vonvon')
+def vonvon():
+    return render_template('vonvon.html')
+
+
+import random
+# 전달받은 이름을 기준으로 넘겨줄 각종 정보를 가공해서 돌려주는 (응답) 로직!
+@app.route('/godmademe')
+def godmademe():
+
+    # 1. 사용자가 입력한 데이터를 가져온다. (Flask의 request 기능 사용)pytho
+    user_name = request.args.get('user_name')
+
+    # 2. 사용자에게 보여줄 여러가지 재밌는 특성 리스트를 만든다.
+    first_list = ['잘생김', '못생김', '많이 못생김', '많이 잘생김', '앙주']
+    second_list = ['자신감', '귀찮음', '쑥쓰러움', '열정적임']
+    third_list = ['허세', '물욕', '식욕', '똘기']
+
+    # 3. 특성 리스트에서 랜덤으로 하나씩을 선택한다. 
+    first_choice = random.choice(first_list)
+    second_choice = random.choice(second_list)
+    third_choice = random.choice(third_list)
+
+
+    # 4. 가공한 정보를 템플릿에 담아서 사용자에게 보여준다.
+    return render_template('godmademe.html', user_html=user_name, first_html=first_choice, second_html=second_choice, third_html=third_choice)
+
 # end of file !!!!!
 # debug 모드를 활성화해서 서버 새로고침을 생략한다.
 if __name__ == '__main__':
