@@ -1,56 +1,34 @@
-# django
+# Django
 
-- 2005년 7월
 - 보안이 우수하고 유지보수가 편리한 웹사이트를 신속하게 개발하는 하도록 도움을 주는 파이썬 웹 프레임워크
-
-
-
-##### Versatile (**다용도**)
-
-##### Secure (**안전한**)
-
-##### Scalable (**확장성** )
-
-##### Complete (**완결성** )
-
-##### Maintainable (**유지보수가 쉬운**)
-
-##### Portable (**포터블한**)
-
-
-
-
-
-
-
-### 성격
-
-- Opinionate : 독선적
-- UnOpinionate : 관용적, Customizing 가능
-- 다소 Opinionate 이지만, 일부 Customizing 할 수 있는 부분이 있다. 
-
-
-
-
 
 - Static Web (html 문서의 집합) 과 Dynamic Web 모두 가능
 
+- 특징
+  - Versatile (**다용도**)
+  - Secure (**안전한**)
+  - Scalable (**확장성** )
+  - Complete (**완결성** )
+  - Maintainable (**유지보수가 쉬운**)
+  - Portable (**포터블한**)
+
+- 성격
+  - Opinionate : 독선적
+  - UnOpinionate : 관용적, Customizing 가능
+  - 다소 Opinionate 이지만, 일부 Customizing 할 수 있는 부분이 있다. 
 
 
 
+<br><br>
 
 ## MTV 패턴
 
-#### MVC 
-
-- Model
-- View
-- Controller
-
 ![1572230693722](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572230693722.png)
 
+- django에서는 MTV 패턴이라고 부르지만, 실제로는 MVC 패턴과 동일하다.
+
 - Model
-  - 데이터를 정의 (Data)
+  - 데이터 베이스를 정의 (Data)
   - 데이터를 관리, 데이터베이스의 모양, 형태를 정의
 
 - Template : 사용자가 보는 화면을 정의
@@ -65,7 +43,9 @@
 
 
 
-3 Kings Of Django
+<br><br>
+
+## 3 Kings Of Django
 
 - models.py
   - 데이터 베이스 관리
@@ -77,49 +57,44 @@
 
 
 
-T & V
+<br><br>
 
-T와 V를 통해 request와 response
+## 가상환경 설정
 
-
-
-사용자의 요청이 들어온다.
-
-urls라는 파일 (url.py) 을 따로 두어 사용자가 들어올 수 있는 url을 따로 보관한다.
-
-- 적절한 
-
-view가 model에서 데이터를 가져옴 
-
-view.py
-
-
-
-
-
-
-
-## Django 설치하기
-
-> 생성한 venv 폴더를 임의로 드래그 앤 드롭으로 폴더의 위치를 옮기면 가상환경이 제대로 동작하지 않는다.
+> - why? 가상환경
+>   - 글로벌 환경에서 개발을 진행하다 보면, 실제 해당 프로젝트에는 필요없는 라이브러리들이 설치될 수 있다. 내 컴퓨터에서는 정상적으로 돌아가지만, 다른 컴퓨터에서 실행했을 때 그 사람이 가지고 있는 라이브러리와 만나게 되면 돌아가지 않을 수 있다. 
+>   - 파이썬 버전도 마찬가지로 특정한 버전에서만 실행되는 경우가 있다.
+>   - 따라서, 지금 이 프로젝트에서만 필요한 패키지들이 설치된 가상환경에 진입해서 개발을 진행한다.
+>
+> - 생성한 venv 폴더를 임의로 드래그 앤 드롭으로 폴더의 위치를 옮기면 가상환경이 제대로 동작하지 않는다.
 
 <br>
 
-- python 이 기본적으로 가지고 있는venv 모듈을 통해 venv라는 이름의 가상환경을 만든다.
+- Visual Studio Code에서 기본 가상환경 설정하기
+
+  > - Visual Studio Code에서 기본 가상환경 설정하기
+  >   - Shift + Ctrl + P 혹은 좌측 하단의 파이썬 버전 클릭해서 우리가 생성한 venv를 기본 값으로 선택해 준다.
+  >   - 그 다움 VSCode 내장 터미널을 새로 실행하면, 자동으로 source ~activate 까지의 명령어가 실행되면서 가상환경으로 진입한다.
+  > - VSCode 환경 설정이 꼬이는 경우, 그냥 터미널에서 가상환경 진입 명령어를 실행하자!
+  >   - source  venv/Scripts/activate (for Window)
+
+  - python 이 기본적으로 가지고 있는venv 모듈을 통해 venv라는 이름의 가상환경을 만든다.
 
   ![1572225623605](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572225623605.png)
 
+  <br>
 
+  - Ctrl + Shift + P를 눌러 'interpreter'를 작성한다.
 
-- Ctrl + Shift + P를 눌러 'interpreter'를 작성하여 
+    ![1572225809684](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572225809684.png)
 
-  ![1572225809684](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572225809684.png)
+    <br>
 
+  - interpreter를 좀전에 생성한 가상환경 venv로 설정
 
+    ![1572225895783](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572225895783.png)
 
-- interpreter를 좀전에 생성한 가상환경 venv로 설정
-
-  ![1572225895783](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572225895783.png)
+  <br>
 
   - 결과 
 
@@ -127,19 +102,23 @@ view.py
 
       ![1572226428223](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572226428223.png)
 
-      - setting.json
+      <br>
 
-        ![1572226297875](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572226297875.png)
+    - setting.json
 
+      ![1572226297875](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572226297875.png)
 
+<br>
 
 - bash를 새로 추가하면 바로 가상환경에 접근할 수 있다. 
 
   ![1572226024533](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572226024533.png)
 
+  <br>
+
   - vnev를 설정안하도 자동으로 가상환경에 접근 가능!
 
-
+<br>
 
 - .gitignore 파일 추가
 
@@ -151,7 +130,7 @@ view.py
 
 
 
-
+<br>
 
 - setting.json 파일의 아래의 내용 추가
 
@@ -175,57 +154,105 @@ view.py
   }
   ```
 
+  <br><br>
+
+
+
+## Django 설치
+
+- `pip list`  :  설치된 프로그램 확인 
+
+  -  아무것도 설치되어 있지 않아야 한다.
+
+  ![1572227433604](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572227433604.png)
+
+  <br>
+
+- `pip install django`
+
+  ```bash
+  (venv)
+  $pip install django # 최신버전 설치		
+  $pip install django==2.1.8 # 원하는 버전 설치
+  ```
+
+  ![1572227659826](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572227659826.png)
+
+  <br>
+
+- `pip list` 
+
+  ```bash
+  $pip list # django 설치 및 버전 확인
+  ```
+
   
 
-- Django 설치
+- `python -m django --version`
 
-  - `pip list`  :  설치된 프로그램 확인 
-
-    -  아무것도 설치되어 있지 않아야 한다.
-
-    ![1572227433604](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572227433604.png)
-
-  - `pip install django`
-
-    ![1572227659826](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572227659826.png)
-
-  - `pip list` : django 설치 확인
-
-  - `python -m django --version`
-
-    ![1572227722348](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572227722348.png)
+  ![1572227722348](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572227722348.png)
 
 
 
+<br><br>
 
+## django 프로젝트 시작
 
-## 프로젝트 생성
+```bash
+# django 프로젝트를 담을 폴더 생성
+$mkdir 00_django_intro
+
+# 폴더로 이동
+$cd 00_django_intro
+
+# 현재 폴더를 프로젝트 폴더로 설정
+$django-admin startproject config .
+```
+
+<br>
 
 - `django-admin startproject config .`
 
-  : django를 통해 project를 시작하겠다.
-
-  . : 현재 위치를 django 프로젝트로 사용하겠다.
+  - django를 통해 project를 시작하겠다.
+  - .  :  현재 위치를 django 프로젝트로 사용하겠다.
 
   ![1572228328924](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572228328924.png)
+
+  <br>
 
   - config, manage.py 가 생성
 
     ![1572228387795](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572228387795.png)
 
-  - 기본적으로 manage,py라는 파일에서 서버를 수행해야한다.
+    <br>
+
+  - 반.드.시! manage,py라는 파일에서 서버를 수행해야한다.
 
     - python manage.py
 
+      - django 프로젝트와 의사소통하는  상호작용 Command Line Utility
+
       ![1572228528362](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572228528362.png)
 
-    - 결과 - 성공적으로 서버가 실행된다.
+      <br>
 
-      ![1572228501867](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572228501867.png)
+    - 터미널에 출력되는 로컬 호스트 주소로 들어가서 로켓 확인!
+
+      - 이 서버는 django가 제공하는 경량 개발용 서버이므로, 배포할 때는 절대 이용해서는 안된다.
+
+        배포할 때는 heroku, pythonanywhere 를 이용한다.
+
+      - 결과 - 성공적으로 서버가 실행된다.
+
+        ![1572228501867](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572228501867.png)
+
+      <br><br>
 
 ### Project 폴더 구조 
 
 ![1572229151395](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572229151395.png)
+
+<br>
 
 #### config/
 
@@ -265,11 +292,16 @@ view.py
 #### manage,py
 
 - django 프로젝트와 의사소통할 때 쓰이는 Command Line Utility
+
 - 명령을 내릴 때 이곳을 통해서 명령을 내린다.
 
+  
 
 
 
+<br>
+
+<br>
 
 ## Application
 
@@ -277,19 +309,42 @@ view.py
   - 사용자 인증을 관리하는 Admin  Application
   - 게시판을 관리하는 Post Application
 
+- Project VS Application 
+
+  - Project는 여러 개의 Application을 담는 그릇의 역할을 한다.
+
+    - 커다란 django 프로젝트의 각종 환경 설정들이 담긴다.
+    - 하나의 프로젝트는 여러 개의 Application을 가질 수 있다.
+
+  - Application은 실제 웹 서비스에서 어떠한 역할을 수행하는 것을 담당한다.
+
+    - 예를 들어 게시글을 조회하고 수정, 삭제하거나 사용자의 로그인, 로그아웃, 회원가입을 하는 등 모든 행위는 Application이라는 친구가 수행한다.
+
+    - 기본적으로 Application은 하나의 역할 및 기능 단위로 쪼개는 것이 원칙!
+
+      그러나, 장고 개발진에서 어떤 식으로 나누라는 기준을 제공하는 것은 아니다. 
+
+    - 프로젝트를 수행하면서 프로젝트 사정에 맞게 알아서 쪼개면 된다.
+
+    - Application 이름은 가능한 복수형 (예 > pages, posts, boards, ...) 으로 짓는다.
 
 
-Pages Application 생성
+
+<br>
+
+### Pages Application 생성
 
 - $ python manage.py startapp pages
 
 ![1572229225707](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572229225707.png)
 
+<br>
+
 - Pages라는 Application 생성
 
   ![1572229259188](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572229259188.png)
 
-
+<br><br>
 
 ### Pages Application 구조
 
@@ -314,7 +369,7 @@ Pages Application 생성
 
 
 
-
+<br><br>
 
 ### 프로젝트에 Pages Applicatoin 설정
 
@@ -325,7 +380,9 @@ Pages Application 생성
 
   ![1572229600813](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572229600813.png)
 
-  - 가급적 아래의 규칙 및 구성으로 
+  <br>
+
+  - 가급적 아래의 규칙 및 구성으로 작성한다.
 
     ```python
     # Application definition
@@ -346,9 +403,7 @@ Pages Application 생성
     ]
     ```
 
-    
-
-
+    <br>
 
 - language와 time-zone 설정
 
@@ -366,7 +421,7 @@ Pages Application 생성
     USE_TZ = True
     ```
 
-    
+    <br>
 
   - 한글로 된 서버 확인
 
@@ -374,17 +429,17 @@ Pages Application 생성
 
 
 
+<br><br>
 
 
 
-
-Django 확장 프로그램 설치
+### Django 확장 프로그램 설치
 
 ![1572235823648](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572235823648.png)
 
 
 
-
+<br><br>
 
 ### 페이지 작성
 
@@ -419,7 +474,7 @@ Django 확장 프로그램 설치
             return render(request, 'index.html')
         ```
 
-      
+      <br>
 
   - pages 폴더 밑 templates 폴더 생성 & index.html 생성
 
@@ -431,7 +486,7 @@ Django 확장 프로그램 설치
       <h1>hello, Django</h1>
       ```
 
-  
+  <br>
 
   - Project 폴더 밑 urls.py 작성
 
@@ -459,13 +514,13 @@ Django 확장 프로그램 설치
       ]
       ```
 
-      
+      <br>
 
   -  실행화면
 
   ![1572236189779](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572236189779.png)
 
-
+<br><br>
 
 #### introduce 페이지 작성
 
@@ -477,6 +532,8 @@ Django 확장 프로그램 설치
     def introduce(request):
         return render(request, 'introduce.html')
     ```
+
+    <br>
 
   - urls.py
 
@@ -492,15 +549,15 @@ Django 확장 프로그램 설치
     ]
     ```
 
-    
+    <br>
 
   - introduce.html
 
-    ```
+    ```html
     <h1>안녕하세요, 공선아 입니다. </h1>
     ```
 
-    
+    <br>
 
   - 실행화면
 
@@ -508,30 +565,7 @@ Django 확장 프로그램 설치
 
 
 
-
-
-## 코드 작성 순서 (권장)
-
-1. views.py (view 작성)
-
-   - 보여주고자 하는 페이지의 view 함수를 작성한다.
-   - 기능 구현 우선
-
-   
-
-2. templates
-
-   - 사용자에게 보여줄 Template 페이지를 작성한다.
-
-   
-
-3. urls.py (view 등록)
-
-   - 사용자가 해당 경로로 들어왔을 때 view 함수를 실행한다.
-
-
-
-
+<br><br>
 
 ## Django Template
 
@@ -561,7 +595,7 @@ Django 확장 프로그램 설치
           return render(request, 'introduce.html', {'name' : name})
       ```
 
-    
+    <br>
 
   - introduce.html
 
@@ -569,7 +603,7 @@ Django 확장 프로그램 설치
     <h1>안녕하세요, {{name}} 입니다. </h1>
     ```
 
-    
+    <br>
 
   - urls.py
 
@@ -585,13 +619,15 @@ Django 확장 프로그램 설치
     ]
     ```
 
-    
+    <br>
 
   - 실행 화면
 
     ![1572237021316](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572237021316.png)
 
-  
+  <br>
+
+  <br>
 
 #### 저녁메뉴 
 
@@ -618,7 +654,7 @@ Django 확장 프로그램 설치
           return render(request, 'dinner.html', context)
       ```
 
-    
+    <br>
 
   - urls.py
 
@@ -635,15 +671,15 @@ Django 확장 프로그램 설치
     ]
     ```
 
-    
+    <br>
 
   - dinner.html
 
-    ```
+    ```html
     <h1>오늘의 저녁 메뉴는 ... {{pick}}!!!! </h1>
     ```
 
-    
+    <br>
 
   - 실행 화면
 
@@ -651,7 +687,7 @@ Django 확장 프로그램 설치
 
 
 
-
+<br><br>
 
 #### Lorem Picsum
 
@@ -670,7 +706,7 @@ Django 확장 프로그램 설치
         return render(request, 'image.html', context)
     ```
 
-    
+    <br>
 
   - urls.py
 
@@ -688,15 +724,21 @@ Django 확장 프로그램 설치
     ]
     ```
 
+    <br>
+
   - image.html
 
     ```html
     <img src={{img}} alt={{img}}/>
     ```
 
+    <br>
+
   - 실행 화면 1
 
     ![1572239073550](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572239073550.png)
+
+    <br>
 
   - 실행 화면 2
 
@@ -704,19 +746,19 @@ Django 확장 프로그램 설치
 
 
 
-
+<br><br>
 
 ### 동적 라우팅 (Variable Routing)
 
 > Why? 
 
-
+<br>
 
 - greeting/도현 , greeting/경희 등의 대한 각각의 수백개의 페이지를 작석하는 수고를 덜 수 있다. 
 
 - 함수의 인자로 변수 명을 순서대로 작성한다.
 
-
+<br>
 
 #### hello : 변수 1개 넘기기
 
@@ -730,11 +772,11 @@ Django 확장 프로그램 설치
         return render(request, 'hello.html', context)
     ```
 
-    
+    <br>
 
   - urls.py
 
-    ```
+    ```python 
     from django.contrib import admin
     from django.urls import path
     from pages import views
@@ -750,7 +792,7 @@ Django 확장 프로그램 설치
     ]
     ```
 
-    
+    <br>
 
   - hello.html
 
@@ -759,9 +801,15 @@ Django 확장 프로그램 설치
     <h2>It's {{name}} .</h2>
     ```
 
+    <br>
+
   - 실행 화면
 
     ![1572241441548](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572241441548.png)
+
+    <br>
+
+    <br>
 
 
 
@@ -771,7 +819,7 @@ Django 확장 프로그램 설치
 
   - views.py
 
-    ```
+    ```python 
     def hello(request, name):
         menu = ['초밥', '삼겹살', '치즈돈까스', '살치살 스테이크']
         today_pick = random.choice(menu)
@@ -783,11 +831,11 @@ Django 확장 프로그램 설치
         return render(request, 'hello.html', context)
     ```
 
-    
+    <br>
 
   - urls.py
 
-    ```
+    ```python 
     from django.contrib import admin
     from django.urls import path
     from pages import views
@@ -804,11 +852,11 @@ Django 확장 프로그램 설치
      
     ```
 
-    
+    <br>
 
   - hello.html
 
-    ```
+    ```html
     <h1>Hello~~~~~~~~</h1>
     <h2>It's {{name}} .</h2>
     <h2>오늘은 {{pick}} 먹어유.</h2>
@@ -818,7 +866,7 @@ Django 확장 프로그램 설치
 
     ![1572239890773](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572239890773.png)
 
-
+<br><br>
 
 
 
@@ -828,9 +876,7 @@ Django 확장 프로그램 설치
 
   - views.py
 
-    ```
-    # 실습 1
-    # 템플릿 변수를 2개 이상 넘겨서, 이름/나이/취미/특기 등 여러가지 정보를 표현해보자
+    ```python 
     def introduce(request, name, age, hobby, speciality):
         context = {
             'name' : name,
@@ -842,11 +888,11 @@ Django 확장 프로그램 설치
     
     ```
 
-    
+    <br>
 
   - urls.py
 
-    ```
+    ```python 
     from django.contrib import admin
     from django.urls import path
     from pages import views
@@ -865,17 +911,25 @@ Django 확장 프로그램 설치
     ]
     ```
 
+    <br>
+
   - hello.html
 
-    ```
+    ```html
     <h1>Hello~~~~~~~~</h1>
     <h2>It's {{name}} .</h2>
     <h2>오늘은 {{pick}} 먹어유.</h2>
     ```
 
+    <br>
+
+  - 실행 화면
+
+    ![1572242158312](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572242158312.png)
 
 
 
+<br><br>
 
 #### 두개의 숫자 곱하기
 
@@ -894,11 +948,11 @@ Django 확장 프로그램 설치
         return render(request, 'times.html', context)
     ```
 
-    
+    <br>
 
   - urls.py
 
-    ```
+    ```python 
     from django.contrib import admin
     from django.urls import path
     from pages import views
@@ -919,7 +973,7 @@ Django 확장 프로그램 설치
     ]
     ```
 
-    
+    <br>
 
   - times.html
 
@@ -927,13 +981,13 @@ Django 확장 프로그램 설치
     <h1>{{num1}} X {{num2}} = {{result}}</h1>
     ```
 
+    <br>
+
   - 실행 화면
 
     ![1572241677388](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572241677388.png)
 
-
-
-
+<br><br>
 
 #### 원의 넓이 
 
@@ -941,7 +995,7 @@ Django 확장 프로그램 설치
 
   - views.py
 
-    ```
+    ```python 
     def radius(request, rad):
         result = 3.14 * rad*rad
         context = {
@@ -951,11 +1005,11 @@ Django 확장 프로그램 설치
         return render(request, 'radius.html', context)
     ```
 
-    
+    <br>
 
   - urls.py
 
-    ```
+    ```python 
     from django.contrib import admin
     from django.urls import path
     from pages import views
@@ -980,7 +1034,7 @@ Django 확장 프로그램 설치
     ]
     ```
 
-    
+    <br>
 
   - radius.html
 
@@ -988,11 +1042,13 @@ Django 확장 프로그램 설치
     <h1>{{rad}} 인 원의 넓이는 {{result}} 입니다. </h1>
     ```
 
+    <br>
+
   - 실행 화면
 
     ![1572241885886](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572241885886.png)
 
-
+<br><br>
 
 
 
@@ -1004,7 +1060,7 @@ Django 확장 프로그램 설치
 
   - views.py
 
-    ```
+    ```python 
     def imageSize(request, width, height):
         img = "https://picsum.photos/"+width + "/"+height
         context = {
@@ -1014,11 +1070,11 @@ Django 확장 프로그램 설치
         return render(request, 'imageSize.html', context)
     ```
 
-    
+    <br>
 
   - urls.py
 
-    ```
+    ```python 
     from django.contrib import admin
     from django.urls import path
     from pages import views
@@ -1047,14 +1103,16 @@ Django 확장 프로그램 설치
     ]
     ```
 
-    
+    <br>
 
-  - radius.html
+  - imageSize.html
 
     ```
     <h1>랜덤 이미지 쨘</h1>
     <img src={{img}} alt={{img}}/>
     ```
+
+    <br>
 
   - 실행 화면
 
@@ -1062,7 +1120,659 @@ Django 확장 프로그램 설치
 
       ![1572241912994](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572241912994.png)
 
+      <br>
+
     - 100 * 100
 
       ![1572241937263](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572241937263.png)
+
+<br>
+
+
+
+
+
+## DTL (Django Template Language)
+
+- Django에서 사용하는 템플릿 엔진으로, DTL이 기본적으로 내장되어 있다.
+  - Flask에서 사용하던 Jinja2 템플릿 엔진과 비슷하다.
+- Jinja2와 마찬가지로 조건문, 반복문, 변수 치환, 필터 등의 기능을 제공한다.
+- 사용자에게 보여줄 데이터를 가공하는 작업이 필요한 경우, DTL에 내장된 연산 방식을 사용하지 말고, 되도록이면 view 함수 내부에서 데이터를 가공할 뒤 템플렛에게 넘겨주자.
+
+
+
+### 기본 코드
+
+- views.py
+
+  ```python 
+  from datetime import datetime
+  def template_language(request):
+      menus = ['짜장면', '탕수육', '짬뽕', '양장피']
+      my_sentence = 'Life is short, you need python'
+      messages = ['apple', 'banana', 'cucumber', 'mango']
+      datetimenow = datetime.now()
+      empty_list = []
+      context = {
+          'menus': menus,
+          'my_sentence': my_sentence,
+          'messages': messages,
+          'empty_list': empty_list,
+          'datetimenow': datetimenow,
+      }
+      return render(request, 'template_language.html', context)
+  ```
+
+- urls.py
+
+  ```python 
+  from django.contrib import admin
+  from django.urls import path
+  from pages import views
+  
+  urlpatterns = [
+  
+      path('template_language/', views.template_language),
+      path('hello/<str:name>/', views.hello),
+      path('index/', views.index),
+      # path('introduce/', views.introduce),
+      path('introduce/<str:name>/<str:age>/<str:hobby>/<str:speciality>/', views.introduce),
+      path('times/<int:num1>/<int:num2>', views.times),
+      path('radius/<int:rad>', views.radius),
+      path('imageSize/<str:width>/<str:height>', views.imageSize),
+      path('dinner/', views.dinner),
+      path('image/', views.image),
+      path('admin/', admin.site.urls),
+  ]
+  ```
+
+  
+
+
+
+#### 주석
+
+- 주석 형식
+
+  ```
+  {% comment %} 주석입니다.  {% endcomment %}
+  ```
+
+  <br>
+
+#### 반복문
+
+- 반복문 형식
+
+  ```html
+  {% for menu in menus %}
+   
+  {% endfor %}
+  ```
+
+  
+
+- template_language.html
+
+  ```html
+  <h1>반복문</h1>
+  <h4>메뉴판</h4>
+  
+  <ul>
+  {% for menu in menus %}
+    <li>{{menu}}</li>
+  {% endfor %}
+  </ul>
+  ```
+
+  - 반복문 실행화면
+
+    ![1572244097631](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572244097631.png)
+
+    <br>
+
+
+
+
+
+
+
+#### 조건문
+
+- 조건문 형식
+
+  ```html
+  {% if 'a'  in 'apple' %}
+  
+  {% endif %}
+  
+  
+  
+  {% if menu == '짜장면' %}
+  
+  {% else %}
+  
+  {% endif %}
+  ```
+
+  
+
+- template_language.html
+
+  ```html
+  <h1>조건문</h1>
+  <h4>메뉴판</h4>
+  {% if '짜장면' in menus %}
+    <p>짜장면에는 정성이 가득</p>
+  {% endif %}
+  
+  <hr>
+  
+  <ul>
+  {% for menu in menus %}
+    {% if menu == '짜장면' %}
+      <li>{{menu}} : 짜장면에는 정성이 가득</li>
+    {% else %}
+      <li>{{menu}}</li>
+    {% endif %}
+  {% endfor %}
+  </ul>
+  ```
+
+  
+
+  - 조건문 실행 화면
+
+    ![1572252166016](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572252166016.png)
+
+
+
+
+
+
+
+#### Length Filter
+
+- Length Filter 형식
+
+  - `|length`
+
+    ```html
+    {% if message|length > 5 %}
+    
+    {% else %}
+    
+    {% endif %}
+    ```
+
+- template_language.html
+
+  ```html
+  <h1>Length Filter</h1>
+  {% for message in messages %}
+    {% if message|length > 5 %}
+      <P>{{message}} ... 너무 길어요. 줄여주세요!</p>
+    {% else %}
+      <P>{{message}} 의 길이는 {{message|length}} 글자!</p>
+    {% endif %}
+  {% endfor %}
+  ```
+
+  - Length Filter 실행 화면
+
+    ![1572244612438](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572244612438.png)
+
+<br>
+
+#### Lorem
+
+- Lorem 형식
+
+  - w : word
+
+  - p : <p></p>
+
+  - random : 무작위
+
+    ```
+    {% lorem %}
+    ```
+
+    
+
+- template_language.html
+
+  ```html
+  <h1>Lorem Text</h1>
+  {% lorem %}
+  
+  <hr>
+  
+  {% lorem 3 w%}
+  
+  <hr>
+   {% comment %} 랜덤으로 단어  {% endcomment %}
+  {% lorem 4 w random%}
+  
+  <hr>
+  
+  {% lorem 4 p %}
+  ```
+
+  - Lorem 실행 화면
+
+    ![1572252193281](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572252193281.png)
+
+<br>
+
+
+
+#### 글자수 제한 (Truncate - 자르기)
+
+- Truncate 형식
+
+  ```
+  {{my_sentence|truncatewords:3}}
+  {{my_sentence|truncatechars:3}}
+  ```
+
+  
+
+- template_language.html
+
+  ```
+  <!-- 단어 단위로 자른다. -->
+  <p>{{my_sentence|truncatewords:3}}</p>
+  
+  <!-- 문자 단위로 자른다. / 3번째 포함 X -->
+  <p>{{my_sentence|truncatechars:3}}</p>
+  
+  <!-- 문자 단위로 자른다. / 10번째 포함 X -->
+  <p>{{my_sentence|truncatechars:10}}</p>
+  ```
+
+  - Truncate 실행화면
+
+    ![1572252207204](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572252207204.png)
+
+<br>
+
+#### 연산
+
+> 자세한 내용은 [django mathfilters](https://pypi.org/project/django-mathfilters/) 참고
+
+- 기본적으로, 사용자에게 보여줄 데이터를 가공하는 것은 뷰 함수에서 처리하자
+
+  반드시 필요한 경우에만 연상 필터를 사용한다.
+
+- 연산 형식
+
+  ```
+  {{ 4|add:6}}
+  ```
+
+  
+
+- template_language.html
+
+  ```
+  <h1>연산</h1>
+  <!-- 
+      기본적으로, 사용자에게 보여줄 데이터를 가공하는 것은 뷰 함수에서 처리하자
+      반드시 필요한 경우에만 연상 필터를 사용한다.
+  
+      django mathfilters
+   -->
+  <p>{{ 4|add:6}}</p>
+  
+  <hr>
+  ```
+
+  - 연산 실행 화면
+
+    ![1572252215789](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572252215789.png)
+
+<br>
+
+#### 날짜
+
+- 날짜 형식
+
+  - 파이썬 내장 라이브러리 datetimenow
+
+    ```
+    {{datetimenow}}
+    ```
+
+    
+
+  - DTL 내장  now (기본)
+
+    ```
+    {% now "DATETIME_FORMAT"%}
+    ```
+
+    
+
+- template_language.html 
+
+  - DTL 내장 now를 활용해 다양한 형태의 날짜 형식을 출력할 수 있다.
+
+    ```
+    <h1>날짜</h1>
+    {% comment %} DTL에 {% now %}가 기본적으로 내장되어 있다. {% endcomment %}
+    
+    <!-- 7.1 파이썬 내장 라이브러리인 datetimenow 로 날짜를 출력 -->
+    {{datetimenow}} <br>
+    
+    <!-- 7.2 DTL에 내장된  now 를 사용해보자 -->
+    {% now "DATETIME_FORMAT"%} <br>
+    {% now "SHORT_DATETIME_FORMAT"%} <br>
+    {% now "DATETIME_FORMAT"%} <br>
+    {% now "DATE_FORMAT"%} <br>
+    {% now "SHORT_DATE_FORMAT"%} <br>
+    
+    <hr>
+    
+    {% now "Y년 m월 d일 D h:i"%}
+    ```
+
+  - 날짜 실행 화면
+
+    ![1572252245696](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572252245696.png)
+
+<br>
+
+#### 기타
+
+- 특정 str를 url로 변환
+
+  - urlize
+
+  - template_language.html 
+
+    ```
+    {{'google.com'|urlize}}
+    ```
+
+  - 기타 실행 화면
+
+    ![1572252259077](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572252259077.png)
+
+
+
+<br>
+
+### 로또 번호 추첨
+
+- 임으로 출력한 로또 번호와 가장 최근에 추첨한 로또 번호 비교해서 당첨여부 확인
+
+  - views.py
+
+    ```python 
+    def lotto(request, lottonum):
+    
+        # [18,34,39,43,44,45]
+        real_lotto = list(map(int, lottonum.strip().split(',')))
+        s_lotto = sorted(real_lotto)
+    
+        num_list = [i for i in range(1, 47)]
+        lotto_list = random.sample(num_list, 6)
+        s_lotto_list = sorted(lotto_list)
+       
+        count = 0
+        for i, j in zip(s_lotto, s_lotto_list):
+            if i == j:
+                count += 1
+            else : 
+                pass
+    
+       
+        result = '안녕, 수연입니다!'
+    
+        context = {
+            'real_lotto': real_lotto,
+            'lotto_list': lotto_list,
+            'count': count,
+        }
+        return render(request, 'lotto.html',context)
+    ```
+
+    
+
+  - urls.py
+
+    ```python 
+    from django.contrib import admin
+    from django.urls import path
+    from pages import views
+    
+    urlpatterns = [
+        path('lotto/<str:lottonum>', views.lotto),
+        path('template_language/', views.template_language),
+        path('hello/<str:name>/', views.hello),
+        path('index/', views.index),
+        # path('introduce/', views.introduce),
+        path('introduce/<str:name>/<str:age>/<str:hobby>/<str:speciality>/', views.introduce),
+        path('times/<int:num1>/<int:num2>', views.times),
+        path('radius/<int:rad>', views.radius),
+        path('imageSize/<str:width>/<str:height>', views.imageSize),
+        path('dinner/', views.dinner),
+        path('image/', views.image),
+        path('admin/', admin.site.urls),
+    ]
+    ```
+
+    
+
+  - lotto.html
+
+    ```html
+    <h1>인생 역정 가능할까요?</h1>
+    <h3>당신이 뽑은 로또 번호는... </h3>
+    <p>{{lotto_list}}</p>
+    
+    <h3>실제 로또 번호는... </h3>
+    <p>{{real_lotto}}</p>
+    
+    <h3>보너스 번호는  </h3>
+    <p>{{bonus}}</p>
+    
+    <h3>맞은 개수 </h3>
+    <p>{{count}}</p>
+    
+    <h3>순위 </h3>
+    {% if rank == '꽝' %}
+      <p>꽝! 다음 기회에...</p>
+    {% else %}
+      <p>{{rank}} 등 입니다!</p>
+    {% endif %}
+    ```
+
+    - 로또 추첨 실행 화면
+
+      ![1572262106883](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572262106883.png)
+
+<br>
+
+### Is it your birthday?
+
+- 오늘 날짜와 본인 실제 생일 비교해서 , 맞으면 예! 아니면 아니오!
+
+- 날짜 라이브러리 활용
+
+  - views.py
+
+    ```python 
+    def isbirth(request):
+        days = datetime.now()
+        if days.month == 10 and days.day == 28:
+            result = True
+        else : 
+            result = False
+    
+        context = {
+            'result': result,
+        }
+        return render(request, 'isbirth.html',context)
+    ```
+
+    
+
+  - urls.py
+
+    ```python 
+    from django.contrib import admin
+    from django.urls import path
+    from pages import views
+    
+    urlpatterns = [
+        path('isbirth/', views.isbirth),
+        path('lotto/<str:lottonum>', views.lotto),
+        path('template_language/', views.template_language),
+        path('hello/<str:name>/', views.hello),
+        path('index/', views.index),
+        # path('introduce/', views.introduce),
+        path('introduce/<str:name>/<str:age>/<str:hobby>/<str:speciality>/', views.introduce),
+        path('times/<int:num1>/<int:num2>', views.times),
+        path('radius/<int:rad>', views.radius),
+        path('imageSize/<str:width>/<str:height>', views.imageSize),
+        path('dinner/', views.dinner),
+        path('image/', views.image),
+        path('admin/', admin.site.urls),
+    ]
+    ```
+
+    
+
+  - isbirth.html
+
+    ```html
+    <h1>Is it your birthday?</h1>
+    {% if result %}
+      <h2>생일 축하해~</h2>
+      {% else %}
+      <h2>너의 생일이 아니야</h2>
+    {% endif %}
+    ```
+
+    - Is it your birthday? 실행 화면
+
+      - 생일이 오늘인 경우
+
+        ![1572262138967](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572262138967.png)
+
+        <br>
+
+      - 생일이 오늘이 아닌 경우
+
+        ![1572262161055](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572262161055.png)
+
+
+
+
+
+<br><br>
+
+
+
+### 회문 판별
+
+- 오디오는 거꾸로 해도 오디오 -> 회문
+
+- (팰린드롬 / 문자열 슬라이싱 파트 활용 )
+
+  - views.py
+
+    ```python 
+    def ispal(request, word):
+        # 검색 키워드 : 파이썬 문자열 슬라이스
+        if word == word[::-1]:
+            result = True
+        else :
+            result = False
+        context = {
+            'word': word,
+            'result': result,
+        }
+        return render(request, 'ispal.html',context)
+    ```
+
+    
+
+  - urls.py
+
+    ```python 
+    from django.contrib import admin
+    from django.urls import path
+    from pages import views
+    
+    urlpatterns = [
+        path('lotto/<str:lottonum>', views.lotto),
+        path('ispal/<str:word>', views.ispal),
+        path('isbirth/', views.isbirth),
+        path('template_language/', views.template_language),
+        path('hello/<str:name>/', views.hello),
+        path('index/', views.index),
+        # path('introduce/', views.introduce),
+        path('introduce/<str:name>/<str:age>/<str:hobby>/<str:speciality>/', views.introduce),
+        path('times/<int:num1>/<int:num2>', views.times),
+        path('radius/<int:rad>', views.radius),
+        path('imageSize/<str:width>/<str:height>', views.imageSize),
+        path('dinner/', views.dinner),
+        path('image/', views.image),
+        path('admin/', admin.site.urls),
+    ]
+    ```
+
+    
+
+  - ispal.html
+
+    ```html
+    {% if result %}
+     <p> {{word}}는 거꾸고 말해도 {{word}}이므로, 회문이다.  </p>
+    {% else %}
+     <p> {{word}}는 회문이 아니다.  </p>
+    {% endif %}
+    ```
+
+    - 회문 판별 실행 화면
+
+      - 회문인 경우
+
+        ![1572262182951](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572262182951.png)
+
+        <br>
+
+      - 회문이 아닌 경우
+
+        ![1572262197614](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572262197614.png)
+
+
+
+<br><br>
+
+
+
+## 코드 작성 순서 (권장)
+
+> 대출창구 (views.py)를 만들지 않았는데 손님을 대출창구로 모시면 (urls.py), 컴플레인을 받는다. (에러를 뿜는다.)
+
+1. views.py (view 작성)
+
+   - 보여주고자 하는 페이지의 view 함수를 작성한다.
+   - 기능 구현 우선
+
+   
+
+2. templates
+
+   - 사용자에게 보여줄 Template 페이지를 작성한다.
+
+   
+
+3. urls.py (view 등록)
+
+   - 사용자가 해당 경로로 들어왔을 때 view 함수를 실행한다.
 
