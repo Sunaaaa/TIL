@@ -15,7 +15,28 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from pages import views
 
 urlpatterns = [
+    # 동적 라우팅을 위한 변수 설정
+    path('hello/<str:name>/', views.hello),
+    path('index/', views.index),
+
+    # path('introduce/', views.introduce),
+    # 동적 라우팅을 위한 변수 설정
+    path('introduce/<str:name>/<str:age>/<str:hobby>/<str:speciality>/', views.introduce),
+
+    # 동적 라우팅을 위한 변수 설정
+    path('times/<int:num1>/<int:num2>', views.times),
+
+    # 동적 라우팅을 위한 변수 설정
+    path('radius/<int:rad>', views.radius),
+
+    # 동적 라우팅을 위한 변수 설정
+    path('imageSize/<str:width>/<str:height>', views.imageSize),
+
+    path('dinner/', views.dinner),
+    path('image/', views.image),
     path('admin/', admin.site.urls),
 ]
+ 
