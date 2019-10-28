@@ -23,7 +23,7 @@
 
 ## MTV 패턴
 
-![1572230693722](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572230693722.png)
+![1572230693722](https://user-images.githubusercontent.com/39547788/67676146-38997c80-f9c4-11e9-88b2-5e01c46bddbd.png)
 
 - django에서는 MTV 패턴이라고 부르지만, 실제로는 MVC 패턴과 동일하다.
 
@@ -80,19 +80,19 @@
 
   - python 이 기본적으로 가지고 있는venv 모듈을 통해 venv라는 이름의 가상환경을 만든다.
 
-  ![1572225623605](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572225623605.png)
+  ![1572225623605](https://user-images.githubusercontent.com/39547788/67676121-359e8c00-f9c4-11e9-8f7f-4843dcdde9c2.png)
 
   <br>
 
   - Ctrl + Shift + P를 눌러 'interpreter'를 작성한다.
 
-    ![1572225809684](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572225809684.png)
+    ![1572225809684](https://user-images.githubusercontent.com/39547788/67676123-359e8c00-f9c4-11e9-9647-73f672d850f0.png)
 
     <br>
 
   - interpreter를 좀전에 생성한 가상환경 venv로 설정
 
-    ![1572225895783](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572225895783.png)
+    ![1572225895783](https://user-images.githubusercontent.com/39547788/67676124-359e8c00-f9c4-11e9-8a89-6eed8c210113.png)
 
   <br>
 
@@ -100,19 +100,19 @@
 
     - setting.json 파일이 생성된다. 
 
-      ![1572226428223](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572226428223.png)
+      ![1572226428223](https://user-images.githubusercontent.com/39547788/67676129-36372280-f9c4-11e9-96d8-e88117bf46ee.png)
 
       <br>
 
     - setting.json
 
-      ![1572226297875](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572226297875.png)
+      ![1572226297875](https://user-images.githubusercontent.com/39547788/67676128-36372280-f9c4-11e9-8b30-bb89dcd02265.png)
 
 <br>
 
 - bash를 새로 추가하면 바로 가상환경에 접근할 수 있다. 
 
-  ![1572226024533](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572226024533.png)
+  ![1572226024533](https://user-images.githubusercontent.com/39547788/67676126-36372280-f9c4-11e9-97c7-b8049a64e0ac.png)
 
   <br>
 
@@ -126,7 +126,7 @@
 
     - Django, venv, Visual Studio Code
 
-      ![1572226168727](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572226168727.png)
+      ![1572226168727](https://user-images.githubusercontent.com/39547788/67676127-36372280-f9c4-11e9-9c6b-60567c635e5b.png)
 
 
 
@@ -164,7 +164,7 @@
 
   -  아무것도 설치되어 있지 않아야 한다.
 
-  ![1572227433604](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572227433604.png)
+  ![1572227433604](https://user-images.githubusercontent.com/39547788/67676130-36cfb900-f9c4-11e9-9391-3e4b436326ac.png)
 
   <br>
 
@@ -176,7 +176,7 @@
   $pip install django==2.1.8 # 원하는 버전 설치
   ```
 
-  ![1572227659826](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572227659826.png)
+  ![1572227659826](https://user-images.githubusercontent.com/39547788/67676131-36cfb900-f9c4-11e9-8ef8-b088c18f1db8.png)
 
   <br>
 
@@ -190,7 +190,7 @@
 
 - `python -m django --version`
 
-  ![1572227722348](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572227722348.png)
+  ![1572227722348](https://user-images.githubusercontent.com/39547788/67676132-37684f80-f9c4-11e9-9c57-617a5bbae40f.png)
 
 
 
@@ -216,13 +216,13 @@ $django-admin startproject config .
   - django를 통해 project를 시작하겠다.
   - .  :  현재 위치를 django 프로젝트로 사용하겠다.
 
-  ![1572228328924](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572228328924.png)
+  ![1572228328924](https://user-images.githubusercontent.com/39547788/67676133-37684f80-f9c4-11e9-9d0b-b441ced19e30.png)
 
   <br>
 
   - config, manage.py 가 생성
 
-    ![1572228387795](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572228387795.png)
+    ![1572228387795](https://user-images.githubusercontent.com/39547788/67676135-37684f80-f9c4-11e9-8b6e-222f2a5cdd3f.png)
 
     <br>
 
@@ -232,7 +232,13 @@ $django-admin startproject config .
 
       - django 프로젝트와 의사소통하는  상호작용 Command Line Utility
 
-      ![1572228528362](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572228528362.png)
+        ```bash
+        $python manage.py runserver
+        ```
+
+        
+
+        ![1572228528362](https://user-images.githubusercontent.com/39547788/67676137-3800e600-f9c4-11e9-88ec-93b962ee7198.png)
 
       <br>
 
@@ -244,13 +250,13 @@ $django-admin startproject config .
 
       - 결과 - 성공적으로 서버가 실행된다.
 
-        ![1572228501867](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572228501867.png)
+        ![1572228501867](https://user-images.githubusercontent.com/39547788/67676136-3800e600-f9c4-11e9-8015-b5c524eaeb63.png)
 
       <br><br>
 
 ### Project 폴더 구조 
 
-![1572229151395](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572229151395.png)
+![1572229151395](https://user-images.githubusercontent.com/39547788/67676138-3800e600-f9c4-11e9-904d-ea5e2b00c373.png)
 
 <br>
 
@@ -334,19 +340,17 @@ $django-admin startproject config .
 
 ### Pages Application 생성
 
-- $ python manage.py startapp pages
+- Pages라는 Application 생성 
 
-![1572229225707](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572229225707.png)
+  - $ python manage.py startapp pages
 
-<br>
-
-- Pages라는 Application 생성
-
-  ![1572229259188](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572229259188.png)
+    ![1572229225707](https://user-images.githubusercontent.com/39547788/67676140-3800e600-f9c4-11e9-80b3-5c29cb7e9fbe.png)
 
 <br><br>
 
 ### Pages Application 구조
+
+![1572229259188](https://user-images.githubusercontent.com/39547788/67676141-38997c80-f9c4-11e9-9d7b-c3c8b35795dd.png)
 
 - migrations
   - 데이터 베이스의 추가, 수정, 삭제 등의 기록이 담기는 곳
@@ -378,7 +382,7 @@ $django-admin startproject config .
 
 - config 폴더 아래, settings.py 파일에 생성한 Appcation의 이름을 작성한다.
 
-  ![1572229600813](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572229600813.png)
+  ![1572229600813](https://user-images.githubusercontent.com/39547788/67676142-38997c80-f9c4-11e9-8f1f-4fdd10db5b81.png)
 
   <br>
 
@@ -425,7 +429,7 @@ $django-admin startproject config .
 
   - 한글로 된 서버 확인
 
-    ![1572229764280](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572229764280.png)
+    ![1572229764280](https://user-images.githubusercontent.com/39547788/67676144-38997c80-f9c4-11e9-9c56-b2f87df77c1b.png)
 
 
 
@@ -435,7 +439,7 @@ $django-admin startproject config .
 
 ### Django 확장 프로그램 설치
 
-![1572235823648](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572235823648.png)
+![1572235823648](https://user-images.githubusercontent.com/39547788/67676148-39321300-f9c4-11e9-8dfc-0fe0be11cc40.png)
 
 
 
@@ -518,7 +522,7 @@ $django-admin startproject config .
 
   -  실행화면
 
-  ![1572236189779](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572236189779.png)
+  ![1572236189779](https://user-images.githubusercontent.com/39547788/67676149-39321300-f9c4-11e9-8494-990bd93ef232.png)
 
 <br><br>
 
@@ -561,7 +565,7 @@ $django-admin startproject config .
 
   - 실행화면
 
-    ![1572236659339](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572236659339.png)
+    ![1572236659339](https://user-images.githubusercontent.com/39547788/67676150-39321300-f9c4-11e9-9147-fac16c8ccacf.png)
 
 
 
@@ -623,7 +627,7 @@ $django-admin startproject config .
 
   - 실행 화면
 
-    ![1572237021316](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572237021316.png)
+    ![1572237021316](https://user-images.githubusercontent.com/39547788/67676152-39321300-f9c4-11e9-8eb3-91be4745d107.png)
 
   <br>
 
@@ -683,7 +687,7 @@ $django-admin startproject config .
 
   - 실행 화면
 
-    ![1572237394803](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572237394803.png)
+    ![1572237394803](https://user-images.githubusercontent.com/39547788/67676153-39caa980-f9c4-11e9-8ef8-b109937c5453.png)
 
 
 
@@ -736,13 +740,13 @@ $django-admin startproject config .
 
   - 실행 화면 1
 
-    ![1572239073550](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572239073550.png)
+    ![1572239073550](https://user-images.githubusercontent.com/39547788/67676155-39caa980-f9c4-11e9-9814-d817525c4694.png)
 
     <br>
 
   - 실행 화면 2
 
-    ![1572239114846](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572239114846.png)
+    ![1572239114846](https://user-images.githubusercontent.com/39547788/67676156-39caa980-f9c4-11e9-8d12-a3afac2b8ac7.png)
 
 
 
@@ -750,11 +754,9 @@ $django-admin startproject config .
 
 ### 동적 라우팅 (Variable Routing)
 
-> Why? 
+> Why? greeting/도현 , greeting/경희 등의 대한 각각의 수백개의 페이지를 작석하는 수고를 덜 수 있다.  
 
 <br>
-
-- greeting/도현 , greeting/경희 등의 대한 각각의 수백개의 페이지를 작석하는 수고를 덜 수 있다. 
 
 - 함수의 인자로 변수 명을 순서대로 작성한다.
 
@@ -805,7 +807,7 @@ $django-admin startproject config .
 
   - 실행 화면
 
-    ![1572241441548](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572241441548.png)
+    ![1572241441548](https://user-images.githubusercontent.com/39547788/67676158-3a634000-f9c4-11e9-9b62-c41d7e00f9a7.png)
 
     <br>
 
@@ -864,7 +866,7 @@ $django-admin startproject config .
 
   - 실행 화면
 
-    ![1572239890773](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572239890773.png)
+    ![1572239890773](https://user-images.githubusercontent.com/39547788/67676157-39caa980-f9c4-11e9-811c-933c00d249c9.png)
 
 <br><br>
 
@@ -925,7 +927,7 @@ $django-admin startproject config .
 
   - 실행 화면
 
-    ![1572242158312](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572242158312.png)
+    ![1572242158312](https://user-images.githubusercontent.com/39547788/67676163-3afbd680-f9c4-11e9-8b90-0ee7292b15c6.png)
 
 
 
@@ -985,7 +987,7 @@ $django-admin startproject config .
 
   - 실행 화면
 
-    ![1572241677388](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572241677388.png)
+    ![1572241677388](https://user-images.githubusercontent.com/39547788/67676159-3a634000-f9c4-11e9-8ba8-c855f2854fe0.png)
 
 <br><br>
 
@@ -1046,7 +1048,7 @@ $django-admin startproject config .
 
   - 실행 화면
 
-    ![1572241885886](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572241885886.png)
+    ![1572241885886](https://user-images.githubusercontent.com/39547788/67676160-3a634000-f9c4-11e9-8f3a-eee81422bf32.png)
 
 <br><br>
 
@@ -1118,13 +1120,13 @@ $django-admin startproject config .
 
     - 500 * 500
 
-      ![1572241912994](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572241912994.png)
+      ![1572241912994](https://user-images.githubusercontent.com/39547788/67676161-3a634000-f9c4-11e9-9842-965d63bb4797.png)
 
       <br>
 
     - 100 * 100
 
-      ![1572241937263](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572241937263.png)
+      ![1572241937263](https://user-images.githubusercontent.com/39547788/67676162-3afbd680-f9c4-11e9-9c09-b82a09fc2df4.png)
 
 <br>
 
@@ -1227,7 +1229,7 @@ $django-admin startproject config .
 
   - 반복문 실행화면
 
-    ![1572244097631](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572244097631.png)
+    ![1572244097631](https://user-images.githubusercontent.com/39547788/67676164-3afbd680-f9c4-11e9-864c-8a8b465dcda6.png)
 
     <br>
 
@@ -1283,7 +1285,7 @@ $django-admin startproject config .
 
   - 조건문 실행 화면
 
-    ![1572252166016](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572252166016.png)
+    ![1572252166016](https://user-images.githubusercontent.com/39547788/67676170-3c2d0380-f9c4-11e9-8960-2ac178084533.png)
 
 
 
@@ -1320,7 +1322,7 @@ $django-admin startproject config .
 
   - Length Filter 실행 화면
 
-    ![1572244612438](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572244612438.png)
+    ![1572244612438](https://user-images.githubusercontent.com/39547788/67676167-3b946d00-f9c4-11e9-9a4c-98b41b93870b.png)
 
 <br>
 
@@ -1361,7 +1363,7 @@ $django-admin startproject config .
 
   - Lorem 실행 화면
 
-    ![1572252193281](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572252193281.png)
+    ![1572252193281](https://user-images.githubusercontent.com/39547788/67676171-3c2d0380-f9c4-11e9-924c-0e6e40a16a9a.png)
 
 <br>
 
@@ -1393,7 +1395,7 @@ $django-admin startproject config .
 
   - Truncate 실행화면
 
-    ![1572252207204](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572252207204.png)
+    ![1572252207204](https://user-images.githubusercontent.com/39547788/67676172-3c2d0380-f9c4-11e9-9499-f7b28cc17f87.png)
 
 <br>
 
@@ -1430,7 +1432,7 @@ $django-admin startproject config .
 
   - 연산 실행 화면
 
-    ![1572252215789](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572252215789.png)
+    ![1572252215789](https://user-images.githubusercontent.com/39547788/67676173-3cc59a00-f9c4-11e9-8899-c8405ff89157.png)
 
 <br>
 
@@ -1479,7 +1481,7 @@ $django-admin startproject config .
 
   - 날짜 실행 화면
 
-    ![1572252245696](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572252245696.png)
+    ![1572252245696](https://user-images.githubusercontent.com/39547788/67676174-3cc59a00-f9c4-11e9-96e8-806e1c4424ca.png)
 
 <br>
 
@@ -1497,7 +1499,7 @@ $django-admin startproject config .
 
   - 기타 실행 화면
 
-    ![1572252259077](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572252259077.png)
+    ![1572252259077](https://user-images.githubusercontent.com/39547788/67676175-3cc59a00-f9c4-11e9-8097-737b923d1153.png)
 
 
 
@@ -1568,7 +1570,7 @@ $django-admin startproject config .
   - lotto.html
 
     ```html
-    <h1>인생 역정 가능할까요?</h1>
+    <h1>인생 역전 가능할까요?</h1>
     <h3>당신이 뽑은 로또 번호는... </h3>
     <p>{{lotto_list}}</p>
     
@@ -1591,7 +1593,7 @@ $django-admin startproject config .
 
     - 로또 추첨 실행 화면
 
-      ![1572262106883](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572262106883.png)
+      ![1572262106883](https://user-images.githubusercontent.com/39547788/67676894-ee18ff80-f9c5-11e9-9df2-1dc5e56b98db.png)
 
 <br>
 
@@ -1660,13 +1662,13 @@ $django-admin startproject config .
 
       - 생일이 오늘인 경우
 
-        ![1572262138967](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572262138967.png)
+        ![1572262138967](https://user-images.githubusercontent.com/39547788/67676178-3d5e3080-f9c4-11e9-805a-3f4bccbd3b8c.png)
 
         <br>
 
       - 생일이 오늘이 아닌 경우
 
-        ![1572262161055](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572262161055.png)
+        ![1572262161055](https://user-images.githubusercontent.com/39547788/67676117-3505f580-f9c4-11e9-8513-399e880bc057.png)
 
 
 
@@ -1741,13 +1743,13 @@ $django-admin startproject config .
 
       - 회문인 경우
 
-        ![1572262182951](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572262182951.png)
+        ![1572262182951](https://user-images.githubusercontent.com/39547788/67676119-3505f580-f9c4-11e9-91ab-a065aff4ffba.png)
 
         <br>
 
       - 회문이 아닌 경우
 
-        ![1572262197614](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1572262197614.png)
+        ![1572262197614](https://user-images.githubusercontent.com/39547788/67676120-359e8c00-f9c4-11e9-998e-413c7bbc04b9.png)
 
 
 

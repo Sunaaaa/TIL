@@ -191,7 +191,8 @@ def lotto(request, lottonum, bonus):
         'lotto_list': lotto_list,
         'count': count,
         'rank': rank,
-        'bonus': my_bnum,
+        'bonus': bonus,
+        'my_bonus': my_bnum,
     }
     return render(request, 'lotto.html',context)
 
