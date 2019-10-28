@@ -1,0 +1,112 @@
+<h1>반복문</h1>
+<h4>메뉴판</h4>
+
+<ul>
+{% for menu in menus %}
+  <li>{{menu}}</li>
+{% endfor %}
+</ul>
+
+<hr>
+
+<h1>조건문</h1>
+<h4>메뉴판</h4>
+{% if '짜장면' in menus %}
+  <p>짜장면에는 정성이 가득</p>
+{% endif %}
+
+<hr>
+
+<ul>
+{% for menu in menus %}
+  {% if menu == '짜장면' %}
+    <li>{{menu}} : 짜장면에는 정성이 가득</li>
+  {% else %}
+    <li>{{menu}}</li>
+  {% endif %}
+{% endfor %}
+</ul>
+
+
+<hr>
+
+<h1>Length Filter</h1>
+{% for message in messages %}
+  {% if message|length > 5 %}
+    <P>{{message}} ... 너무 길어요. 줄여주세요!</p>
+  {% else %}
+    <P>{{message}} 의 길이는 {{message|length}} 글자!</p>
+  {% endif %}
+{% endfor %}
+
+
+<h1>Lorem Text</h1>
+<!--
+  w : word
+  p : <p></p>
+  random : 무작위
+ -->
+{% lorem %}
+
+<hr>
+
+{% lorem 3 w%}
+
+<hr>
+ {% comment %} 랜덤으로 단어  {% endcomment %}
+{% lorem 4 w random%}
+
+<hr>
+
+{% lorem 4 p %}
+
+<hr>
+
+<h1>글자수 제한 (Truncate - 자르기)</h1>
+<!-- 단어 단위로 자른다. -->
+<p>{{my_sentence|truncatewords:3}}</p>
+
+<!-- 문자 단위로 자른다. / 3번째 포함 X -->
+<p>{{my_sentence|truncatechars:3}}</p>
+
+<!-- 문자 단위로 자른다. / 10번째 포함 X -->
+<p>{{my_sentence|truncatechars:10}}</p>
+
+
+<hr>
+
+<h1>연산</h1>
+<!-- 
+    기본적으로, 사용자에게 보여줄 데이터를 가공하는 것은 뷰 함수에서 처리하자
+    반드시 필요한 경우에만 연상 필터를 사용한다.
+
+    django mathfilters
+ -->
+<p>{{ 4|add:6}}</p>
+
+<hr>
+
+
+<h1>날짜</h1>
+{% comment %} DTL에 {% now %}가 기본적으로 내장되어 있다. {% endcomment %}
+
+<!-- 7.1 파이썬 내장 라이브러리인 datetimenow 로 날짜를 출력 -->
+{{datetimenow}} <br>
+
+<!-- 7.2 DTL에 내장된  now 를 사용해보자 -->
+{% now "DATETIME_FORMAT"%} <br>
+{% now "SHORT_DATETIME_FORMAT"%} <br>
+{% now "DATETIME_FORMAT"%} <br>
+{% now "DATE_FORMAT"%} <br>
+{% now "SHORT_DATE_FORMAT"%} <br>
+
+<hr>
+
+{% now "Y년 m월 d일 D h:i"%}
+
+<hr>
+
+
+<h1>기타</h1>
+<!-- 특정 str를 url로 변환 -->
+{{'google.com'|urlize}}

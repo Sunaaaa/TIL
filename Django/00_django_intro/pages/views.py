@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import random
+from datetime import datetime
 
 # Create your views here.
 
@@ -95,5 +96,22 @@ def imageSize(request, width, height):
     }
 
     return render(request, 'imageSize.html', context)
+
+
+def template_language(request):
+    menus = ['짜장면', '탕수육', '짬뽕', '양장피']
+    my_sentence = 'Life is short, you need python'
+    messages = ['apple', 'banana', 'cucumber', 'mango']
+    datetimenow = datetime.now()
+    empty_list = []
+    context = {
+        'menus': menus,
+        'my_sentence': my_sentence,
+        'messages': messages,
+        'empty_list': empty_list,
+        'datetimenow': datetimenow,
+    }
+    return render(request, 'template_language.html', context)
+
 
 
