@@ -43,7 +43,7 @@ def image(request):
     return render(request, 'image.html', context)
 
 def hello(request, name):
-    menu = ['초밥', '삼겹살', '치즈돈까스', '살치살 스테이크']
+    menu = ['초밥', '삼겹살', '치즈돈까스', '살치살 스테이크', '사케동', '게살볶음밥', '삼선짬뽕']
     today_pick = random.choice(menu)
 
     context = {
@@ -113,9 +113,13 @@ def template_language(request):
     }
     return render(request, 'template_language.html', context)
 
+# 실습 1 Is it your Birthday ? 
+# 날짜 라이브러리 활용
+# 오늘 날짜와 본인 실제 생일 비교해서 , 맞으면 예! 아니면 아니오!
+
 def isbirth(request):
     days = datetime.now()
-    if days.month == 10 and days.day == 28:
+    if days.month == 9 and days.day == 28:
         result = True
     else : 
         result = False
@@ -125,6 +129,10 @@ def isbirth(request):
     }
     return render(request, 'isbirth.html',context)
 
+
+# 실습 2 
+# 회문 판별(팰린드롬 / 문자열 슬라이싱 파트 활용 )
+# ex) 오디오는 거꾸로 해도 오디오 -> 회문
 
 def ispal(request, word):
     # 검색 키워드 : 파이썬 문자열 슬라이스
@@ -139,7 +147,10 @@ def ispal(request, word):
     return render(request, 'ispal.html',context)
 
 
-def lotto(request, lottonum):
+# 실습 3
+# 로또 번호 추첨(리스트 + a 활용)
+# 임의로 출력한 로또 번호와 가장 최근에 추첨한 로또 번호 비교해서 당첨여부 확인
+def lotto(request, lottonum, bonus):
 
     # [18,34,39,43,44,45]
     real_lotto = list(map(int, lottonum.strip().split(',')))
@@ -147,15 +158,30 @@ def lotto(request, lottonum):
 
     num_list = [i for i in range(1, 47)]
     lotto_list = random.sample(num_list, 6)
+    my_bnum = random.choice(num_list)
     s_lotto_list = sorted(lotto_list)
    
-
     count = 0
     for i, j in zip(s_lotto, s_lotto_list):
         if i == j:
             count += 1
         else : 
             pass
+
+    if count == 6:
+        rank = "1"
+    elif count == 5 and bonus == my_bnum: 
+        rank = "2"
+    elif count == 5 and bonus != my_bnum: 
+        rank = "3"
+    elif count == 4: 
+        rank = "4"
+    elif count == 3: 
+        rank = "5"
+    else :
+        rank = "꽝"
+
+
 
    
     result = '안녕, 수연입니다!'
@@ -164,6 +190,8 @@ def lotto(request, lottonum):
         'real_lotto': real_lotto,
         'lotto_list': lotto_list,
         'count': count,
+        'rank': rank,
+        'bonus': my_bnum,
     }
     return render(request, 'lotto.html',context)
 

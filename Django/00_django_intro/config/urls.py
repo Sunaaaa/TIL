@@ -18,7 +18,7 @@ from django.urls import path
 from pages import views
 
 urlpatterns = [
-    path('lotto/<str:lottonum>', views.lotto),
+    path('lotto/<str:lottonum>/<int:bonus>', views.lotto),
     path('ispal/<str:word>', views.ispal),
     path('isbirth/', views.isbirth),
     path('template_language/', views.template_language),
