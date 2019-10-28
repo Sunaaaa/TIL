@@ -113,5 +113,61 @@ def template_language(request):
     }
     return render(request, 'template_language.html', context)
 
+def isbirth(request):
+    days = datetime.now()
+    if days.month == 10 and days.day == 28:
+        result = True
+    else : 
+        result = False
 
+    context = {
+        'result': result,
+    }
+    return render(request, 'isbirth.html',context)
+
+
+def ispal(request, word):
+    # 검색 키워드 : 파이썬 문자열 슬라이스
+    if word == word[::-1]:
+        result = True
+    else :
+        result = False
+    context = {
+        'word': word,
+        'result': result,
+    }
+    return render(request, 'ispal.html',context)
+
+
+def lotto(request, lottonum):
+
+    # [18,34,39,43,44,45]
+    real_lotto = list(map(int, lottonum.strip().split(',')))
+    s_lotto = sorted(real_lotto)
+
+    num_list = [i for i in range(1, 47)]
+    lotto_list = random.sample(num_list, 6)
+    s_lotto_list = sorted(lotto_list)
+   
+
+    count = 0
+    for i, j in zip(s_lotto, s_lotto_list):
+        if i == j:
+            count += 1
+        else : 
+            pass
+
+   
+    result = '안녕, 수연입니다!'
+
+    context = {
+        'real_lotto': real_lotto,
+        'lotto_list': lotto_list,
+        'count': count,
+    }
+    return render(request, 'lotto.html',context)
+
+
+
+    
 
