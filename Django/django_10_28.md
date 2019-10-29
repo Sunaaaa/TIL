@@ -1,4 +1,4 @@
-# Django
+# 10.10.28(월) : Start Django
 
 - 보안이 우수하고 유지보수가 편리한 웹사이트를 신속하게 개발하는 하도록 도움을 주는 파이썬 웹 프레임워크
 - Static Web (html 문서의 집합) 과 Dynamic Web 모두 가능
