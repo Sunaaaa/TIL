@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
 <form action = "/myapp/user_create/" method="POST">
 <!--POST 요청을 보낼 때, CSRF를 사용해서 아무나 삭제 수정을 하지 못하게 막겠다-->
 {% csrf_token %}
@@ -5,3 +9,5 @@
   비밀번호 : <input type="password" name="pw"> <br>
   <input type="submit" value="ASCII 가입하기!">
 </form>
+
+{% endblock  %}

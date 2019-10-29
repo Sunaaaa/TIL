@@ -1,4 +1,10 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
 <form action = "/myapp/catch/" method="GET">
   <input type="text" name="message">
   <input type="submit" value="던져!">
 </form>
+
+{% endblock  %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+<!-- 폴더 안의 static 파일을 사용할 수 있도록 아래의 코드 반드시 삽입 -->
+{% load static %}
+
+
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'myapp/stylesheets/sample.css' %}">
+{% endblock %}
+
+
+{% block body %}
+
+  <h1>정적 파일 출력을 실습해봅시다.</h1>
+  <img src="{% static 'myapp/images/paul.jpg' %}" alt="paul" >
+  {% comment %} <img src="../static/images/paul.jpg" alt="" > {% endcomment %}
+
+{% endblock  %}
+

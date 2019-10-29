@@ -4,7 +4,7 @@ import requests, random
 # Create your views here.
 def index(request):
     context = {
-        'god' : "오현무 사성규"
+        'god' : "폴킴"
     }
     return render(request, 'myapp/index.html', context)
 
@@ -74,6 +74,6 @@ def user_create(request):
     }
     return render(request, 'myapp/user_create.html', context)
 
-# 회원가입 폼을 보여주는 페이지
+# 정적 파일
 def static_sample(request):
     return render(request, 'myapp/static_sample.html')
