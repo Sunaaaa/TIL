@@ -18,6 +18,8 @@ from django.urls import path
 from myapp import views
 
 urlpatterns = [
+    path('user_new/', views.user_new),
+    path('user_create/', views.user_create),
     path('art/', views.art),
     path('result/', views.result),
     path('throw/', views.throw),
