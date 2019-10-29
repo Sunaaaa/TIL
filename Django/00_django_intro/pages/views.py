@@ -154,19 +154,26 @@ def lotto(request, lottonum, bonus):
 
     # [18,34,39,43,44,45]
     real_lotto = list(map(int, lottonum.strip().split(',')))
-    s_lotto = sorted(real_lotto)
+    # s_lotto = sorted(real_lotto)
 
     num_list = [i for i in range(1, 47)]
     lotto_list = random.sample(num_list, 6)
     my_bnum = random.choice(num_list)
-    s_lotto_list = sorted(lotto_list)
+    # s_lotto_list = sorted(lotto_list)
    
     count = 0
-    for i, j in zip(s_lotto, s_lotto_list):
-        if i == j:
-            count += 1
-        else : 
-            pass
+    for i in real_lotto:
+        for j in lotto_list:
+            if i == j:
+                count += 1
+            else : 
+                pass
+
+    # for i, j in zip(s_lotto, s_lotto_list):
+    #     if i == j:
+    #         count += 1
+    #     else : 
+    #         pass
 
     if count == 6:
         rank = "1"

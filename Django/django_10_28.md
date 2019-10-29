@@ -1,9 +1,7 @@
 # Django
 
 - 보안이 우수하고 유지보수가 편리한 웹사이트를 신속하게 개발하는 하도록 도움을 주는 파이썬 웹 프레임워크
-
 - Static Web (html 문서의 집합) 과 Dynamic Web 모두 가능
-
 - 특징
   - Versatile (**다용도**)
   - Secure (**안전한**)
@@ -11,7 +9,6 @@
   - Complete (**완결성** )
   - Maintainable (**유지보수가 쉬운**)
   - Portable (**포터블한**)
-
 - 성격
   - Opinionate : 독선적
   - UnOpinionate : 관용적, Customizing 가능
@@ -26,19 +23,14 @@
 ![1572230693722](https://user-images.githubusercontent.com/39547788/67676146-38997c80-f9c4-11e9-88b2-5e01c46bddbd.png)
 
 - django에서는 MTV 패턴이라고 부르지만, 실제로는 MVC 패턴과 동일하다.
-
 - Model
   - 데이터 베이스를 정의 (Data)
   - 데이터를 관리, 데이터베이스의 모양, 형태를 정의
-
 - Template : 사용자가 보는 화면을 정의
-
 - View
-
   - 중간 관리자
   - 사용자가 보고 있는 데이터를 가공
   - Model에 있는 데이터 베이스의 데이터를 꺼내서 가공한다.
-
   - @app.route() 안에 정의된 함수와 같은 역할
 
 
@@ -65,7 +57,6 @@
 >   - 글로벌 환경에서 개발을 진행하다 보면, 실제 해당 프로젝트에는 필요없는 라이브러리들이 설치될 수 있다. 내 컴퓨터에서는 정상적으로 돌아가지만, 다른 컴퓨터에서 실행했을 때 그 사람이 가지고 있는 라이브러리와 만나게 되면 돌아가지 않을 수 있다. 
 >   - 파이썬 버전도 마찬가지로 특정한 버전에서만 실행되는 경우가 있다.
 >   - 따라서, 지금 이 프로젝트에서만 필요한 패키지들이 설치된 가상환경에 진입해서 개발을 진행한다.
->
 > - 생성한 venv 폴더를 임의로 드래그 앤 드롭으로 폴더의 위치를 옮기면 가상환경이 제대로 동작하지 않는다.
 
 <br>
@@ -162,7 +153,7 @@
 
 - `pip list`  :  설치된 프로그램 확인 
 
-  -  아무것도 설치되어 있지 않아야 한다.
+  - 아무것도 설치되어 있지 않아야 한다.
 
   ![1572227433604](https://user-images.githubusercontent.com/39547788/67676130-36cfb900-f9c4-11e9-9391-3e4b436326ac.png)
 
@@ -312,6 +303,7 @@ $django-admin startproject config .
 ## Application
 
 - 하나의 프로젝트에 여러가지 Application
+
   - 사용자 인증을 관리하는 Admin  Application
   - 게시판을 관리하는 Post Application
 
@@ -378,6 +370,7 @@ $django-admin startproject config .
 ### 프로젝트에 Pages Applicatoin 설정
 
 - Application을 생성하면 만들었다고 알려야 한다.
+
   - Like 전입신고
 
 - config 폴더 아래, settings.py 파일에 생성한 Appcation의 이름을 작성한다.
@@ -476,6 +469,7 @@ $django-admin startproject config .
         def index(request):
             # 첫번째 return 도 반드시 request
             return render(request, 'index.html')
+        
         ```
 
       <br>
@@ -488,6 +482,7 @@ $django-admin startproject config .
 
       ```html
       <h1>hello, Django</h1>
+      
       ```
 
   <br>
@@ -495,6 +490,7 @@ $django-admin startproject config .
   - Project 폴더 밑 urls.py 작성
 
     - path('index/', views.index)
+
       - 사용자가 index라는 페이지로 들어오면 index.hrml을 불러줘
 
     - from pages import views
@@ -516,11 +512,12 @@ $django-admin startproject config .
           path('index/', views.index),
           path('admin/', admin.site.urls),
       ]
+      
       ```
 
       <br>
 
-  -  실행화면
+  - 실행화면
 
   ![1572236189779](https://user-images.githubusercontent.com/39547788/67676149-39321300-f9c4-11e9-8494-990bd93ef232.png)
 
@@ -535,6 +532,7 @@ $django-admin startproject config .
     ```python 
     def introduce(request):
         return render(request, 'introduce.html')
+    
     ```
 
     <br>
@@ -551,6 +549,7 @@ $django-admin startproject config .
         path('introduce/', views.introduce),
         path('admin/', admin.site.urls),
     ]
+    
     ```
 
     <br>
@@ -559,6 +558,7 @@ $django-admin startproject config .
 
     ```html
     <h1>안녕하세요, 공선아 입니다. </h1>
+    
     ```
 
     <br>
@@ -579,6 +579,7 @@ $django-admin startproject config .
 >
 > ```python 
 > return render(request, '___.html', {'key' : value})
+> 
 > ```
 
 <br>
@@ -597,6 +598,7 @@ $django-admin startproject config .
       
           # render 메서드의 세번째 인자로 변수를 딕셔너리 형태로 넘길 수 있다. 
           return render(request, 'introduce.html', {'name' : name})
+      
       ```
 
     <br>
@@ -605,6 +607,7 @@ $django-admin startproject config .
 
     ```html
     <h1>안녕하세요, {{name}} 입니다. </h1>
+    
     ```
 
     <br>
@@ -621,6 +624,7 @@ $django-admin startproject config .
         path('introduce/', views.introduce),
         path('admin/', admin.site.urls),
     ]
+    
     ```
 
     <br>
@@ -656,6 +660,7 @@ $django-admin startproject config .
           }
       
           return render(request, 'dinner.html', context)
+      
       ```
 
     <br>
@@ -673,6 +678,7 @@ $django-admin startproject config .
         path('dinner/', views.dinner),
         path('admin/', admin.site.urls),
     ]
+    
     ```
 
     <br>
@@ -681,6 +687,7 @@ $django-admin startproject config .
 
     ```html
     <h1>오늘의 저녁 메뉴는 ... {{pick}}!!!! </h1>
+    
     ```
 
     <br>
@@ -708,6 +715,7 @@ $django-admin startproject config .
         }
     
         return render(request, 'image.html', context)
+    
     ```
 
     <br>
@@ -726,6 +734,7 @@ $django-admin startproject config .
         path('image/', views.image),
         path('admin/', admin.site.urls),
     ]
+    
     ```
 
     <br>
@@ -734,6 +743,7 @@ $django-admin startproject config .
 
     ```html
     <img src={{img}} alt={{img}}/>
+    
     ```
 
     <br>
@@ -754,7 +764,7 @@ $django-admin startproject config .
 
 ### 동적 라우팅 (Variable Routing)
 
-> Why? greeting/도현 , greeting/경희 등의 대한 각각의 수백개의 페이지를 작석하는 수고를 덜 수 있다.  
+> Why? greeting/도현 , greeting/경희 등의 대한 각각의 수백개의 페이지를 작성하는 수고를 덜 수 있다.  
 
 <br>
 
@@ -772,6 +782,7 @@ $django-admin startproject config .
     def hello(request, name):
         context = {'name' : name }
         return render(request, 'hello.html', context)
+    
     ```
 
     <br>
@@ -792,6 +803,7 @@ $django-admin startproject config .
         path('image/', views.image),
         path('admin/', admin.site.urls),
     ]
+    
     ```
 
     <br>
@@ -801,6 +813,7 @@ $django-admin startproject config .
     ```html
     <h1>Hello~~~~~~~~</h1>
     <h2>It's {{name}} .</h2>
+    
     ```
 
     <br>
@@ -831,6 +844,7 @@ $django-admin startproject config .
             'pick' : today_pick,
             }
         return render(request, 'hello.html', context)
+    
     ```
 
     <br>
@@ -852,6 +866,7 @@ $django-admin startproject config .
         path('admin/', admin.site.urls),
     ]
      
+    
     ```
 
     <br>
@@ -862,6 +877,7 @@ $django-admin startproject config .
     <h1>Hello~~~~~~~~</h1>
     <h2>It's {{name}} .</h2>
     <h2>오늘은 {{pick}} 먹어유.</h2>
+    
     ```
 
   - 실행 화면
@@ -888,6 +904,7 @@ $django-admin startproject config .
             }
         return render(request, 'introduce.html', context)
     
+    
     ```
 
     <br>
@@ -911,6 +928,7 @@ $django-admin startproject config .
         path('image/', views.image),
         path('admin/', admin.site.urls),
     ]
+    
     ```
 
     <br>
@@ -921,6 +939,7 @@ $django-admin startproject config .
     <h1>Hello~~~~~~~~</h1>
     <h2>It's {{name}} .</h2>
     <h2>오늘은 {{pick}} 먹어유.</h2>
+    
     ```
 
     <br>
@@ -948,6 +967,7 @@ $django-admin startproject config .
             'result' : result,
         }
         return render(request, 'times.html', context)
+    
     ```
 
     <br>
@@ -973,6 +993,7 @@ $django-admin startproject config .
         path('image/', views.image),
         path('admin/', admin.site.urls),
     ]
+    
     ```
 
     <br>
@@ -981,6 +1002,7 @@ $django-admin startproject config .
 
     ```html
     <h1>{{num1}} X {{num2}} = {{result}}</h1>
+    
     ```
 
     <br>
@@ -1005,6 +1027,7 @@ $django-admin startproject config .
             'result' : result,
             }
         return render(request, 'radius.html', context)
+    
     ```
 
     <br>
@@ -1034,6 +1057,7 @@ $django-admin startproject config .
         path('image/', views.image),
         path('admin/', admin.site.urls),
     ]
+    
     ```
 
     <br>
@@ -1042,6 +1066,7 @@ $django-admin startproject config .
 
     ```html
     <h1>{{rad}} 인 원의 넓이는 {{result}} 입니다. </h1>
+    
     ```
 
     <br>
@@ -1070,6 +1095,7 @@ $django-admin startproject config .
         }
     
         return render(request, 'imageSize.html', context)
+    
     ```
 
     <br>
@@ -1103,15 +1129,17 @@ $django-admin startproject config .
         path('image/', views.image),
         path('admin/', admin.site.urls),
     ]
+    
     ```
 
     <br>
 
   - imageSize.html
 
-    ```
+    ```html
     <h1>랜덤 이미지 쨘</h1>
     <img src={{img}} alt={{img}}/>
+    
     ```
 
     <br>
@@ -1163,6 +1191,7 @@ $django-admin startproject config .
           'datetimenow': datetimenow,
       }
       return render(request, 'template_language.html', context)
+  
   ```
 
 - urls.py
@@ -1186,6 +1215,7 @@ $django-admin startproject config .
       path('image/', views.image),
       path('admin/', admin.site.urls),
   ]
+  
   ```
 
   
@@ -1196,8 +1226,9 @@ $django-admin startproject config .
 
 - 주석 형식
 
-  ```
+  ```django
   {% comment %} 주석입니다.  {% endcomment %}
+  
   ```
 
   <br>
@@ -1206,17 +1237,18 @@ $django-admin startproject config .
 
 - 반복문 형식
 
-  ```html
+  ```django
   {% for menu in menus %}
    
   {% endfor %}
+  
   ```
 
-  
+  <br>
 
 - template_language.html
 
-  ```html
+  ```django
   <h1>반복문</h1>
   <h4>메뉴판</h4>
   
@@ -1225,6 +1257,7 @@ $django-admin startproject config .
     <li>{{menu}}</li>
   {% endfor %}
   </ul>
+  
   ```
 
   - 반복문 실행화면
@@ -1243,7 +1276,7 @@ $django-admin startproject config .
 
 - 조건문 형식
 
-  ```html
+  ```django
   {% if 'a'  in 'apple' %}
   
   {% endif %}
@@ -1255,13 +1288,14 @@ $django-admin startproject config .
   {% else %}
   
   {% endif %}
+  
   ```
 
   
 
 - template_language.html
 
-  ```html
+  ```django
   <h1>조건문</h1>
   <h4>메뉴판</h4>
   {% if '짜장면' in menus %}
@@ -1279,6 +1313,7 @@ $django-admin startproject config .
     {% endif %}
   {% endfor %}
   </ul>
+  
   ```
 
   
@@ -1299,17 +1334,18 @@ $django-admin startproject config .
 
   - `|length`
 
-    ```html
+    ```django
     {% if message|length > 5 %}
     
     {% else %}
     
     {% endif %}
+    
     ```
 
 - template_language.html
 
-  ```html
+  ```django
   <h1>Length Filter</h1>
   {% for message in messages %}
     {% if message|length > 5 %}
@@ -1318,6 +1354,7 @@ $django-admin startproject config .
       <P>{{message}} 의 길이는 {{message|length}} 글자!</p>
     {% endif %}
   {% endfor %}
+  
   ```
 
   - Length Filter 실행 화면
@@ -1336,15 +1373,16 @@ $django-admin startproject config .
 
   - random : 무작위
 
-    ```
+    ```django
     {% lorem %}
+    
     ```
 
     
 
 - template_language.html
 
-  ```html
+  ```django
   <h1>Lorem Text</h1>
   {% lorem %}
   
@@ -1359,6 +1397,7 @@ $django-admin startproject config .
   <hr>
   
   {% lorem 4 p %}
+  
   ```
 
   - Lorem 실행 화면
@@ -1373,16 +1412,17 @@ $django-admin startproject config .
 
 - Truncate 형식
 
-  ```
+  ```django
   {{my_sentence|truncatewords:3}}
   {{my_sentence|truncatechars:3}}
+  
   ```
 
   
 
 - template_language.html
 
-  ```
+  ```django
   <!-- 단어 단위로 자른다. -->
   <p>{{my_sentence|truncatewords:3}}</p>
   
@@ -1391,6 +1431,7 @@ $django-admin startproject config .
   
   <!-- 문자 단위로 자른다. / 10번째 포함 X -->
   <p>{{my_sentence|truncatechars:10}}</p>
+  
   ```
 
   - Truncate 실행화면
@@ -1409,15 +1450,16 @@ $django-admin startproject config .
 
 - 연산 형식
 
-  ```
+  ```django
   {{ 4|add:6}}
+  
   ```
 
   
 
 - template_language.html
 
-  ```
+  ```django
   <h1>연산</h1>
   <!-- 
       기본적으로, 사용자에게 보여줄 데이터를 가공하는 것은 뷰 함수에서 처리하자
@@ -1428,6 +1470,7 @@ $django-admin startproject config .
   <p>{{ 4|add:6}}</p>
   
   <hr>
+  
   ```
 
   - 연산 실행 화면
@@ -1442,16 +1485,18 @@ $django-admin startproject config .
 
   - 파이썬 내장 라이브러리 datetimenow
 
-    ```
+    ```django
     {{datetimenow}}
+    
     ```
 
     
 
   - DTL 내장  now (기본)
 
-    ```
+    ```django
     {% now "DATETIME_FORMAT"%}
+    
     ```
 
     
@@ -1460,7 +1505,7 @@ $django-admin startproject config .
 
   - DTL 내장 now를 활용해 다양한 형태의 날짜 형식을 출력할 수 있다.
 
-    ```
+    ```django
     <h1>날짜</h1>
     {% comment %} DTL에 {% now %}가 기본적으로 내장되어 있다. {% endcomment %}
     
@@ -1477,6 +1522,7 @@ $django-admin startproject config .
     <hr>
     
     {% now "Y년 m월 d일 D h:i"%}
+    
     ```
 
   - 날짜 실행 화면
@@ -1493,7 +1539,7 @@ $django-admin startproject config .
 
   - template_language.html 
 
-    ```
+    ```django
     {{'google.com'|urlize}}
     ```
 
@@ -1512,30 +1558,45 @@ $django-admin startproject config .
   - views.py
 
     ```python 
-    def lotto(request, lottonum):
+    def lotto(request, lottonum, bonus):
     
         # [18,34,39,43,44,45]
         real_lotto = list(map(int, lottonum.strip().split(',')))
-        s_lotto = sorted(real_lotto)
+        # s_lotto = sorted(real_lotto)
     
         num_list = [i for i in range(1, 47)]
         lotto_list = random.sample(num_list, 6)
-        s_lotto_list = sorted(lotto_list)
+        my_bnum = random.choice(num_list)
+        # s_lotto_list = sorted(lotto_list)
        
         count = 0
-        for i, j in zip(s_lotto, s_lotto_list):
-            if i == j:
-                count += 1
-            else : 
-                pass
+        for i in real_lotto:
+            for j in lotto_list:
+                if i == j:
+                    count += 1
+                else : 
+                    pass
     
-       
-        result = '안녕, 수연입니다!'
+        if count == 6:
+            rank = "1"
+        elif count == 5 and bonus == my_bnum: 
+            rank = "2"
+        elif count == 5 and bonus != my_bnum: 
+            rank = "3"
+        elif count == 4: 
+            rank = "4"
+        elif count == 3: 
+            rank = "5"
+        else :
+            rank = "꽝"
     
         context = {
             'real_lotto': real_lotto,
             'lotto_list': lotto_list,
             'count': count,
+            'rank': rank,
+            'bonus': bonus,
+            'my_bonus': my_bnum,
         }
         return render(request, 'lotto.html',context)
     ```
@@ -1550,7 +1611,7 @@ $django-admin startproject config .
     from pages import views
     
     urlpatterns = [
-        path('lotto/<str:lottonum>', views.lotto),
+        path('lotto/<str:lottonum>/<int:bonus>', views.lotto),
         path('template_language/', views.template_language),
         path('hello/<str:name>/', views.hello),
         path('index/', views.index),
@@ -1569,7 +1630,7 @@ $django-admin startproject config .
 
   - lotto.html
 
-    ```html
+    ```django
     <h1>인생 역전 가능할까요?</h1>
     <h3>당신이 뽑은 로또 번호는... </h3>
     <p>{{lotto_list}}</p>
@@ -1577,8 +1638,11 @@ $django-admin startproject config .
     <h3>실제 로또 번호는... </h3>
     <p>{{real_lotto}}</p>
     
-    <h3>보너스 번호는  </h3>
+    <h3>실제 보너스 번호는  </h3>
     <p>{{bonus}}</p>
+    
+    <h3>나의 보너스 번호는  </h3>
+    <p>{{my_bonus}}</p>
     
     <h3>맞은 개수 </h3>
     <p>{{count}}</p>
@@ -1589,6 +1653,7 @@ $django-admin startproject config .
     {% else %}
       <p>{{rank}} 등 입니다!</p>
     {% endif %}
+    
     ```
 
     - 로또 추첨 실행 화면
@@ -1617,6 +1682,7 @@ $django-admin startproject config .
             'result': result,
         }
         return render(request, 'isbirth.html',context)
+    
     ```
 
     
@@ -1643,19 +1709,21 @@ $django-admin startproject config .
         path('image/', views.image),
         path('admin/', admin.site.urls),
     ]
+    
     ```
 
     
 
   - isbirth.html
 
-    ```html
+    ```django
     <h1>Is it your birthday?</h1>
     {% if result %}
       <h2>생일 축하해~</h2>
       {% else %}
       <h2>너의 생일이 아니야</h2>
     {% endif %}
+    
     ```
 
     - Is it your birthday? 실행 화면
@@ -1698,6 +1766,7 @@ $django-admin startproject config .
             'result': result,
         }
         return render(request, 'ispal.html',context)
+    
     ```
 
     
@@ -1725,18 +1794,20 @@ $django-admin startproject config .
         path('image/', views.image),
         path('admin/', admin.site.urls),
     ]
+    
     ```
 
     
 
   - ispal.html
 
-    ```html
+    ```django
     {% if result %}
      <p> {{word}}는 거꾸고 말해도 {{word}}이므로, 회문이다.  </p>
     {% else %}
      <p> {{word}}는 회문이 아니다.  </p>
     {% endif %}
+    
     ```
 
     - 회문 판별 실행 화면
