@@ -6,12 +6,12 @@ def index(request):
     context = {
         'god' : "오현무 사성규"
     }
-    return render(request, 'index.html', context)
+    return render(request, 'myapp/index.html', context)
 
 
 # 정보를 던져줄 페이지
 def throw(request):
-    return render(request, 'throw.html')
+    return render(request, 'myapp/throw.html')
 
 # 사용자로부터 정보를 받아서 다시 던져줄 페이지
 # request를 통해서 정보가 들어온다.
@@ -25,13 +25,13 @@ def catch(request):
         'message' : message
     }
     
-    return render(request, 'catch.html', context)
+    return render(request, 'myapp/catch.html', context)
 
 
 # [실습] 아스키 아트 API를 통한 요청-응답 실습
 # 사용자로부터 텍스트를 입력받는 페이지
 def art(request):    
-    return render(request, 'art.html')
+    return render(request, 'myapp/art.html')
 
 # 텍스트 받아서 아스키 아트로 보여주는 페이지
 # def result(request):
@@ -41,7 +41,7 @@ def art(request):
 #         'art' : art
 #     }
     
-#     return render(request, 'result.html', context)
+#     return render(request, 'myapp/result.html', context)
 
 def result(request):
     # 1. form 태그로 날린 데이터를 받는다. (GET 방식)
@@ -56,12 +56,12 @@ def result(request):
     result = requests.get(f'http://artii.herokuapp.com/make?text={word}&font={font}').text
     context = {'art': result}
 
-    return render(request, 'result.html', context)
+    return render(request, 'myapp/result.html', context)
 
 
 # 회원가입 폼을 보여주는 페이지
 def user_new(request):
-    return render(request, 'user_new.html')
+    return render(request, 'myapp/user_new.html')
 
 # 회원가입 요청을 처리하는 페이지 (로직)
 def user_create(request):
@@ -72,4 +72,8 @@ def user_create(request):
         'user_id' : user_id,
         'pw' : pw,
     }
-    return render(request, 'user_create.html', context)
+    return render(request, 'myapp/user_create.html', context)
+
+# 회원가입 폼을 보여주는 페이지
+def static_sample(request):
+    return render(request, 'myapp/static_sample.html')

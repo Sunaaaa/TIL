@@ -1,4 +1,4 @@
-<form action = "/user_create/" method="POST">
+<form action = "/myapp/user_create/" method="POST">
 <!--POST 요청을 보낼 때, CSRF를 사용해서 아무나 삭제 수정을 하지 못하게 막겠다-->
 {% csrf_token %}
   아이디 : <input type="text" name="user_id"> <br>
