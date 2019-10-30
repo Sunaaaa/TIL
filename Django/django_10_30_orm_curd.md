@@ -59,7 +59,7 @@
 
 - 게시글을 작성하면 admin의 게시글 목록에 추가되는 것을 확인할 수 있다.
 
-  ![1572438050236](../AppData/Roaming/Typora/typora-user-images/1572438050236.png)
+  ![1572438050236](https://user-images.githubusercontent.com/39547788/67859530-37508700-fb5f-11e9-905b-7e4cf903e61e.png)
 
 <br>
 
@@ -338,4 +338,5 @@
   ```
 
   
+
 
