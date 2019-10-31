@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from articles import views
 from students import views
+from jobs import views
 
 urlpatterns = [
+    path('jobs/', include('jobs.urls') ),
     path('articles/', include('articles.urls') ),
     path('students/', include('students.urls') ),
     path('admin/', admin.site.urls),
