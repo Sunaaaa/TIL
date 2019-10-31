@@ -4,12 +4,13 @@
   <h1 class="text-center">Articles</h1>
 
   <hr>
-  <a href="/articles/new/">[NEW]</a>
+    <a href="{% url 'articles:new' %}">[NEW]</a>
   <hr>
 
   {% for article in articles %}
-  <p>[{{article.pk}}] : {{article.title}}</p>
-  <a href="/articles/{{article.pk}}">[DETAIL]</a>
+    <p>[{{article.pk}}] : {{article.title}}</p>
+    {% comment %} <a href="/articles/{{article.pk}}">[DETAIL]</a> {% endcomment %}
+    <a href="{% url 'articles:detail' article.pk %}">[DETAIL]</a>
 
   <hr>
   

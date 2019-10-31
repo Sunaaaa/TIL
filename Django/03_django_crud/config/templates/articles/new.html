@@ -3,7 +3,7 @@
 {% block body %}
   <h1 class="text-center">NEW</h1>
 
-  <form action="/articles/create/", method="POST">
+  <form action="{% url 'articles:create' %}", method="POST">
   {% csrf_token %}
     TITLE : <input type="text" name="title" > <br>
     CONTENT : <textarea type="text" name="content" cols="30" rows="10"> </textarea> <br>
@@ -12,6 +12,6 @@
   </form>
 
   <hr>
-  <a href="/articles/">[BACK]</a>
+  <a href="{% url 'articles:index' %}">[BACK]</a>
 
 {% endblock  %}
