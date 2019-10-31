@@ -29,7 +29,12 @@ def create(request):
    
     article_pk = article.pk
 
-    return redirect(f'/articles/{article_pk}')
+    # return redirect(f'/articles/{article_pk}') # 1
+    return redirect('articles:detail', article_pk) # 2 URL Namespace
+
+    # .html 파일 내에서 '{% url %} 템플릿 태그' 사용했을 때 (헷갈림 주의!)
+    # <a href="{% url 'articles:detail' article.pk %}">[DETAIL]</a> 
+
 
 
 # 게시글 상세 정보를 가져오는 함수
@@ -45,7 +50,7 @@ def detail(request, article_pk):
 def delete(request, article_pk):
     article = Article.objects.get(pk=article_pk)
     article.delete()
-    return redirect('/articles/')
+    return redirect('articles:index')
 
 
 # 게시글 수정
@@ -73,4 +78,5 @@ def update(request, article_pk):
     article.save()
 
     # 3. DB 저장 완료 후 게시글 detail로 이동
-    return redirect(f'/articles/{article_pk}')
+    # return redirect(f'/articles/{article_pk}')
+    return redirect('articles:detail', article_pk)
