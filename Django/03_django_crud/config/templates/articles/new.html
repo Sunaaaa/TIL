@@ -5,8 +5,10 @@
 
   <form action="{% url 'articles:create' %}", method="POST">
   {% csrf_token %}
-    TITLE : <input type="text" name="title" > <br>
-    CONTENT : <textarea type="text" name="content" cols="30" rows="10"> </textarea> <br>
+    <label for="title">TITLE </label>
+    <input type="text" id="title" name="title" > <br>
+    <label for="content">CONTENT </label>
+    <textarea type="text" id="content" name="content" cols="30" rows="10"> </textarea> <br>
 
     <input type="submit">
   </form>

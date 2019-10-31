@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <h1 class="text-center">NEW STUDENT</h1>
+
+  <form action="{% url 'students:create' %}", method="POST">
+  {% csrf_token %}
+    {% comment %} NAME : <input type="text" name="name" > <br> {% endcomment %}
+    <label for="name">NAME </label>
+    <input type="text" id="name" name="name" > <br>
+    <label for="age">AGE </label>
+    <input type="text" id="age" name="age" > <br>
+
+    <input type="submit">
+  </form>
+
+  <hr>
+  <a href="{% url 'students:index' %}">[BACK]</a>
+
+{% endblock  %}

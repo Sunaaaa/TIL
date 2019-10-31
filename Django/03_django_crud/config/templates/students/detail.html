@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <h1 class="text-center">DETAIL</h1>
+
+  <p>이름 : {{student.name}}</p>
+  <p>나이 : {{student.age}}</p>
+  <hr>
+
+  <a href="{% url 'students:index' %}">[INDEX]</a>
+  <a href="{% url 'students:edit' student.pk %}">[EDIT]</a>
+  {% comment %} <a href="{% url 'students:delete' student.pk %}">[DELETE]</a> {% endcomment %}
+
+{% endblock  %}

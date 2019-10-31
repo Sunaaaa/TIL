@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h1>Students</h1>
+<a href="{% url 'students:new' %}">[NEW]</a>
+<br>
+<hr>
+{% for student in  students %}
+ <p>[{{student.pk}}] : {{student.name}} 
+ <a href="{% url 'students:detail' student.pk%}">[상세보기]</a> 
+ </p>
+  <hr>
+
+{% endfor %}
+
+{% endblock  %}
