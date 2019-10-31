@@ -9,6 +9,6 @@
 
   <a href="{% url 'students:index' %}">[INDEX]</a>
   <a href="{% url 'students:edit' student.pk %}">[EDIT]</a>
-  {% comment %} <a href="{% url 'students:delete' student.pk %}">[DELETE]</a> {% endcomment %}
+  <a href="{% url 'students:delete' student.pk %}">[DELETE]</a>
 
 {% endblock  %}

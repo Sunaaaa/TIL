@@ -49,5 +49,7 @@ def update(request, student_pk):
     
 
 def delete(request, student_pk):
+    student = Student.objects.get(pk=student_pk)
+    student.delete()
 
-    return redirect('students:delete')
+    return redirect('students:index')
