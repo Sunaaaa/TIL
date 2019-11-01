@@ -1,15 +1,49 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<a href="{% url 'movies:new' %} ">[새 영화 등록]</a>
+<a class="btn btn-default" href="{% url 'movies:new' %} ">[새 영화 등록하러 가기]</a>
 
 
 <h1>MOVIE</h1>
 <hr>
 {% for movie in movies %}
-  <p> 영화 제목 : <a href="{% url 'movies:detail' movie.pk %}">{{movie.title}}</a> </p>
+  <img src = {{movie.poster_url}} alt="{{movie.title}}" width="100px" height="150px">
+  <p> <a href="{% url 'movies:detail' movie.pk %}">{{movie.title}}</a> </p>
   <p> 평점 : {{movie.score}}</p>
   <hr>  
+
+  <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <p>Movie</p>
+          <div class="card">
+            <div class="card-header">
+              {{movie.title}}
+            </div>
+            <img src = {{movie.poster_url}} alt="{{movie.title}}" width="100%" height="100%">
+            <div class="card-body">
+              <h5 class="card-title">평점 : {{movie.score}}</h5>
+              {% comment %} <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p> {% endcomment %}
+              <a href="{% url 'movies:detail' movie.pk %}">[MORE]</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <p>Card</p>
+          <div class="card">
+            <div class="card-header">
+              My Card
+            </div>
+            <img src="images/card-image.png" alt="" />
+            <div class="card-body">
+              <h5 class="card-title">Lorem</h5>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
+              <a href="#" class="btn btn-primary">More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 {% endfor %}
 
 {% endblock  %}
