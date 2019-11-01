@@ -1,16 +1,15 @@
 {% extends 'base.html' %}
 
 {% block body %}
+<a href="{% url 'movies:new' %} ">[새 영화 등록]</a>
+
+
 <h1>MOVIE</h1>
-{% comment %} <a href="{% url 'students:new' %}">[NEW]</a>
-<br>
 <hr>
-{% for student in  students %}
- <p>[{{student.pk}}] : {{student.name}} 
- <a href="{% url 'students:detail' student.pk%}">[상세보기]</a> 
- </p>
-  <hr>
- {% endcomment %}
-{% comment %} {% endfor %} {% endcomment %}
+{% for movie in movies %}
+  <p> 영화 제목 : <a href="{% url 'movies:detail' movie.pk %}">{{movie.title}}</a> </p>
+  <p> 평점 : {{movie.score}}</p>
+  <hr>  
+{% endfor %}
 
 {% endblock  %}
