@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .square{
+            width: 100%;
+            height: 100px;
+            background-color: violet;
+            border: 1px solid springgreen;
+        }
+        .ressquare{
+            width: 100%;
+            height: 100px;
+            background-color: yellow;
+            border: 1px solid tomato;
+        }
+        .offsquare{
+            width: 100%;
+            height: 100px;
+            background-color: teal;
+            border: 1px solid wheat;
+        }
+        .nessquare{
+            width: 100%;
+            height: 100px;
+            background-color: yellowgreen;
+            border: 1px solid palegoldenrod;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="square col-4">4칸</div>
+            <div class="square col-4">4칸</div>
+            <div class="square col-4">4칸</div>
+        </div>
+        <div class="row">
+            <div class="square col-2">2칸</div>
+            <div class="square col-6">6칸</div>
+            <div class="square col-4">4칸</div>
+        </div>
+        <div class="row">
+            <div class="square col-4">4칸</div>
+            <div class="square col-8">8칸</div>
+        </div>
+        <div class="row">
+            <div class="square col-6">6칸</div>
+            <div class="square col-8">8칸</div>
+            <div class="square col-4">4칸</div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <!-- 작은 사이즈에서는 12칸, medium으로는 8칸 / 4칸 먹는다.-->
+            <div class="ressquare col-12 col-md-8">12칸</div>
+            <div class="ressquare col-12 col-md-4">12칸</div>
+        </div>
+    </div>
+
+    <!-- [실습] 12개의 div 배분하기 -->
+    <!-- 기본적으로 1줄에 1개, sm에 3개, lg에 4개, xl에 6개  -->
+    <div class="container">
+        <div class="row">            
+            <div class="ressquare col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">오</div>
+            <div class="ressquare col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">오</div>            
+            <div class="ressquare col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">오</div>
+            <div class="ressquare col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">오</div>            
+            <div class="ressquare col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">오</div>
+            <div class="ressquare col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">오</div>            
+            <div class="ressquare col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">오</div>
+            <div class="ressquare col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">오</div>
+            <div class="ressquare col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">오</div>
+            <div class="ressquare col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">오</div>            
+            <div class="ressquare col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">오</div>
+            <div class="ressquare col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">오</div>
+        </div>
+    </div>    
+
+    <!-- Nesting & Offset -->
+    <!-- Offset -->
+    <div class="container">
+        <div class="row">
+            <div class="offsquare col-md-4">.col-md-4</div>
+            <div class="offsquare col-md-4 offset-md-4">.col-md-4 .offset-md-4</div>
+        </div>
+        <div class="row">
+            <div class="offsquare col-md-3 offset-md-3">.col-md-3 .offset-md-3</div>
+            <div class="offsquare col-md-3 offset-md-3">.col-md-3 .offset-md-3</div>
+        </div>
+        <div class="row">
+            <div class="offsquare col-md-6 offset-md-3">.col-md-6 .offset-md-3</div>
+        </div>
+    </div>
+
+    <!-- Nesting -->
+    <div class="container">
+        <div class="row">
+            <div class="nessquare col-sm-9">
+            Level 1: .col-sm-9
+            <div class="row">
+                <div class="nessquare col-8 col-sm-6">
+                Level 2: .col-8 .col-sm-6
+                </div>
+                <div class="nessquare col-4 col-sm-6">
+                Level 2: .col-4 .col-sm-6
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="nessquare col-sm-4">
+            Level 1: .col-sm-4
+            <div class="row">
+                <div class="nessquare col-8 col-sm-6">
+                Level 2: .col-8 .col-sm-6
+                </div>
+                <div class="nessquare col-4 col-sm-6">
+                Level 2: .col-4 .col-sm-6
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
