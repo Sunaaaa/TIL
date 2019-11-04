@@ -138,7 +138,7 @@
 
     - index 페이지
 
-      ![1572519859519](../AppData/Roaming/Typora/typora-user-images/1572519859519.png)
+      ![1572519859519](https://user-images.githubusercontent.com/39547788/67947869-e9ec1c80-fc27-11e9-8243-8f547bf3dc67.png)
 
       <br>
 
@@ -146,13 +146,13 @@
 
     - 게시글 Form 작성
 
-      ![1572519933740](../AppData/Roaming/Typora/typora-user-images/1572519933740.png)
+      ![1572519933740](https://user-images.githubusercontent.com/39547788/67947871-e9ec1c80-fc27-11e9-8f38-865f416eb5bf.png)
 
       <br>
 
     - 작성 완료 시, create 페이지로 이동
 
-      ![1572520602723](../AppData/Roaming/Typora/typora-user-images/1572520602723.png)
+      ![1572520602723](https://user-images.githubusercontent.com/39547788/67947877-eb1d4980-fc27-11e9-9cf3-a67431c8d920.png)
 
       
 
@@ -162,13 +162,13 @@
 
       - index 페이지
 
-        ![1572520066271](../AppData/Roaming/Typora/typora-user-images/1572520066271.png)
+        ![1572520066271](https://user-images.githubusercontent.com/39547788/67947874-ea84b300-fc27-11e9-86f3-5e6fce48fe0f.png)
 
         <br>
 
       - admin 페이지
 
-        ![1572520109965](../AppData/Roaming/Typora/typora-user-images/1572520109965.png)
+        ![1572520109965](https://user-images.githubusercontent.com/39547788/67947875-ea84b300-fc27-11e9-8cf8-658a4c162185.png)
 
 <br>
 
@@ -233,7 +233,7 @@
 
     - index 페이지
 
-      ![1572519859519](../AppData/Roaming/Typora/typora-user-images/1572519859519.png)
+      ![1572519859519](https://user-images.githubusercontent.com/39547788/67947870-e9ec1c80-fc27-11e9-9c65-8fb1fca6379d.png)
 
       <br>
 
@@ -241,7 +241,7 @@
 
     - 게시글 Form 작성
 
-      ![1572519933740](../AppData/Roaming/Typora/typora-user-images/1572519933740.png)
+      ![1572519933740](https://user-images.githubusercontent.com/39547788/67947871-e9ec1c80-fc27-11e9-8f38-865f416eb5bf.png)
 
       <br>
 
@@ -250,7 +250,7 @@
       - **URL에 게시글 정보가 보이지 않는다.**
         - HTTP body에 숨겨져 보낸다.
 
-      ![1572519997785](../AppData/Roaming/Typora/typora-user-images/1572519997785.png)
+      ![1572519997785](https://user-images.githubusercontent.com/39547788/67947873-ea84b300-fc27-11e9-83a5-62c6bfa72ec9.png)
 
       <br>
 
@@ -258,13 +258,13 @@
 
       - index 페이지
 
-        ![1572520066271](../AppData/Roaming/Typora/typora-user-images/1572520066271.png)
+        ![1572520066271](https://user-images.githubusercontent.com/39547788/67947874-ea84b300-fc27-11e9-86f3-5e6fce48fe0f.png)
 
         <br>
 
       - admin 페이지
 
-        ![1572520109965](../AppData/Roaming/Typora/typora-user-images/1572520109965.png)
+        ![1572520109965](https://user-images.githubusercontent.com/39547788/67947875-ea84b300-fc27-11e9-8cf8-658a4c162185.png)
 
   <br>
 
@@ -304,7 +304,7 @@ Out[5]: 1
     
         article = Article(title=title, content=content)
         article.save()
-       
+     
         article_pk = article.pk
     
         return redirect(f'/articles/{article_pk}')
@@ -318,13 +318,13 @@ Out[5]: 1
 
       - index 페이지
 
-        ![1572482855148](C:%5CUsers%5Cstudent%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1572482855148.png)
+        ![1572482855148](https://user-images.githubusercontent.com/39547788/67947850-e789c280-fc27-11e9-9978-4281aa72b694.png)
 
         <br>
 
       - new 페이지
 
-        ![1572482989719](C:%5CUsers%5Cstudent%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1572482989719.png)
+        ![1572482989719](https://user-images.githubusercontent.com/39547788/67947851-e789c280-fc27-11e9-8166-95a6535d5c52.png)
 
         <br>
 
@@ -332,7 +332,7 @@ Out[5]: 1
 
       - detail 페이지
 
-        ![1572483038927](C:%5CUsers%5Cstudent%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1572483038927.png)
+        ![1572483038927](https://user-images.githubusercontent.com/39547788/67947853-e8225900-fc27-11e9-8994-e029a334844d.png)
 
     
 
@@ -392,7 +392,7 @@ Out[5]: 1
 
     - index 페이지
 
-      ![1572524178093](../AppData/Roaming/Typora/typora-user-images/1572524178093.png)
+      ![1572524178093](https://user-images.githubusercontent.com/39547788/67947929-fbcdbf80-fc27-11e9-954e-f195de346f51.png)
 
       <br>
 
@@ -495,7 +495,7 @@ Out[5]: 1
 
     - detail 페이지
 
-      ![1572521030678](../AppData/Roaming/Typora/typora-user-images/1572521030678.png)
+      ![1572521030678](https://user-images.githubusercontent.com/39547788/67947881-eb1d4980-fc27-11e9-8f74-eaf29a111246.png)
 
   
 
@@ -514,15 +514,12 @@ Out[5]: 1
 > 게시글 수정 폼은 게시글 작성 폼과 다른 점이 있다. 
 >
 > - 게시글 작성 폼 
->
 >   - 새로운 정보를 받는다. 
->
 >   - 모든 데이터를 작성하고 수정할 수 있다.
 >
->     <br>
+>  <br>
 >
 > - 게시글 수정 폼 
->
 >   - 데이터 베이스에 저장된 정보를 받는다.
 >   - 몇몇 데이터만 작성하고 수정이 가능하다. 가령 게시글 작성 시간, 게시글 번호 등은 수정할 수 없다. 
 
@@ -639,7 +636,7 @@ Out[5]: 1
 
     - detail.html
 
-      ![1572524814294](../AppData/Roaming/Typora/typora-user-images/1572524814294.png)
+      ![1572524814294](https://user-images.githubusercontent.com/39547788/67947930-fc665600-fc27-11e9-84b6-8bda8b4e1eb6.png)
 
       <br>
 
@@ -647,13 +644,13 @@ Out[5]: 1
 
       - 수정 전
 
-        ![1572524864906](../AppData/Roaming/Typora/typora-user-images/1572524864906.png)
+        ![1572524864906](https://user-images.githubusercontent.com/39547788/67947931-fc665600-fc27-11e9-9590-094ee93e870a.png)
 
         <br>
 
       - 수정 후
 
-        ![1572524894662](../AppData/Roaming/Typora/typora-user-images/1572524894662.png)
+        ![1572524894662](https://user-images.githubusercontent.com/39547788/67947932-fc665600-fc27-11e9-930f-cd55e9207193.png)
 
         <br>
 
@@ -661,19 +658,19 @@ Out[5]: 1
 
       - detail.html
 
-        ![1572525162944](../AppData/Roaming/Typora/typora-user-images/1572525162944.png)
+        ![1572525162944](https://user-images.githubusercontent.com/39547788/67947933-fc665600-fc27-11e9-8688-036dd641255f.png)
 
         <br>
 
       - sqlite3
 
-        ![1572525216453](../AppData/Roaming/Typora/typora-user-images/1572525216453.png)
+        ![1572525216453](https://user-images.githubusercontent.com/39547788/67947934-fcfeec80-fc27-11e9-837c-a96cec6c7c29.png)
 
         <br>
 
       - 관리자 페이지
 
-        ![1572525279791](../AppData/Roaming/Typora/typora-user-images/1572525279791.png)
+        ![1572525279791](https://user-images.githubusercontent.com/39547788/67947935-fcfeec80-fc27-11e9-9ad7-5fdb705073f3.png)
 
       <br>
 
@@ -755,19 +752,19 @@ Out[5]: 1
 
     - index.html
 
-      ![1572483382866](C:%5CUsers%5Cstudent%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1572483382866.png)
+      ![1572483382866](https://user-images.githubusercontent.com/39547788/67947854-e8225900-fc27-11e9-92a3-b0e7e6a69bf7.png)
 
       <br>
 
     - detail.html
 
-      ![1572483448406](C:%5CUsers%5Cstudent%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1572483448406.png)
+      ![1572483448406](https://user-images.githubusercontent.com/39547788/67947855-e8225900-fc27-11e9-8f82-bea0104c7c33.png)
 
       <br>
 
     - index.html
 
-      ![1572483516728](C:%5CUsers%5Cstudent%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1572483516728.png)
+      ![1572483516728](https://user-images.githubusercontent.com/39547788/67947857-e8225900-fc27-11e9-93c8-5a48bdb7d71d.png)
 
       <br>
 
@@ -782,11 +779,8 @@ Out[5]: 1
 # [실습] students Application 구현하기
 
 - students 앱을 만들어준다.
-
 - Student 모델 클래스를 만들어준다. -> 이름,나이
-
   - Django Shell 으로 Student 데이터를 만들고, 관리자 페이지에서 데이터가 잘 만들어졌는지 확인해보기
-
   - READ 로직 1 : Index 페이지 (학생들 목록)
   - CREATE 로직 : new , create (새로운 학생 등록)
   - READ 로직 2 : Detail 페이지(학생 상세정보)
@@ -805,13 +799,13 @@ Out[5]: 1
 
   - sqlite3
 
-    ![1572521396379](../AppData/Roaming/Typora/typora-user-images/1572521396379.png)
+    ![1572521396379](https://user-images.githubusercontent.com/39547788/67947884-ebb5e000-fc27-11e9-926a-0f2ea628624e.png)
 
     <br>
 
   - 관리자 페이지
 
-    ![1572521452786](../AppData/Roaming/Typora/typora-user-images/1572521452786.png)
+    ![1572521452786](https://user-images.githubusercontent.com/39547788/67947885-ebb5e000-fc27-11e9-997c-cf8c85119c13.png)
 
     
 
@@ -821,7 +815,7 @@ Out[5]: 1
 
 - index 페이지 (학생들 목록)
 
-  ![1572521366955](../AppData/Roaming/Typora/typora-user-images/1572521366955.png)
+  ![1572521366955](https://user-images.githubusercontent.com/39547788/67947883-eb1d4980-fc27-11e9-84fb-b06ad1f56808.png)
 
   <br>
 
@@ -833,7 +827,7 @@ Out[5]: 1
 
 - new 페이지 (학생 등록)
 
-  ![1572521598030](../AppData/Roaming/Typora/typora-user-images/1572521598030.png)
+  ![1572521598030](https://user-images.githubusercontent.com/39547788/67947887-ebb5e000-fc27-11e9-982d-fd43e4315cfc.png)
 
   <br>
 
@@ -841,19 +835,19 @@ Out[5]: 1
 
   - sqlite3
 
-    ![1572521703141](../AppData/Roaming/Typora/typora-user-images/1572521703141.png)
+    ![1572521703141](https://user-images.githubusercontent.com/39547788/67947890-ec4e7680-fc27-11e9-827c-abe4c5893f87.png)
 
     <br>
 
   - 관리자 페이지
 
-    ![1572521683843](../AppData/Roaming/Typora/typora-user-images/1572521683843.png)
+    ![1572521683843](https://user-images.githubusercontent.com/39547788/67947889-ec4e7680-fc27-11e9-99c6-9cafecdc4660.png)
 
     <br>
 
   - index 페이지 (학생들 목록)
 
-    ![1572521636179](../AppData/Roaming/Typora/typora-user-images/1572521636179.png)
+    ![1572521636179](https://user-images.githubusercontent.com/39547788/67947888-ec4e7680-fc27-11e9-948f-13ed91592a72.png)
 
     
 
@@ -867,13 +861,13 @@ Out[5]: 1
 
   - index 페이지
 
-    ![1572521807282](../AppData/Roaming/Typora/typora-user-images/1572521807282.png)
+    ![1572521807282](https://user-images.githubusercontent.com/39547788/67947891-ec4e7680-fc27-11e9-9725-cd3a5a7321cb.png)
 
     <br>
 
   - detail 페이지
 
-    ![1572521833627](../AppData/Roaming/Typora/typora-user-images/1572521833627.png)
+    ![1572521833627](https://user-images.githubusercontent.com/39547788/67947892-ece70d00-fc27-11e9-8451-49c0ce182664.png)
 
   <br>
 
@@ -885,37 +879,37 @@ Out[5]: 1
 
   - detail 페이지
 
-    ![1572521932141](../AppData/Roaming/Typora/typora-user-images/1572521932141.png)
+    ![1572521932141](https://user-images.githubusercontent.com/39547788/67947893-ece70d00-fc27-11e9-8010-ce5b82fad5ce.png)
 
     <br>
 
   - edit 페이지
 
-    ![1572522042533](../AppData/Roaming/Typora/typora-user-images/1572522042533.png)
+    ![1572522042533](https://user-images.githubusercontent.com/39547788/67947894-ece70d00-fc27-11e9-99db-a133cfbd2d36.png)
 
 - 정보 수정 확인
 
   - detail 페이지
 
-    ![1572522114075](../AppData/Roaming/Typora/typora-user-images/1572522114075.png)
+    ![1572522114075](https://user-images.githubusercontent.com/39547788/67947895-ed7fa380-fc27-11e9-97c5-14f5b3d554e0.png)
 
     <br>
 
   - sqlite3
 
-    ![1572522203554](../AppData/Roaming/Typora/typora-user-images/1572522203554.png)
+    ![1572522203554](https://user-images.githubusercontent.com/39547788/67947898-ed7fa380-fc27-11e9-9b81-f2e4ff00fffe.png)
 
     <br>
 
   - 관리자 페이지
 
-    ![1572522175543](../AppData/Roaming/Typora/typora-user-images/1572522175543.png)
+    ![1572522175543](https://user-images.githubusercontent.com/39547788/67947897-ed7fa380-fc27-11e9-9a67-2493880474ed.png)
 
     <br>
 
   - index 페이지 (학생들 목록)
 
-    ![1572522273434](../AppData/Roaming/Typora/typora-user-images/1572522273434.png)
+    ![1572522273434](https://user-images.githubusercontent.com/39547788/67947899-ed7fa380-fc27-11e9-9b17-cc570ea3f036.png)
 
     <br>
 
@@ -929,7 +923,7 @@ Out[5]: 1
 
   - detail 페이지
 
-    ![1572522448092](../AppData/Roaming/Typora/typora-user-images/1572522448092.png)
+    ![1572522448092](https://user-images.githubusercontent.com/39547788/67947849-e789c280-fc27-11e9-8074-a08df27b65d7.png)
 
     <br>
 
@@ -937,19 +931,19 @@ Out[5]: 1
 
   - index 페이지
 
-    ![1572522782834](../AppData/Roaming/Typora/typora-user-images/1572522782834.png)
+    ![1572522782834](https://user-images.githubusercontent.com/39547788/67947936-fcfeec80-fc27-11e9-83ef-80018d8f1a42.png)
 
     <br>
 
   - sqlite3
 
-    ![1572522907311](../AppData/Roaming/Typora/typora-user-images/1572522907311.png)
+    ![1572522907311](https://user-images.githubusercontent.com/39547788/67947927-fbcdbf80-fc27-11e9-81fc-069d011668d3.png)
 
     <br>
 
   - 관리자 페이지
 
-    ![1572522820484](../AppData/Roaming/Typora/typora-user-images/1572522820484.png)
+    ![1572522820484](https://user-images.githubusercontent.com/39547788/67947926-fb352900-fc27-11e9-8f0b-59374dbf6110.png)
 
     <br>
 

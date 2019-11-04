@@ -49,7 +49,7 @@ $pip install Faker
 
 - 설치 완료 
 
-  ![1572503050399](../AppData/Roaming/Typora/typora-user-images/1572503050399.png)
+  ![1572503050399](https://user-images.githubusercontent.com/39547788/67948173-90382200-fc28-11e9-8ef3-b4838c09466d.png)
 
   <br>
 
@@ -183,7 +183,7 @@ $ python manage.py startapp jobs
 
 - 생성화면
 
-  ![1572503798673](../AppData/Roaming/Typora/typora-user-images/1572503798673.png)
+  ![1572503798673](https://user-images.githubusercontent.com/39547788/67948174-90382200-fc28-11e9-87d0-2e9befbc5dd5.png)
 
 <br>
 
@@ -191,7 +191,7 @@ $ python manage.py startapp jobs
 
 - settings.py 에 jobs Application을 등록한다.
 
-![1572503922246](../AppData/Roaming/Typora/typora-user-images/1572503922246.png)
+![1572503922246](https://user-images.githubusercontent.com/39547788/67948175-90382200-fc28-11e9-8525-a3ae51fcd552.png)
 
 <br>
 
@@ -224,7 +224,7 @@ $ python manage.py startapp jobs
 
   - 실행 화면
 
-    ![1572504054839](../AppData/Roaming/Typora/typora-user-images/1572504054839.png)
+    ![1572504054839](https://user-images.githubusercontent.com/39547788/67948178-90d0b880-fc28-11e9-9522-2dfc5c1eddf9.png)
 
   <br>
 
@@ -236,7 +236,7 @@ $ python manage.py startapp jobs
 
   - 확인
 
-    ![1572505292884](../AppData/Roaming/Typora/typora-user-images/1572505292884.png)
+    ![1572505292884](https://user-images.githubusercontent.com/39547788/67948179-90d0b880-fc28-11e9-8708-b96794f34f6a.png)
 
   <br>
 
@@ -248,13 +248,13 @@ $ python manage.py startapp jobs
 
   - 실행 화면
 
-    ![1572505376994](../AppData/Roaming/Typora/typora-user-images/1572505376994.png)
+    ![1572505376994](https://user-images.githubusercontent.com/39547788/67948181-90d0b880-fc28-11e9-97a6-d3c64bab488f.png)
 
   <br>
 
   - sqlite로 확인
 
-    ![1572505451166](../AppData/Roaming/Typora/typora-user-images/1572505451166.png)
+    ![1572505451166](https://user-images.githubusercontent.com/39547788/67948183-91694f00-fc28-11e9-80de-effc34bf03f2.png)
 
   
 
@@ -281,11 +281,9 @@ $ python manage.py startapp jobs
 
   - 실행 화면
 
-    ![1572506269263](../AppData/Roaming/Typora/typora-user-images/1572506269263.png)
+    ![1572506269263](https://user-images.githubusercontent.com/39547788/67948184-91694f00-fc28-11e9-953a-4691e8f64cd3.png)
 
 <br>
-
-http://api.giphy.com/v1/gifs/search?api_key=2p8T0fQTZdtFLJmI4xE7tqF3mrhBvPNL&q=theif
 
 
 
