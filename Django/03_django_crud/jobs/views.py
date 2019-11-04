@@ -2,12 +2,12 @@ from django.shortcuts import render, redirect
 import requests
 from faker import Faker
 from .models import Job
+from decouple import config
 
 # Create your views here.
 def index(request):
     return render(request, 'jobs/index.html')
 
-# API KEY : 2p8T0fQTZdtFLJmI4xE7tqF3mrhBvPNL
 # GIF URL : api.giphy.com/v1/gifs/search
 def job(request):
     name = request.POST.get('name')
@@ -24,9 +24,8 @@ def job(request):
     
 
 # 심화 
-# FLJmI4xE7tqF3mrhBvPNL&q=theif
     api_url = "http://api.giphy.com/v1/gifs/search"
-    api_key = "2p8T0fQTZdtFLJmI4xE7tqF3mrhBvPNL"
+    api_key = config('KEY')
 
     data = requests.get(f'{api_url}?api_key={api_key}&q={past_job}&limit=1&lang=ko').json()
 
