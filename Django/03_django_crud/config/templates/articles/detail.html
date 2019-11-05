@@ -17,6 +17,19 @@
     {% csrf_token %}
     <input type="submit" value="DELETE">
   </form>
+  <!-- 댓글 작성 Form -->
+  <form action="{% url 'articles:comments_create' article.pk%}" method="POST">
+    {% csrf_token %}
+    <input type="text" name="comment">
+    <input type="submit" value="댓글 작성">
+  </form>
+
+
+  <ul class="list-group">
+  {% for comment in comments %}
+    <li class="list-group-item ">{{comment.content}}</li>
+  {% endfor %}
+  </ul>
 
 
 {% endblock  %}

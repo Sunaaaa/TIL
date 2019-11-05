@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Article
+from .models import Comment
 
 # Create your views here.
 def index(request):
@@ -38,7 +39,9 @@ def create(request):
 # 게시글 상세 정보를 가져오는 함수
 def detail(request, article_pk):
     article = Article.objects.get(pk=article_pk)
+    comments = article.comment_set.all()
     context = {
+        'comments' : comments,
         'article' : article
     }
     return render(request, 'articles/detail.html', context)
@@ -78,7 +81,22 @@ def update(request, article_pk):
     # GET 요청 -> 사용자에게 수정 Form 전달
     else :
         context = {
-            'article' : article
+            'article' : article,
         }
 
         return render(request, 'articles/update.html', context)
+
+
+# 댓글 생성 뷰 함수
+def comments_create(request, article_pk):
+    article = Article.objects.get(pk=article_pk)
+
+    if request.method == 'POST':
+        comment = Comment()
+        comment.content = request.POST.get('comment')
+        comment.article = article
+        comment.save()
+        return redirect('articles:detail', article.pk)
+
+    else :
+        return redirect('articles:detail', article.pk)
