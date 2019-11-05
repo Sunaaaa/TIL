@@ -3,33 +3,67 @@
 {% block body %}
   <h1 class="text-center">DETAIL</h1>
 
-  <p>글 번호 : {{article.pk}}</p>
-  <p>글 제목 : {{article.title}}</p>
-  <p>글 내용 : {{article.content}}</p>
-  <p>생성 시간 : {{article.created_at}}</p>
-  <p>수정 시간 : {{article.updated_at}}</p>
   <hr>
 
-  <a href="{% url 'articles:index' %}">[INDEX]</a>
-  <a href="{% url 'articles:update' article.pk %}">[EDIT]</a>
+  <div class="container">
+    <div class="row">
+      <div class="ml-auto">
+        <p>생성 시간 : {{article.created_at}}</p>
+        <p>수정 시간 : {{article.updated_at}}</p>        
+      </div>
+    </div>
+  </div>
+
+  <p>글 제목 : {{article.title}}</p>
+  <p>글 내용 : {{article.content}}</p>
+  <hr>
+
+  <a class="btn btn-dark" href="{% url 'articles:index' %}">INDEX</a>
+  <a class="btn btn-dark" href="{% url 'articles:update' article.pk %}">EDIT</a>
 
   <form action="{% url 'articles:delete' article.pk%}" method="POST" style="display : inline;" onclick="return confirm('진짜 삭제할까요...?')">
     {% csrf_token %}
-    <input type="submit" value="DELETE">
+    <input  class="btn btn-dark"  type="submit" value="DELETE">
   </form>
+
+  <hr>
+
   <!-- 댓글 작성 Form -->
   <form action="{% url 'articles:comments_create' article.pk%}" method="POST">
     {% csrf_token %}
-    <input type="text" name="comment">
-    <input type="submit" value="댓글 작성">
+      <div class="container">
+        <div class="row">
+            <input type="text" name="comment">
+            <input class="ml-2 btn btn-white border border-dark" type="submit" value="댓글 작성">
+        </div>
+      </div>
   </form>
 
+  <hr>
 
-  <ul class="list-group">
-  {% for comment in comments %}
-    <li class="list-group-item ">{{comment.content}}</li>
-  {% endfor %}
-  </ul>
+  <div class="container">
+  {{comments|length}} 개의 댓글이 있습니다.
+{% comment %} 
+  {{article.comment_set.all|length}} 개의 댓글이 있습니다.
+  {{comments.count}} 개의 댓글이 있습니다.
+ {% endcomment %}
+    <ul class="list-group">
+    {% for comment in comments %}
+      <li class="list-group-item ">
+        {{comment.content}}
+        <!-- 댓글 삭제 Form -->
+        <form action="{% url 'articles:comments_delete' article.pk comment.pk %}" method="POST" style="display : inline;" onclick="return confirm('진짜 삭제할까요...?')">
+          {% csrf_token %}
+          <input  class="ml-auto btn btn-dark"  type="submit" value="DELETE">
+        </form>
+      </li>
+    <!-- for 문 QuerySet이 텅텅 비어 있을 때--> 
+    {% empty %}
+
+    {% endfor %}
+    </ul>
+
+  </div>
 
 
 {% endblock  %}
