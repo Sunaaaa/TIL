@@ -1,9 +1,30 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block body %}
+
+  <!--
+    input type이 file 일 경우, value 값을 지정할 수 없다. 당장의 해결 방법은?
+    : 이미지 파일은 바이너리 데이터 (하나의 덩어리)로 들어가서, 텍스트를 수정하듯이 일부만 수정하는 것이 불가능하다. 
+      새로운 사진을 덮어씌우는 방식을 사용한다.
+    1. 똑같은 사진을 업로드 하도록 유도한다. (임시 방편)
+      - 사진 파일을 업데이트 페이지에 띄운다.
+     
+
+  -->
   <h1 class="text-center">EDIT</h1>
 
-  <form action="{% url 'articles:update' article.pk %}", method="POST">
+
+  {% if article.image %}
+    <p class="mx-auto" >업로드 되어있는 사진</p>
+    <img class="mx-auto" src="{{article.image.url}}" alt="{{article.image}}" style="display : block">
+
+  {% else %}
+    <p class="mx-auto" >사진이 없어요....</p>  
+    <img class="mx-auto" src="{% static 'articles/image/no_image.png' %}" alt="no_image" style="display : block">
+  {% endif %}
+
+  
+  <form action="{% url 'articles:update' article.pk %}", method="POST" enctype="multipart/form-data">
   {% csrf_token %}
     <label for="title">TITLE </label>
     <input type="text" id="title" name="title" value={{article.title}} > <br>
@@ -12,6 +33,8 @@
     <textarea type="text" id="content" name="content" cols="30" rows="10">{{article.content}} </textarea> <br>
 
     <input type="submit">
+    <label for="image">IMAGE </label>
+    <input type="file" id="image" name="image"  > <br>
   </form>
 
   <hr>

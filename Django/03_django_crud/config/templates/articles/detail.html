@@ -1,77 +1,87 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block body %}
-  <h1 class="text-center">DETAIL</h1>
+<h1 class="text-center">DETAIL</h1>
 
-  <hr>
+<hr>
 
-  <div class="container">
-    <div class="row">
-      <div class="ml-auto">
-        <p>생성 시간 : {{article.created_at}}</p>
-        <p>수정 시간 : {{article.updated_at}}</p>        
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="ml-auto">
+      <p>생성 시간 : {{article.created_at}}</p>
+      <p>수정 시간 : {{article.updated_at}}</p>        
     </div>
   </div>
+</div>
 
-  <!-- 
-    article.image.url -> 파일 주소
-    article.image -> 파일 이름 (cool.jpg)
-   -->
-  
-  <img class="mx-auto" src="{{article.image.url}}" alt="{{article.image}}" style="display : block">
+<!-- 
+  article.image.url -> 파일 주소
+  article.image -> 파일 이름 (cool.jpg)
+  -->
+<!-- 
+  1. 샘플 이미지 (static) 를 넣어두고, 이미지 없는 게시글은 샘플 이미지가 나오도록 한다.
+  2. 이미지 있는 경우에만 이미지를 보여준다.
+  -->
+{% if article.image %}
+  <p class="mx-auto" >업로드 되어있는 사진</p>
+  <img class="mx-auto" src="{{article.image.url}}" alt="{{article.image}}" style="display : block; width : 50%">
 
-  <p>글 제목 : {{article.title}}</p>
-  <p>글 내용 : {{article.content}}</p>
-  <hr>
+{% else %}
+  <p class="mx-auto" >사진이 없어요....</p>  
+  <img class="mx-auto" src="{% static 'articles/image/no_image.png' %}" alt="no_image" style="display : block">
+{% endif %}
 
-  <a class="btn btn-dark" href="{% url 'articles:index' %}">INDEX</a>
-  <a class="btn btn-dark" href="{% url 'articles:update' article.pk %}">EDIT</a>
 
-  <form action="{% url 'articles:delete' article.pk%}" method="POST" style="display : inline;" onclick="return confirm('진짜 삭제할까요...?')">
-    {% csrf_token %}
-    <input  class="btn btn-dark"  type="submit" value="DELETE">
-  </form>
+<p>글 제목 : {{article.title}}</p>
+<p>글 내용 : {{article.content}}</p>
+<hr>
 
-  <hr>
+<a class="btn btn-dark" href="{% url 'articles:index' %}">INDEX</a>
+<a class="btn btn-dark" href="{% url 'articles:update' article.pk %}">EDIT</a>
 
-  <!-- 댓글 작성 Form -->
-  <form action="{% url 'articles:comments_create' article.pk%}" method="POST">
-    {% csrf_token %}
-      <div class="container">
-        <div class="row">
-            <input type="text" name="comment">
-            <input class="ml-2 btn btn-white border border-dark" type="submit" value="댓글 작성">
-        </div>
+<form action="{% url 'articles:delete' article.pk%}" method="POST" style="display : inline;" onclick="return confirm('진짜 삭제할까요...?')">
+  {% csrf_token %}
+  <input  class="btn btn-dark"  type="submit" value="DELETE">
+</form>
+
+<hr>
+
+<!-- 댓글 작성 Form -->
+<form action="{% url 'articles:comments_create' article.pk%}" method="POST">
+  {% csrf_token %}
+    <div class="container">
+      <div class="row">
+          <input type="text" name="comment">
+          <input class="ml-2 btn btn-white border border-dark" type="submit" value="댓글 작성">
       </div>
-  </form>
+    </div>
+</form>
 
-  <hr>
+<hr>
 
-  <div class="container">
-  {{comments|length}} 개의 댓글이 있습니다.
-  {% comment %} 
-    {{article.comment_set.all|length}} 개의 댓글이 있습니다.
-    {{comments.count}} 개의 댓글이 있습니다.
-    # 는 count 메서드를 호출해서 데이터 베이스에 쿼리를 한번 더 날려서 정보를 가져오므로, 미세하지만 속도가 조금 느리다는 단점이 있다.
-  {% endcomment %}
-    <ul class="list-group">
-    {% for comment in comments %}
-      <li class="list-group-item ">
-        {{comment.content}}
-        <!-- 댓글 삭제 Form -->
-        <form action="{% url 'articles:comments_delete' article.pk comment.pk %}" method="POST" style="display : inline;" onclick="return confirm('진짜 삭제할까요...?')">
-          {% csrf_token %}
-          <input  class="ml-auto btn btn-dark"  type="submit" value="DELETE">
-        </form>
-      </li>
-    <!-- for 문 QuerySet이 텅텅 비어 있을 때--> 
-    {% empty %}
+<div class="container">
+{{comments|length}} 개의 댓글이 있습니다.
+{% comment %} 
+  {{article.comment_set.all|length}} 개의 댓글이 있습니다.
+  {{comments.count}} 개의 댓글이 있습니다.
+  # 는 count 메서드를 호출해서 데이터 베이스에 쿼리를 한번 더 날려서 정보를 가져오므로, 미세하지만 속도가 조금 느리다는 단점이 있다.
+{% endcomment %}
+  <ul class="list-group">
+  {% for comment in comments %}
+    <li class="list-group-item ">
+      {{comment.content}}
+      <!-- 댓글 삭제 Form -->
+      <form action="{% url 'articles:comments_delete' article.pk comment.pk %}" method="POST" style="display : inline;" onclick="return confirm('진짜 삭제할까요...?')">
+        {% csrf_token %}
+        <input  class="ml-auto btn btn-dark"  type="submit" value="DELETE">
+      </form>
+    </li>
+  <!-- for 문 QuerySet이 텅텅 비어 있을 때--> 
+  {% empty %}
 
-    {% endfor %}
-    </ul>
+  {% endfor %}
+  </ul>
 
-  </div>
-
+</div>
 
 {% endblock  %}

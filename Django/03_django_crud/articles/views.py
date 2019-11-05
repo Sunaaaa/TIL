@@ -77,6 +77,9 @@ def update(request, article_pk):
     if request.method == 'POST':
         title = request.POST.get('title')
         content = request.POST.get('content')
+        image = request.FILES.get('image')
+
+        article.image = image
         article.title = title
         article.content = content
         article.save()
