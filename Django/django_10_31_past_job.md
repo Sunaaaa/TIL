@@ -421,13 +421,13 @@ $ python manage.py startapp jobs
 
   - index.html
 
-    ![1572958029250](../AppData/Roaming/Typora/typora-user-images/1572958029250.png)
+    ![1572958029250](https://user-images.githubusercontent.com/39547788/68209346-85113780-0016-11ea-9d80-4fc8907816d0.png)
 
     <br>
 
   - job.html
 
-    ![1572958086752](../AppData/Roaming/Typora/typora-user-images/1572958086752.png)
+    ![1572958086752](https://user-images.githubusercontent.com/39547788/68209347-85113780-0016-11ea-8ce0-2418e1e2bddf.png)
 
     
 
