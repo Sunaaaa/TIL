@@ -2,26 +2,61 @@
 
 {% block body %}
 <div class="container">
-<hr>
-  <h1 class="text-center">{{movie.title}}</h1>
-  <p class="text-center"> ( {{movie.title_en}} ,  {{movie.open_date}} ) </p>
-<hr>
-  <div class="container">
-    <img src={{movie.poster_url}} alt={{movie.title}} width="200px" height="300px">
-    <p>장르 : {{movie.genre}}</p>
-    <p>누적 관객수 : {{movie.audience}} (명)</p>
-    <p>관람등급 : {{movie.watch_grade}}</p>
-    <p>평점 : <span style="color : red"> {{movie.score}} </span> </p>
-  </div>
-  <div class="container">    
-    <h3>줄거리</h3>
-    <p> {{movie.description}}</p>
-  </div>
   <hr>
 
-  <a class="btn btn-default" href="{% url 'movies:index' %}">[INDEX]</a>
-  <a class="btn btn-default" href="{% url 'movies:edit' movie.pk %}">[EDIT]</a>
-  <a class="btn btn-default" href="{% url 'movies:delete' movie.pk %}">[DELETE]</a>
+    <h1 class="text-center">{{movie.title}}</h1>
+    <p class="text-center"> ( {{movie.title_en}} ,  {{movie.open_date}} ) </p>
+
+  <hr>
+
+    <div class="container">
+      <img src={{movie.poster_url}} alt={{movie.title}} width="200px" height="300px">
+      <p>장르 : {{movie.genre}}</p>
+      <p>누적 관객수 : {{movie.audience}} (명)</p>
+      <p>관람등급 : {{movie.watch_grade}}</p>
+      <p>평점 : <span style="color : red"> {{movie.score}} </span> </p>
+    </div>
+    <div class="container">    
+      <h3>줄거리</h3>
+      <p> {{movie.description}}</p>
+    </div>
+  <hr>
+  
+    <a class="btn btn-default" href="{% url 'movies:index' %}">[INDEX]</a>
+    <a class="btn btn-default" href="{% url 'movies:update' movie.pk %}">[EDIT]</a>
+    <form action="{% url 'movies:delete' movie.pk %}" method="POST" style="display : inline">
+    {% csrf_token %}
+      <input type="submit" value="DELETE" >
+    {% comment %} <a class="btn btn-default" href="{% url 'movies:delete' movie.pk %}">[DELETE]</a> {% endcomment %}
+    </form>
+</div>
+<div class="container">
+  <div class="row">
+    <form action="{% url 'movies:comments_create' movie.pk %}" method="POST" style="display : inline">
+    {% csrf_token %}
+      <input type="text" name="content" >
+      <input type="submit" value="댓글 작성" >
+    </form>
+  </div>
+</div>
+<div class="container">
+  {{comments|length}} 개의 댓글이 있습니다.
+  <ul class="list-group">
+  {% for comment in comments %}
+    <li class="list-group-item ">
+      {{comment.content}}
+      <!-- 댓글 삭제 Form -->
+      <form action="{% url 'movies:comments_delete' movie.pk comment.pk %}" method="POST" style="display : inline;" onclick="return confirm('진짜 삭제할까요...?')">
+        {% csrf_token %}
+        <input  class="ml-auto btn btn-dark"  type="submit" value="DELETE">
+      </form>
+    </li>
+  <!-- for 문 QuerySet이 텅텅 비어 있을 때--> 
+  {% empty %}
+
+  {% endfor %}
+  </ul>
+
 </div>
 
 {% endblock  %}

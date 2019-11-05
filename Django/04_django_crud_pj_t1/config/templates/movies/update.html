@@ -2,7 +2,7 @@
 
 {% block body %}
   <h1 class="text-center">NEW MOVIE</h1>
-
+  <hr>
   <form action="{% url 'movies:update' movie.pk %}", method="POST">
   {% csrf_token %}
     {% comment %} NAME : <input type="text" name="name" > <br> {% endcomment %}

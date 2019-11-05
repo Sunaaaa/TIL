@@ -3,7 +3,8 @@ from . import views
 
 app_name='articles'
 urlpatterns = [
-        # URI : 자원에 대한 정보
+
+    # URI : 자원에 대한 정보
     path('<int:article_pk>/comments/<int:comment_pk>/delete', views.comments_delete, name='comments_delete'), # POST (comments_delete)
     path('<int:article_pk>/comments/', views.comments_create, name='comments_create'), # POST (comments_create)
     path('<int:article_pk>/update/', views.update, name='update'), # GET (edit) / POST (update)
@@ -11,5 +12,4 @@ urlpatterns = [
     path('<int:article_pk>/', views.detail, name='detail'), # READ Logic - Detail
     path('create/', views.create, name='create'), # GET (new) / POST (create)
     path('', views.index, name='index'), # READ Logic - Index
-
 ]

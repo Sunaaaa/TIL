@@ -43,10 +43,11 @@
 
   <div class="container">
   {{comments|length}} 개의 댓글이 있습니다.
-{% comment %} 
-  {{article.comment_set.all|length}} 개의 댓글이 있습니다.
-  {{comments.count}} 개의 댓글이 있습니다.
- {% endcomment %}
+  {% comment %} 
+    {{article.comment_set.all|length}} 개의 댓글이 있습니다.
+    {{comments.count}} 개의 댓글이 있습니다.
+    # 는 count 메서드를 호출해서 데이터 베이스에 쿼리를 한번 더 날려서 정보를 가져오므로, 미세하지만 속도가 조금 느리다는 단점이 있다.
+  {% endcomment %}
     <ul class="list-group">
     {% for comment in comments %}
       <li class="list-group-item ">
