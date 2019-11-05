@@ -23,8 +23,13 @@ def create(request):
     # POST 요청 -> 게시글 생성 로직 수행
     if request.method == 'POST':
         title = request.POST.get('title')
-        content = request.POST.get('content')
-        article = Article(title=title, content=content)
+        content = request.POST.get('content')        
+        
+        # POST로 전송되는 Text와 파일을 따로 전송한다.
+        # 그래서 image는 POST가 아닌 FILES 로 찾는다.
+        image = request.FILES.get('image')
+        article = Article(title=title, content=content, image=image)
+
         article.save()    
         article_pk = article.pk
         return redirect('articles:detail', article_pk) # 2 URL Namespace

@@ -3,12 +3,24 @@
 {% block body %}
   <h1 class="text-center">NEW</h1>
 
-  <form action="{% url 'articles:create' %}", method="POST">
+  <!-- 
+
+    enctype
+    1. application/x-www-form-urlencoded : (기본 값) 모든 문자 인코딩
+    2. multipart/form-data : 파일 형태 첨부 시 필수 사용 / 데이터를 나누어 전송한다.
+                            - POST로 전송되는 Text와 파일을 따로 전송한다.
+    3. text/plain : 인코딩 X  -> 사실상 사용하지 않는다.
+
+   -->
+  <form action="{% url 'articles:create' %}", method="POST" enctype="multipart/form-data">
   {% csrf_token %}
     <label for="title">TITLE </label>
     <input type="text" id="title" name="title" > <br>
     <label for="content">CONTENT </label>
     <textarea type="text" id="content" name="content" cols="30" rows="10"> </textarea> <br>
+
+    <input for="image"></label>
+    <input type="file" name="image" id="image" accept="image/*" ><br>
 
     <input type="submit">
   </form>

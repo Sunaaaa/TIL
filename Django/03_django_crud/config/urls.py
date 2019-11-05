@@ -18,6 +18,10 @@ from django.urls import path, include
 from articles import views
 from students import views
 from jobs import views
+# settings 불러오기
+from django.conf import settings
+# static() 불러오기
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('jobs/', include('jobs.urls') ),
@@ -25,3 +29,8 @@ urlpatterns = [
     path('students/', include('students.urls') ),
     path('admin/', admin.site.urls),
 ]
+
+# static()
+# 첫 번째 인자 : 어떤 URL을 정적으로 추가할 지 (Media file)
+# 두 번째 인자 : 실제 해당 미디어 파일은 어디에 있는지?
+urlpatterns += static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

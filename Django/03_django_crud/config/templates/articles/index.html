@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
-
+{% load  static %}
 {% block body %}
   <h1 class="text-center">Articles</h1>
+  <hr>
+
+  <img class="mx-auto" src="{% static 'articles/image/love.jpg' %}" alt="김선호님" style="display : block">
 
   <hr>
     <a href="{% url 'articles:create' %}">[NEW]</a>
