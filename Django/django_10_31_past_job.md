@@ -9,10 +9,19 @@
 [1. 사전 작업]
 
 - Faker API 사용법 익히기 -> Shell_plus 이용
+
 - 'jobs' Application 생성
+
   - name : 입력받은 사용자 이름
   - past_job : 전생 직업
+
 - 관리자 페이지 등록
+
+- [+추가]
+
+  - python-decouple으로 API KEY값 숨기기
+
+    
 
 
 
@@ -285,7 +294,145 @@ $ python manage.py startapp jobs
 
 <br>
 
+## 1.4 '나의 전생' 기능 구현
+
+> **decouple 모듈을 활용해서 KEY 값을 숨긴다.**
+>
+> - [Telegram 챗봇](https://github.com/Sunaaaa/Telegram_ChatBot/blob/master/telegram.md) 참고
+
+<br>
+
+- urls.py
+
+  ```python 
+  from django.urls import path
+  from . import views
+  
+  app_name='jobs'
+  urlpatterns = [
+      path('', views.index, name='index'), # READ Logic - Index
+      path('job/', views.job, name='job'), 
+  ]
+  ```
+
+  <br>
+
+- views.py
+
+  ```python 
+  from django.shortcuts import render, redirect
+  import requests
+  from faker import Faker
+  from .models import Job
+  from decouple import config
+  
+  # Create your views here.
+  def index(request):
+      return render(request, 'jobs/index.html')
+  
+  # GIF URL : api.giphy.com/v1/gifs/search
+  def job(request):
+      name = request.POST.get('name')
+      faker = Faker('ko_KR') 
+  
+      user = Job.objects.filter(name=name).first()
+  
+      if user:
+          past_job = user.past_job
+  
+      else:
+          past_job = faker.job()
+          Job.objects.create(name=name,past_job=past_job)
+      
+  
+  # [심화] : past_job에 적절한 gif를 보여준다. 
+      api_url = "http://api.giphy.com/v1/gifs/search"
+      api_key = config('KEY')
+  
+      data = requests.get(f'{api_url}?api_key={api_key}&q={past_job}&limit=1&lang=ko').json()
+  
+      try:
+          img_url = data.get('data')[0].get('images').get('original').get('url')
+      except IndexError:
+          img_url = None
+  
+      context = {
+          'name' : name,
+          'job': past_job,
+          'img_url' : img_url,
+      }
+  
+      # return redirect('jobs:job')
+      return render(request, 'jobs/job.html', context)
+  ```
+
+  <br>
+
+- index.html
+
+  ```django
+  {% extends 'base.html' %}
+  {% load static %}
+  {% block css %}
+  <style>
+    body{
+      background-image : url('{% static 'jobs/image/bg.jpg' %}');
+      background-repeat:no-repeat;
+      background-size : cover; 
+    }
+  </style>
+  {% endblock  %}
+  
+  {% block body %}
+    <h1 class="text-center text-white">당신의 전생의 직업</h1>
+  
+    <hr>
+    <form action="{% url 'jobs:job' %}", method="POST">
+    {% csrf_token %}
+      <label class="text-white" for="name">이름을 입력해 전생의 직업을 알아보세요.  </label>
+      <input class="form-control" type="text" id="name" name="name" > <br>
+      <input class="btn btn-warning" type="submit">
+    </form>
+  
+    <hr>
+  
+  {% endblock  %}
+  ```
+
+  <br>
+
+- job.html
+
+  ```django
+  {% extends 'base.html' %}
+  
+  {% block body %}
+  
+  <h1>{{name}}의 전생의 직업은 {{job}}!!</h1>
+  
+  <img src= {{img_url}} alt="그림" width="700px" height="500px" >
+  
+  {% endblock  %}
+  ```
+
+  <br>
+
+- 입력 받은 이름으로 전생의 직업을 알려준다.
+
+  - index.html
+
+    ![1572958029250](../AppData/Roaming/Typora/typora-user-images/1572958029250.png)
+
+    <br>
+
+  - job.html
+
+    ![1572958086752](../AppData/Roaming/Typora/typora-user-images/1572958086752.png)
+
+    
+
+  
 
 
 
-
+<br>

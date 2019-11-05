@@ -1,15 +1,25 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<style>
+  body{
+    background-image : url('{% static 'jobs/image/bg.jpg' %}');
+    background-repeat:no-repeat;
+    background-size : cover; 
+    
+  }
+</style>
+{% endblock  %}
 
 {% block body %}
-  <h1 class="text-center">당신의 전생의 직업</h1>
+  <h1 class="text-center text-white">당신의 전생의 직업</h1>
 
   <hr>
-
   <form action="{% url 'jobs:job' %}", method="POST">
   {% csrf_token %}
-    <label for="name">이름 </label>
-    <input type="text" id="name" name="name" > <br>
-    <input type="submit">
+    <label class="text-white" for="name">이름을 입력해 전생의 직업을 알아보세요.  </label>
+    <input class="form-control" type="text" id="name" name="name" > <br>
+    <input class="btn btn-warning" type="submit">
   </form>
 
   <hr>

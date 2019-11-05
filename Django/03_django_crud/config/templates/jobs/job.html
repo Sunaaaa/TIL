@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
-
+{% block css %}
+<style>
+  body{
+    background-color : blue;
+    
+  }
+</style>
+{% endblock  %}
 {% block body %}
 
 <h1>{{name}}의 전생의 직업은 {{job}}!!</h1>
