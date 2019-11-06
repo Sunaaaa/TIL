@@ -1,0 +1,21 @@
+{% comment %} 
+RESTFul 하게 로직을 통합했기 때문에 
+form 에서 action을 비워두어도 자동으로 현재 경로의 POST 로 수행한다.
+action 값이 공백일 경우, 현재 위치하고 있는 주소로 요청을 보낸다. 
+폼을 던져주는 경로, DB에 저장하는 경로가 동일한 경로라면 공백으로 해도 정상적으로 작동한다. 
+ {% endcomment %}
+
+{% block body %}
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <label for="title" >TITLE</label>
+  <input type="text" id="title" name="title"> <br>
+
+  <label for="content">CONTENT </label>
+  <textarea type="text" id="content" name="content" cols="30" rows="10"> </textarea> <br>
+
+  <input type="submit" value="작성"> <br>
+</form>
+
+{% endblock  %}

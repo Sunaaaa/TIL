@@ -41,5 +41,3 @@ class Comment(models.Model):
     # 객체 표시 형식 수정
     def __str__(self):
         return self.content
-
-
