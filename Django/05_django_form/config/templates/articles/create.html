@@ -9,13 +9,21 @@ action 값이 공백일 경우, 현재 위치하고 있는 주소로 요청을 �
 
 <form action="" method="POST">
   {% csrf_token %}
-  <label for="title" >TITLE</label>
-  <input type="text" id="title" name="title"> <br>
-
-  <label for="content">CONTENT </label>
-  <textarea type="text" id="content" name="content" cols="30" rows="10"> </textarea> <br>
-
+  {% comment %} 
+  {{form.as_p}}: 각각의 input 태그를 p 태그로 감싼다.
+  {{form.as_table}}: 각각의 input 태그를 테이블 태그로 감싼다.
+  {% endcomment %}
+  {{form.as_p}}
   <input type="submit" value="작성"> <br>
 </form>
+{% comment %} 
+같은 Template을 공유하지만, 아래의 상황에 맞게 변해야 한다.
+1.  create -> index
+    update -> detail 
+2.  <h1>CREATE</h1>
+    <h1>UPDATE</h1>
+
+ {% endcomment %}
+<a href="{% url 'articles:index' %}">[BACK]</a>
 
 {% endblock  %}
