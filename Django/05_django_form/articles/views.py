@@ -19,16 +19,17 @@ def create(request):
         # 인스턴스에 데이터를 채워서, 유효성 검증을 진행한다.
         form = ArticleForm(request.POST)
         
-        embed()
+        # embed()
         # 유효성 검증
         if form.is_valid():
+            article = form.save()
             # 유효성 검증이 끝난 form은 dict 형태로 뽑혀 나온다.
             # cleaned_data 를 통해 dict 안의 데이터를 검증한다.
-            title = form.cleaned_data.get('title')
-            content = form.cleaned_data.get('content')
-            article = Article.objects.create(title=title, content=content)
+            # title = form.cleaned_data.get('title')
+            # content = form.cleaned_data.get('content')
+            # article = Article.objects.create(title=title, content=content)
 
-        return redirect('articles:detail', article.pk)
+            return redirect('articles:detail', article.pk)
     
     else :
         form = ArticleForm()
@@ -38,7 +39,7 @@ def create(request):
     context = {
         'form' : form
     }
-    return render(request, 'articles/create.html', context)
+    return render(request, 'articles/form.html', context)
 
 def detail(request, article_pk):
     # article = Article.objects.get(pk=article_pk)
@@ -63,20 +64,15 @@ def update(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
 
     if request.method == 'POST':
-        form = ArticleForm(request.POST)
+        form = ArticleForm(request.POST, instance=article)
 
         if form.is_valid():
-            article.title = form.cleaned_data.get('title')
-            article.content = form.cleaned_data.get('content')
-            article.save()
+            article = form.save()
             return redirect('articles:detail', article_pk)
 
     else :
-
-        form = ArticleForm(initial={
-            'title' : article.title,
-            'content' : article. content
-        })
+        # 빈 값이 아닌 Form의 데이터를 넣어 주는 부분
+        form = ArticleForm(instance=article)
 
     # 2가지 Form 형식
     # 1. GET 요청 -> 초기값을 Form에 넣어서 사용자에게 던져줌
@@ -86,4 +82,4 @@ def update(request, article_pk):
         'form' : form,
     }
     # update와 create 로직에서 동일한 form을 던져주기 때문에 create.html을 랜더링한다.
-    return render(request, 'articles/create.html', context)
+    return render(request, 'articles/form.html', context)
