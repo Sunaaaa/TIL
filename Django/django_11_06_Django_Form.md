@@ -218,7 +218,9 @@
 
 ## 1. Django Form
 
-> Django에서 제공하는 Form 클래스를 이용해서 편리하게 Form 정보를 관리하고, 유효성 검증을 진행하고, 비유효 field에 대한 에러 메시지를 결정한다.
+> Django에서 제공하는 Form 클래스를 이용해서 편리하게 Form 정보를 관리한다. 또 유효성 검증을 진행하고, 비유효 field에 대한 에러 메시지를 결정한다.
+>
+> 즉, HTML로 Form 입력을 관리하던 것을 Django 에서 제공하는 Form 클래스로 바꿔보는 작업을 해보자!
 
 <br>
 
@@ -233,11 +235,13 @@
 
 ### 1.2 Django Form 실습
 
+<br>
+
 #### 1.2.1 forms.py
 
 - forms.py를 생성한다.
 
-  ![1573015566877](../AppData/Roaming/Typora/typora-user-images/1573015566877.png)
+  ![1573015566877](https://user-images.githubusercontent.com/39547788/68295572-07acfc00-00d6-11ea-8788-d58b718ef3d9.png)
 
   <br>
 
@@ -326,7 +330,7 @@
 
 - 실행 화면
 
-  ![1573014238623](../AppData/Roaming/Typora/typora-user-images/1573014238623.png)
+  ![1573014238623](https://user-images.githubusercontent.com/39547788/68295573-07acfc00-00d6-11ea-9bd8-10142a6fd187.png)
 
 
 
@@ -431,7 +435,7 @@
 
   - 실행 화면
 
-    ![1573018859593](../AppData/Roaming/Typora/typora-user-images/1573018859593.png)
+    ![1573018859593](https://user-images.githubusercontent.com/39547788/68295574-07acfc00-00d6-11ea-858a-6aa58a9dff8b.png)
 
     <br>
 
@@ -459,7 +463,7 @@
 
   - 실행 화면
 
-    ![1573018956832](../AppData/Roaming/Typora/typora-user-images/1573018956832.png)
+    ![1573040981386](https://user-images.githubusercontent.com/39547788/68296025-ffa18c00-00d6-11ea-85ca-3ba1d24193f3.png)
 
   <br>
 
@@ -497,7 +501,7 @@
 
   - 실행 화면
 
-    ![1573019004026](../AppData/Roaming/Typora/typora-user-images/1573019004026.png)
+    ![1573019004026](https://user-images.githubusercontent.com/39547788/68295561-067bcf00-00d6-11ea-84ca-797858ebea13.png)
 
 
 
@@ -505,7 +509,16 @@
 
 <br><br>
 
-### 1.4 NOT FOUND
+### 1.4 get_object_or_404 ( NOT FOUND )
+
+> 500 에러는 내부 서버 오류로, '서버에 오류가 발생하여 요청을 처리할 수 없다'는 의미다. 예를 들어 articles/38513858135와 같이 존재하지 않는 상세정보 페이지를 요청하면 500 에러가 발생한다.
+>
+> 하지만 이 경우엔 사용자의 요청이 잘못된 경우이기 때문에 '서버에 존재하지 않는 페이지에 대한 요청'이라는 의미를 가진 404 에러를 돌려주어야 한다.
+>
+> - 500 에러를 돌려주면 서버의 잘못
+> - 404 에러를 돌려주면 사용자의 부주의
+
+<br>
 
 - get_object_or_404를 불러온다.
 
@@ -526,7 +539,7 @@
 
   - 실행 화면
 
-    ![1573015428905](../AppData/Roaming/Typora/typora-user-images/1573015428905.png)
+    ![1573015428905](https://user-images.githubusercontent.com/39547788/68295570-07146580-00d6-11ea-8f11-a7321bd79464.png)
 
 <br>
 
@@ -588,7 +601,16 @@
   - **update와 create 로직에서 동일한 form을 던져주기 때문에 create.html을 랜더링한다.**
 
     ```django
+    {% block body %}
     
+    <form action="" method="POST">
+      {% csrf_token %}
+      {{form.as_p}}
+      <input type="submit" value="작성"> <br>	  
+    </form>
+    <a href="{% url 'articles:index' %}">[BACK]</a>
+    
+    {% endblock  %} 
     ```
 
   <br>
@@ -707,6 +729,8 @@
             fields = ('title', 'content')
     ```
 
+  <br>
+
 - views.py
 
   - CREATE
@@ -778,12 +802,57 @@
 
   <br>
 
+- 실행 화면
+
+  - 게시글 수정 
+
+    - detail.html
+
+      ![1573040288003](https://user-images.githubusercontent.com/39547788/68295562-067bcf00-00d6-11ea-9c33-e3ad0e4361c8.png)
+
+    - form.html
+
+      - 수정 전
+
+        ![1573040334650](https://user-images.githubusercontent.com/39547788/68295563-067bcf00-00d6-11ea-885b-eeae75292e75.png)
+
+        <br>
+
+      - 수정 후 
+
+        ![1573040379340](https://user-images.githubusercontent.com/39547788/68295564-07146580-00d6-11ea-854e-07c8d7bf4628.png)
+
+        <br>
+
+    - detail.html
+
+      ![1573040501361](https://user-images.githubusercontent.com/39547788/68295568-07146580-00d6-11ea-83ac-28afeaf43194.png)
 
 
 
 
-- Form VS Model Form
 
-  ```
-  
-  ```
+### 2.4 Form VS Model Form
+
+```python 
+# forms.py
+
+# Django Form
+class ArticleForm(forms.Form):
+    title = forms.CharField()
+    content = forms.CharField()
+
+# Django ModelForm
+# Django가 건네받은 모델을 기준으로 폼 양식에 필요한 대부분을 전부 만들어준다.
+class ArticleForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        fields = '__all__'
+```
+
+
+
+
+
+<br>
+

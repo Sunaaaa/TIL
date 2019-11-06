@@ -17,15 +17,15 @@ class ArticleForm(forms.ModelForm):
         )
     )
     content = forms.CharField(
-        label='내용',
-        widget=forms.Textarea(
-            attrs={
-                'class' : 'content',
-                'placeholder' : '내용을 입력해주세욥',
-                'rows' : 5,
-                'cols' : 30,
-            }
-        )
+        # label='내용',
+        # widget=forms.Textarea(
+        #     attrs={
+        #         'class' : 'content',
+        #         'placeholder' : '내용을 입력해주세욥',
+        #         'rows' : 5,
+        #         'cols' : 30,
+        #     }
+        # )
     )
     # 메타 데이터 -> 데이터의 데이터
     # ex > 사진 한장 -> 촬영 장비 이름, 촬영 환경 등 사진 한장에 대한 데이터 
