@@ -5,7 +5,7 @@
   <a href="{% url 'articles:create' %}">[NEW]</a>
   <hr>
   {% for article in articles %}
-  <p>[{{article.title}}]  {{article.content}} </p>
+  <p>[{{article.pk}}]  {{article.title}} </p>
   <a href="{% url 'articles:detail' article.pk %}">[MORE]</a>
   {% endfor %}
 

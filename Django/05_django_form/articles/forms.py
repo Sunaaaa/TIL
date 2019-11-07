@@ -1,5 +1,6 @@
 from django import forms
 from .models import Article
+from .models import Comment
 
 # Django Model Form 
 # Model Form 
@@ -37,6 +38,22 @@ class ArticleForm(forms.ModelForm):
         # 원하는 것만
         fields = ('title', 'content')
 
+class CommentForm(forms.ModelForm):
+    content = forms.CharField(
+        label="댓글",
+        widget=forms.Textarea(
+            attrs={
+                "class" : "comment",
+                "placeholder" : "댓글을 달아보세요~",
+                'rows' : 1,
+                'cols' : 30,
+
+            }
+        )
+    )
+    class Meta:
+        model = Comment
+        fields = ('content',)
 
 # Django Form 
 # class ArticleForm(forms.Form):

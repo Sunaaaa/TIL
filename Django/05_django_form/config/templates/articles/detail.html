@@ -1,19 +1,43 @@
-
-
+{% extends 'base.html' %}
 {% block body %}
+{% load bootstrap4 %}
 
-<p>제목  :  {{article.title}}</p>
-<p>내용  :  {{article.content}}</p>
-<p>최초 업로드 날짜  :  {{article.created_at}}</p>
-<p>최종 수정 날짜  :  {{article.updated_at}}</p>
+<div class="container">
+  <h2>{{article.title}}</h2>
+  <div class="text-align mt-4">
+    <p>내용  :  {{article.content}}</p>
+    <p>최초 업로드 날짜  :  {{article.created_at}}</p>
+    <p>최종 수정 날짜  :  {{article.updated_at}}</p>
+  </div>
 
-<a href="{% url 'articles:index' %}">[INDEX]</a>
-<a href="{% url 'articles:update' article.pk %}">[EDIT]</a>
-<form action="{% url 'articles:delete' article.pk %}" method="POST">
+    <a class="ml-auto btn btn-dark"  href="{% url 'articles:index' %}">[INDEX]</a>
+    <a class="ml-auto btn btn-dark"  href="{% url 'articles:update' article.pk %}">[EDIT]</a>
+    <form action="{% url 'articles:delete' article.pk %}" method="POST" style="display : inline;" onclick="return confirm('진짜 삭제할까요...?')">
+      {% csrf_token %}
+      <input class="ml-auto btn btn-dark"  type="submit" value="DELETE">
+    </form>
+</div>
+
+
+<hr>
+
+<form action="{% url 'articles:comments_create' article.pk %}" method="POST" style=" max-width:500px;">
+  {% comment %} {{comment_form}} {% endcomment %}
   {% csrf_token %}
-  {{form.as_p}}
-  <input type="submit" value="[DELETE]"> <br>
+  {% bootstrap_form comment_form layout="horizontal" %}
+  {% buttons submit='댓글 작성' layout="inline" %}
+  {% endbuttons %}
 </form>
-
+<hr>
+<p><b>댓글 목록({{comments|length}}개)</b></p>
+<hr>
+{% for comment in comments  %}
+  <p ">[{{forloop.revcounter}} 번 댓글]  {{comment.content}}</p>
+  <form action="{% url 'articles:comments_delete' article.pk comment.pk %}" method="POST" style="display:inline; max-width:500px;">
+    {% csrf_token %}
+    {% buttons submit='삭제' layout="inline" %}
+    {% endbuttons %}
+  </form>
+{% endfor %}
 
 {% endblock  %}
