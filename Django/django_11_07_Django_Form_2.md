@@ -306,7 +306,7 @@ admin.site.register(Comment, CommentAdmin)
 
 - 여러가지 언어들 Formatting 또는 코드를 정리해준다.
 
-  ![1573087883243](../AppData/Roaming/Typora/typora-user-images/1573087883243.png)
+  ![1573087883243](https://user-images.githubusercontent.com/39547788/68387297-5bd0e280-01a1-11ea-8405-bef52aed7153.png)
 
 
 
@@ -316,7 +316,7 @@ admin.site.register(Comment, CommentAdmin)
 
   - 현재 프로젝트의 settings.json
 
-    ![1573100072738](../AppData/Roaming/Typora/typora-user-images/1573100072738.png)
+    ![1573100072738](https://user-images.githubusercontent.com/39547788/68387289-5b384c00-01a1-11ea-9be2-1f9e79c44d7b.png)
     <br>
 
     - settings.json 하단에 아래의 코드 추가!
@@ -336,6 +336,6 @@ admin.site.register(Comment, CommentAdmin)
 
       <br>
 
-      ![1573088016298](../AppData/Roaming/Typora/typora-user-images/1573088016298.png)
+      ![1573088016298](https://user-images.githubusercontent.com/39547788/68387298-5bd0e280-01a1-11ea-8ae7-9484afa42bfb.png)
 
       <br>
