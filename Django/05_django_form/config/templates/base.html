@@ -10,6 +10,18 @@
 </head>
 <body>
   <div class="container">
+    {% if user.is_authenticated  %}
+      <h2>어서오세요, {{user.username}}</h2>
+      <a href="{% url 'acounts:logout' %}">로그아웃</a>    
+
+    {% else %}
+      <h3>로그인 하셔야 서비스 이용이 가능합니다.</h3>
+      <a href="{% url 'acounts:signup' %}">회원가입</a>    
+      <a href="{% url 'acounts:login' %}">로그인</a>    
+    {% endif %}
+
+
+    <hr>
     {% block body %}
     {% endblock  %}
   </div>

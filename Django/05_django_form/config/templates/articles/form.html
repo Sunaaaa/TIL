@@ -41,9 +41,9 @@ update -> detail
 {% endcomment %}
 
 {% if request.resolver_match.url_name == 'create' %}
-<a href="{% url 'articles:index' %}">[BACK]</a>
+<a href="{% url 'articles:index' %}">[BACK : INDEX]</a>
 {% else %}
-<a href="{% url 'articles:detail' article.pk %}">[BACK]</a>
+<a href="{% url 'articles:detail' article.pk %}">[BACK : DETAIL]</a>
 {% endif %}
 
 {% endblock  %}
