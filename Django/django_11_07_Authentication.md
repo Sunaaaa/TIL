@@ -109,6 +109,8 @@
         return render(request, 'acounts/signup.html', context)
     ```
 
+  <br>
+
 - signup.html
 
   ```django
@@ -137,19 +139,19 @@
 
     - 초기화면 
 
-      ![1573129312576](../AppData/Roaming/Typora/typora-user-images/1573129312576.png)
+      ![1573129312576](https://user-images.githubusercontent.com/39547788/68460026-2e8c3f00-024a-11ea-8a69-b19c913619c8.png)
 
       <br>
 
     - 유효성 검증 실패 시 화면
 
-      ![1573129333422](../AppData/Roaming/Typora/typora-user-images/1573129333422.png)
+      ![1573129333422](https://user-images.githubusercontent.com/39547788/68460022-2df3a880-024a-11ea-83c8-2fcd4f3597b3.png)
 
       <br>
 
     - admin 페이지를 통해 회원가입 확인!
 
-      ![1573129375367](../AppData/Roaming/Typora/typora-user-images/1573129375367.png)
+      ![1573129375367](https://user-images.githubusercontent.com/39547788/68460020-2d5b1200-024a-11ea-8f4d-ffdec7165fc0.png)
 
       <br>
 
@@ -249,13 +251,13 @@
 
       - 로그인 성공
 
-        ![1573129555042](../AppData/Roaming/Typora/typora-user-images/1573129555042.png)
+        ![1573129555042](https://user-images.githubusercontent.com/39547788/68460021-2df3a880-024a-11ea-87cc-9844ddcf69d6.png)
 
         <br>
 
       - 로그인 실패
 
-        ![1573129594610](../AppData/Roaming/Typora/typora-user-images/1573129594610.png)
+        ![1573129594610](https://user-images.githubusercontent.com/39547788/68460022-2df3a880-024a-11ea-83c8-2fcd4f3597b3.png)
 
         <br>
 
@@ -263,7 +265,7 @@
 
     - 로그인이 성공한 경우, article의 index 페이지로 이동한다.
 
-      ![1573129637708](../AppData/Roaming/Typora/typora-user-images/1573129637708.png)
+      ![1573129637708](https://user-images.githubusercontent.com/39547788/68460023-2df3a880-024a-11ea-84b6-ff0567d6b493.png)
 
       <br>
 
@@ -339,7 +341,7 @@
       return render(request, 'acounts/login.html', context)
   ```
 
-  <br>
+  <br><br>
 
 ## 4. Logout
 
@@ -369,7 +371,7 @@
       {% endif %}
       ```
 
-      
+      <br>
 
   - User 모델 Class
 
@@ -381,38 +383,38 @@
 
     - password : 비밀번호 
 
-    <br>
+      ```django
+      {% load bootstrap4 %}
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Article</title>
+        {% bootstrap_css %}
+      </head>
+      <body>
+        <div class="container">
+          {% if user.is_authenticated  %}
+            <h2>어서오세요, {{user.username}}</h2>
+            <a href="{% url 'acounts:logout' %}">로그아웃</a>    
+      
+          {% else %}
+            <h3>로그인 하셔야 서비스 이용이 가능합니다.</h3>
+            <a href="{% url 'acounts:signup' %}">회원가입</a>    
+            <a href="{% url 'acounts:login' %}">로그인</a>    
+          {% endif %}
+          <hr>
+          {% block body %}
+          {% endblock  %}
+        </div>
+        {% bootstrap_javascript jquery='full' %}
+      </body>
+      </html>
+      ```
 
-    ```django
-    {% load bootstrap4 %}
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>Article</title>
-      {% bootstrap_css %}
-    </head>
-    <body>
-      <div class="container">
-        {% if user.is_authenticated  %}
-          <h2>어서오세요, {{user.username}}</h2>
-          <a href="{% url 'acounts:logout' %}">로그아웃</a>    
-    
-        {% else %}
-          <h3>로그인 하셔야 서비스 이용이 가능합니다.</h3>
-          <a href="{% url 'acounts:signup' %}">회원가입</a>    
-          <a href="{% url 'acounts:login' %}">로그인</a>    
-        {% endif %}
-        <hr>
-        {% block body %}
-        {% endblock  %}
-      </div>
-      {% bootstrap_javascript jquery='full' %}
-    </body>
-    </html>
-    ```
+      
 
     <br>
 
@@ -433,12 +435,12 @@
 
     - 로그인 한 사용자의 index 페이지에 로그아웃 버튼이 보여진다. 
 
-      ![1573130825142](../AppData/Roaming/Typora/typora-user-images/1573130825142.png)
+      ![1573130825142](https://user-images.githubusercontent.com/39547788/68460024-2df3a880-024a-11ea-8204-3a946f7ed76f.png)
 
       <br>
 
     - 로그아웃 한 사용자의 index 페이지에 회원가입 과 로그인 버튼이 보여진다.
 
-      ![1573130872598](../AppData/Roaming/Typora/typora-user-images/1573130872598.png)
+      ![1573130872598](https://user-images.githubusercontent.com/39547788/68460025-2e8c3f00-024a-11ea-8841-28c75cff0053.png)
 
 <br>
