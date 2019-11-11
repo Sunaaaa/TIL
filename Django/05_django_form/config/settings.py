@@ -139,3 +139,7 @@ MEDIA_URL = '/media/'
 
 # 실제로 파일이 업로드 된 다음에 어디로 배치가 될지 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# login_required 요청 경로 커스터마이징
+# 기본 : /accounts/login/
+LOGIN_URL = '/acounts/login/'

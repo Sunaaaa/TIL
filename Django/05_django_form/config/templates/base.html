@@ -1,6 +1,7 @@
 {% load bootstrap4 %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,16 +9,23 @@
   <title>Article</title>
   {% bootstrap_css %}
 </head>
+
 <body>
   <div class="container">
     {% if user.is_authenticated  %}
-      <h2>어서오세요, {{user.username}}</h2>
-      <a href="{% url 'acounts:logout' %}">로그아웃</a>    
+    <h2>어서오세요, {{user.username}}</h2>
+    <a href="{% url 'acounts:logout' %}" class="btn btn-warning">로그아웃</a>
+
+    <form action="{% url 'acounts:delete' %}" method="post" style="display : inline">
+      {% csrf_token %}
+      <input type="submit" value="회원탈퇴" class="btn btn-danger">
+
+    </form>
 
     {% else %}
-      <h3>로그인 하셔야 서비스 이용이 가능합니다.</h3>
-      <a href="{% url 'acounts:signup' %}">회원가입</a>    
-      <a href="{% url 'acounts:login' %}">로그인</a>    
+    <h3>로그인 하셔야 서비스 이용이 가능합니다.</h3>
+    <a href="{% url 'acounts:signup' %}">회원가입</a>
+    <a href="{% url 'acounts:login' %}">로그인</a>
     {% endif %}
 
 
@@ -27,4 +35,5 @@
   </div>
   {% bootstrap_javascript jquery='full' %}
 </body>
+
 </html>
