@@ -807,7 +807,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, User
 
 **문제 발생**
 
-- 너무 많은 수정 권한을 부여하게 된다.
+- 너무 많은 수정 권한을 부여하게 된다. --> **회원정보수정 Form Customizing**을 통해 제한하자!!!!!!!
 
   ![1573460527170](C:/Users/student/AppData/Roaming/Typora/typora-user-images/1573460527170.png)
 
@@ -829,43 +829,91 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, User
 
   <br>
 
-- 
+- forms.py
+
+  - User 클래스를 바로 사용하는 것이 아니라, get_user_model()을 사용해 User 클래스를 참조한다.
+
+    ```
+    UserChangeForm -> User 클래스 -> AbstractUser 클래스
+    ```
+
+    <br>
+
+  - `model = get_user_model()` : User 모델을 리턴한다.
+
+  - `fields` 는 Django 공식 문서를 참조하여 원하는 필드를 가져온다.
+
+    ```python 
+    from django import forms
+    from django.contrib.auth import get_user_model
+    from django.contrib.auth.forms import UserChangeForm
+    
+    class CustomUserChangeForm(UserChangeForm):
+    
+        class Meta:
+            model = get_user_model()
+    
+            # UserChangeForm -> User 클래스 -> AbstractUser 클래스
+            # django 공식 문서 : user -> model
+            fields = ('email', 'last_name', 'first_name',)
+    ```
+
+  <br>
 
 
 
+- views.py
 
+  - 새롭게 커스텀한 폼을 사용한다. 
 
+    `@login_required`를 추가하여 비회원은 수정 페이지에 들어가지 못하게 막아준다.
 
+    ```PYTHON
+    from .forms import CustomUserChangeForm
+    
+    # 회원정보 수정
+    @login_required
+    def update(request):
+        if request.method == "POST":
+            # 커스텀한 폼
+            form = CustomUserChangeForm(request.POST, instance=request.user)
+            if form.is_valid():
+                form.save()
+                return redirect('articles:index')
+            
+        else:
+            form = CustomUserChangeForm(instance=request.user)
+        
+        context = {
+            'form' : form
+        }
+    
+        return render(request, 'acounts/acount_form.html', context)
+    ```
 
-- 새롭게 커스텀한 폼을 사용한다. 
+    <br>
 
-```
-from .forms import CustomUserChangeForm
-```
+- 실행 화면
 
-UserChangeForm import한 것 제거 
+  - 로그인 한 사용자만이 회원정보 수정을 할 수 있다. 
 
+  ![1573461639042](C:%5CUsers%5Cstudent%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1573461639042.png)
 
-
-비회원은 수정 페이지에 들어가지 못하게 막아준다. `@login_required`
-
-
-
-
+<br><br>
 
 
 
 ##  7. 비밀번호 변경
 
+> Django가 비밀번호를 변경하는 폼을 제공한다.
+
+<br>
+
 ### 7.1 비밀번호 변경하기
 
-```
+```python 
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm, PasswordChangeForm
-```
 
-
-
-```
 # 비밀번호 수정
 def change_password(request):
     if request.method == "POST":
@@ -885,6 +933,8 @@ def change_password(request):
     return render(request, 'acounts/change_password.html', context)
 ```
 
+
+
 - 실행 화면
   - 비밀번호 변경
   - 자동 로그아웃 되어 index.html로 이동한다. 
@@ -895,64 +945,266 @@ def change_password(request):
 
 ### 7.2 자동 로그아웃 해제
 
-update_session_auth_hash
+#### update_session_auth_hash
 
 > 비밀번호 변경은 성공적으로 반영이 되지만, 변경이 끝나면 로그인이 풀려 자동으로 로그아웃을 수행한다.
 >
 > - 비밀번호가 변경되면서 기존 session과 회원 인증 정보가 불일치하기 때문
 > - **`update_session_auth_hash(request, user)`로 해결!!!**
 
+<br>
+
+- views.py
+
+  - 비밀번호를 수정한 뒤, 수정한 값을 바로 session에 update하기 때문에 로그인이 풀리지 않는다. 
+
+    `update_session_auth_hash(request, user)`를 추가하여 수정된 비밀번호를 session에 update하도록 한다.
+
+    ```python 
+    from django.contrib.auth import update_session_auth_hash
+    
+    # 비밀번호 수정
+    def change_password(request):
+        if request.method == "POST":
+            form = PasswordChangeForm(request.user, request.POST)
+            if form.is_valid():
+                user = form.save()
+                update_session_auth_hash(request, user)
+                return redirect('articles:index')
+            pass
+    
+        else:
+            form = PasswordChangeForm(request.user)
+    
+        context = {
+            'form' : form
+        }
+    
+        return render(request, 'acounts/acount_form.html', context)
+    ```
 
 
 
+<br>
 
-```
-from django.contrib.auth import update_session_auth_hash
-```
-
-- q비밀번호를 수정한 뒤, 수정한 값을 바로 session에 update하기 때문에 로그인이 풀리지 않는다. 
-
-
-
-
+<br>
 
 
 
 ## 8. Auth Form 통합
 
-Form을 하나의 html에서 사용 
+> 회원가입, 로그인, 회원정보 수정, 비밀번호 변경 등 우리는 Django에서 제공하는 form을 사용하기 때문에, 각 템플릿들은 `form`을 넘겨받아 화면에 뿌리는 일만 한다. 각 템플릿들을 하나로 통합하여 **재사용성**을 높여보자!
 
--> 재사용성을 높여보자!
-
-
+<br>
 
 - acount_form.html
 
-  ```django
-  {% extends 'base.html' %}
-  {% load bootstrap4 %}
-  {% block body %}
+  - `request.resolver_match.url_name`를 통해 상황에 맞는 페이지의 이름을 화면에 보이도록 한다.  
+
+    ```django
+    {% extends 'base.html' %}
+    {% load bootstrap4 %}
+    {% block body %}
+    
+    {% if request.resolver_match.url_name == 'signup' %}
+    <h1>회원가입</h1>
+    {% elif request.resolver_match.url_name == 'login' %}
+    <h1>로그인</h1>
+    {% elif request.resolver_match.url_name == 'update' %}
+    <h1>회원정보 수정</h1>
+    {% else %}
+    <h1>비밀번호 변경</h1>
+    {% endif %}
+    
+    <hr>
+    
+    <form action="" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons submit='수정' reset='초기화' %}
+        {% endbuttons %}
+    </form>
+    
+    {% endblock  %}
+    ```
+
+- 실행 화면
+
+  - 회원가입
+
+    ![1573468148929](C:%5CUsers%5Cstudent%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1573468148929.png)
+
+    <br>
+
+  - 로그인
+
+    ![1573468171529](C:%5CUsers%5Cstudent%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1573468171529.png)
+
+    <br>
+
+  - 회원정보 수정
+
+    ![1573468067263](C:%5CUsers%5Cstudent%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1573468067263.png)
+
+    <br>
+
+  - 비밀번호 변경
+
+    ![1573468102712](C:%5CUsers%5Cstudent%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1573468102712.png)
+
+    
+
+<br>
+
+<br>
+
+
+
+## 9. Gravatar - 프로필 이미지 만들기
+
+> 이메일을 활용해서 프로필 사진을 만들어주는 서비스이다. 한번 등록하면, 이를 지원하는 사이트에서는 모두 해당 프로필 이미지를 사용할 수 있다. 
+
+<br>
+
+### 9.1 이메일 체크
+
+- `https://ko.gravatar.com/site/check/`
+- 이메일 주소를 해시 (MD5)로 바꾼 뒤, URL을 통해 접속하면 등록된 이미지가 본인다.
+  - s Query String으로 사이즈를 조절한다.
+  - `?s=80` : 사이즈 80
+
+<br>
+
+
+
+### 9.2 IMG 추가
+
+- base.html
+
+  - 로그인 한 경우에만 이미지를 보이도록 한다.
+
+    ```django
+    {% load bootstrap4 %}
+    <!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Article</title>
+      {% bootstrap_css %}
+    </head>
+    
+    <body>
+      <div class="container">
+        {% if user.is_authenticated  %}
+        <h2> <img src="https://s.gravatar.com/avatar/[해쉬]?s=80" alt=""> 어서오세요, {{user.username}}</h2>
+        <a href="{% url 'acounts:logout' %}" class="btn btn-warning">로그아웃</a>
+        <a href="{% url 'acounts:update' %}" class="btn btn-warning">회원정보 수정</a>
+        <a href="{% url 'acounts:change_password' %}" class="btn btn-warning">비밀번호 변경</a>
+    
+        <form action="{% url 'acounts:delete' %}" method="post" style="display : inline">
+          {% csrf_token %}
+          <input type="submit" value="회원탈퇴" class="btn btn-danger">
+    
+        </form>
+    
+        {% else %}
+        <h3>로그인 하셔야 서비스 이용이 가능합니다.</h3>
+        <a href="{% url 'acounts:signup' %}">회원가입</a>
+        <a href="{% url 'acounts:login' %}">로그인</a>
+        {% endif %}
+        <hr>
+        {% block body %}
+        {% endblock  %}
+      </div>
+      {% bootstrap_javascript jquery='full' %}
+    </body>
+    
+    </html>
+    ```
+
+  <br>
+
+
+
+### 9.3 Python으로 Hash 만들기
+
+- MD5 Hash 생성
+
+  - import hashlib
+
+- 혹시 모를 공백, 대문자 등을 방지하기 위한 파이썬 문법들
+
+  - .strip(), lower()
+
+  ```python 
+  >>> import hashlib
+  >>> hashlib.md5('glglthssla@gmail.com'.encode('utf-8').lower().strip()).hexdigest()
+  'f87913b9277844f3c095a7aa64f5fd9e'
+  >>> img_url = hashlib.md5('glglthssla@gmail.com'.encode('utf-8').lower().strip()).hexdigest()
+  ```
+
+  <br>
+
+
+
+
+
+### 9.4 회원정보수정 Form Customizing
+
+- 프로필 이미지를 받기 위해 회원가입 폼을 커스터 마이징한다.
+  - 회원가입 폼에 email 정보를 받는다.
+
+
+
+<br>
+
+#### [ acounts Application ]
+
+- forms.py
+
+  ```python 
+  class CustomUserCreationForm(UserCreationForm):
+      class Meta:
+          model = get_user_model()
+          fields = ('username', 'password1', 'password2', 'email',)
+  ```
+
+<br>
+
+- views.py
+
+  ```python 
+  from .forms import CustomUserChangeForm, CustomUserCreationForm
   
-  {% if request.resolver_match.url_name == 'signup' %}
-  <h1>회원가입</h1>
-  {% elif request.resolver_match.url_name == 'login' %}
-  <h1>로그인</h1>
-  {% elif request.resolver_match.url_name == 'update' %}
-  <h1>회원정보 수정</h1>
-  {% else %}
-  <h1>비밀번호 변경</h1>
-  {% endif %}
+  def signup(request):
+      
+      if request.user.is_authenticated:
+          return redirect('articles:index')
   
-  <hr>
+      # 사용자를 만드는 로직
+      if request.method == "POST":
+          form = CustomUserCreationForm(request.POST)
+          if form.is_valid():
+              user = form.save()
   
-  <form action="" method="post">
-  {% csrf_token %}
-  {% bootstrap_form form %}
-  {% buttons submit='수정' reset='초기화' %}
-  {% endbuttons %}
-  </form>
+              # 회원가입 후 바로 로그인 되어 메인페이지로 이동
+              auth_login(request, user)
   
-  {% endblock  %}
+              return redirect('articles:index')
+  
+  
+      # 회원가입 Form을 던지는 로직
+      else:
+          form = CustomUserCreationForm
+      
+      context = {
+          'form' : form,
+      }
+  
+      return render(request, 'acounts/acount_form.html', context)
   ```
 
   
@@ -961,281 +1213,189 @@ Form을 하나의 html에서 사용
 
 <br>
 
+#### [ articles Application ]
 
+- views.py
 
-### 9. Gravatar - 프로필 이미지 만들기
+  ```python 
+  import hashlib
+  
+  # Create your views here.
+  def index(request):
+      # embed()
+      if request.user.is_authenticated:
+          gravatar_url = hashlib.md5(request.user.email.encode('utf-8').lower().strip()).hexdigest()
+      else : 
+          gravatar_url = None
+  
+      articles = Article.objects.all()
+      context = {
+          'articles' : articles,
+          'gravatar_url' : gravatar_url,
+      }
+      return render(request, 'articles/index.html', context)
+  ```
 
-> 이메일을 활용해서 프로필 사진을 만들어주는 서비스이다. 한번 등록하면, 이를 지원하는 사이트에서는 모두 해당 프로필 이미지를 사용할 수 있다. 
->
-> <br>
+<br>
 
+- index.html
 
+  ```django
+  {% load bootstrap4 %}
+  <!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Article</title>
+    {% bootstrap_css %}
+  </head>
+  
+  <body>
+    <div class="container">
+      {% if user.is_authenticated  %}
+      <h2> <img src="https://s.gravatar.com/avatar/{{img_url}}?s=80" alt=""> 어서오세요, {{user.username}}</h2>
+      <a href="{% url 'acounts:logout' %}" class="btn btn-warning">로그아웃</a>
+      <a href="{% url 'acounts:update' %}" class="btn btn-warning">회원정보 수정</a>
+      <a href="{% url 'acounts:change_password' %}" class="btn btn-warning">비밀번호 변경</a>
+  
+      <form action="{% url 'acounts:delete' %}" method="post" style="display : inline">
+        {% csrf_token %}
+        <input type="submit" value="회원탈퇴" class="btn btn-danger">
+  
+      </form>
+  
+      {% else %}
+      <h3>로그인 하셔야 서비스 이용이 가능합니다.</h3>
+      <a href="{% url 'acounts:signup' %}">회원가입</a>
+      <a href="{% url 'acounts:login' %}">로그인</a>
+      {% endif %}
+  
+  
+      <hr>
+      {% block body %}
+      {% endblock  %}
+    </div>
+    {% bootstrap_javascript jquery='full' %}
+  </body>
+  
+  </html>
+  ```
 
-
-
-이메일 체크
-
-- `https://ko.gravatar.com/site/check/`
-- 이메일 주소를 해시 (MD5)로 바꾼 뒤, URL을 통해 접속하면 등록된 이미지가 본인다.
-  - s Query String으로 사이즈를 조절한다.
-  - `?s=80`
-
-
-
-
-
-base.html
-
-```
-{% load bootstrap4 %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Article</title>
-  {% bootstrap_css %}
-</head>
-
-<body>
-  <div class="container">
-    {% if user.is_authenticated  %}
-    <h2> <img src="https://s.gravatar.com/avatar/f87913b9277844f3c095a7aa64f5fd9e?s=80" alt=""> 어서오세요, {{user.username}}</h2>
-    <a href="{% url 'acounts:logout' %}" class="btn btn-warning">로그아웃</a>
-    <a href="{% url 'acounts:update' %}" class="btn btn-warning">회원정보 수정</a>
-    <a href="{% url 'acounts:change_password' %}" class="btn btn-warning">비밀번호 변경</a>
-
-    <form action="{% url 'acounts:delete' %}" method="post" style="display : inline">
-      {% csrf_token %}
-      <input type="submit" value="회원탈퇴" class="btn btn-danger">
-
-    </form>
-
-    {% else %}
-    <h3>로그인 하셔야 서비스 이용이 가능합니다.</h3>
-    <a href="{% url 'acounts:signup' %}">회원가입</a>
-    <a href="{% url 'acounts:login' %}">로그인</a>
-    {% endif %}
-
-
-    <hr>
-    {% block body %}
-    {% endblock  %}
-  </div>
-  {% bootstrap_javascript jquery='full' %}
-</body>
-
-</html>
-```
-
-
-
-https://s.gravatar.com/avatar/f87913b9277844f3c095a7aa64f5fd9e?s=800
-
-
-
-
-
-Python으로 Hash 만들기
-
-- MD5 Hash 생성
-  - import hashlib
-- 혹시 모를 공백, 대문자 등을 방지하기 위한 파이썬 문법들
-  - .strip(), lower()
+<br>
 
 
 
-```python 
->>> import hashlib
->>> hashlib.md5('glglthssla@gmail.com'.encode('utf-8').lower().strip()).hexdigest()
-'f87913b9277844f3c095a7aa64f5fd9e'
->>> img_url = hashlib.md5('glglthssla@gmail.com'.encode('utf-8').lower().strip()).hexdigest()
-```
+### 9.5 templatetags
 
+- acounts/ **templatetags** 폴더 생성
 
+  ![1573468812214](C:%5CUsers%5Cstudent%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1573468812214.png)
 
-- 프로필 이미지를 받기 위해 회원가입 폼을 커스터 마이징한다.
-  - 회원가입 폼에 email 정보를 받는다.
+  <br>
 
+  
 
+- gravatar.py 생성
 
-[acounts]
+  ```python
+  import hashlib
+  from django import template
+  
+  # 기존 템플릿 라이브러리에서 새로운 템플릿 추가
+  register = template.Library()
+  
+  # 아래 함수를 필터로 등록
+  @register.filter
+  def makemd5(email):
+      return hashlib.md5(email.encode('utf-8').lower().strip()).hexdigest()
+  ```
 
-```
-class CustomUserCreationForm(UserCreationForm):
-    class Meta:
-        model = get_user_model()
-        fields = ('username', 'password1', 'password2', 'email',)
-```
+  ![1573468828733](C:%5CUsers%5Cstudent%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1573468828733.png)
 
+  <br>
 
+- base.html
 
-```
-from .forms import CustomUserChangeForm, CustomUserCreationForm
+  `<img src="https://s.gravatar.com/avatar/{{user.email|makemd5}}?s=80" alt=""> 어서오세요, {{user.username}}</h2>`로 변경한다.
 
-def signup(request):
+  --> **템플릿 태그도 커스터마이징 가능!!**
+
+  ```django
+  {% load bootstrap4 %}
+  {% load gravatar %}
+  <!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Article</title>
+    {% bootstrap_css %}
+  </head>
+  
+  <body>
+    <div class="container">
+      {% if user.is_authenticated  %}
+      <h2> <img src="https://s.gravatar.com/avatar/{{user.email|makemd5}}?s=80" alt=""> 어서오세요, {{user.username}}</h2>
+      <a href="{% url 'acounts:logout' %}" class="btn btn-warning">로그아웃</a>
+      <a href="{% url 'acounts:update' %}" class="btn btn-warning">회원정보 수정</a>
+      <a href="{% url 'acounts:change_password' %}" class="btn btn-warning">비밀번호 변경</a>
+  
+      <form action="{% url 'acounts:delete' %}" method="post" style="display : inline">
+        {% csrf_token %}
+        <input type="submit" value="회원탈퇴" class="btn btn-danger">
+  
+      </form>
+  
+      {% else %}
+      <h3>로그인 하셔야 서비스 이용이 가능합니다.</h3>
+      <a href="{% url 'acounts:signup' %}">회원가입</a>
+      <a href="{% url 'acounts:login' %}">로그인</a>
+      {% endif %}
+  
+  
+      <hr>
+      {% block body %}
+      {% endblock  %}
+    </div>
+    {% bootstrap_javascript jquery='full' %}
+  </body>
+  
+  </html>
+  ```
+
+  
+
+<br>
+
+#### [ articles Application ]
+
+- views.py
+
+  - gravatar 이미지를 사용하는 모든 view 함수에 이미지를 가져와 템플릿에 넘겨주는 코드를 일일이 작성하지 않아도 된다. 
+
+    ```python 
+    # Create your views here.
+    def index(request):
+        # embed()
+        # if request.user.is_authenticated:
+        #     gravatar_url = hashlib.md5(request.user.email.encode('utf-8').lower().strip()).hexdigest()
+        # else : 
+        #     gravatar_url = None
     
-    if request.user.is_authenticated:
-        return redirect('articles:index')
+        articles = Article.objects.all()
+        context = {
+            'articles' : articles,
+            # 'gravatar_url' : gravatar_url,
+        }
+        return render(request, 'articles/index.html', context)
+    ```
 
-    # 사용자를 만드는 로직
-    if request.method == "POST":
-        form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-
-            # 회원가입 후 바로 로그인 되어 메인페이지로 이동
-            auth_login(request, user)
-
-            return redirect('articles:index')
-
-
-    # 회원가입 Form을 던지는 로직
-    else:
-        form = CustomUserCreationForm
     
-    context = {
-        'form' : form,
-    }
 
-    return render(request, 'acounts/acount_form.html', context)
-```
-
-
-
-
-
-[articles]
-
-
-
-```python 
-import hashlib
-
-# Create your views here.
-def index(request):
-    # embed()
-    if request.user.is_authenticated:
-        gravatar_url = hashlib.md5(request.user.email.encode('utf-8').lower().strip()).hexdigest()
-    else : 
-        gravatar_url = None
-
-    articles = Article.objects.all()
-    context = {
-        'articles' : articles,
-        'gravatar_url' : gravatar_url,
-    }
-    return render(request, 'articles/index.html', context)
-```
-
-
-
-```
-{% load bootstrap4 %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Article</title>
-  {% bootstrap_css %}
-</head>
-
-<body>
-  <div class="container">
-    {% if user.is_authenticated  %}
-    <h2> <img src="https://s.gravatar.com/avatar/{{img_url}}?s=80" alt=""> 어서오세요, {{user.username}}</h2>
-    <a href="{% url 'acounts:logout' %}" class="btn btn-warning">로그아웃</a>
-    <a href="{% url 'acounts:update' %}" class="btn btn-warning">회원정보 수정</a>
-    <a href="{% url 'acounts:change_password' %}" class="btn btn-warning">비밀번호 변경</a>
-
-    <form action="{% url 'acounts:delete' %}" method="post" style="display : inline">
-      {% csrf_token %}
-      <input type="submit" value="회원탈퇴" class="btn btn-danger">
-
-    </form>
-
-    {% else %}
-    <h3>로그인 하셔야 서비스 이용이 가능합니다.</h3>
-    <a href="{% url 'acounts:signup' %}">회원가입</a>
-    <a href="{% url 'acounts:login' %}">로그인</a>
-    {% endif %}
-
-
-    <hr>
-    {% block body %}
-    {% endblock  %}
-  </div>
-  {% bootstrap_javascript jquery='full' %}
-</body>
-
-</html>
-```
-
-
-
-
-
-
-
-
-
-커스텀
-
-
-
-templatetags
-
-
-
-base.html
-
-```
-{% load bootstrap4 %}
-{% load gravatar %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Article</title>
-  {% bootstrap_css %}
-</head>
-
-<body>
-  <div class="container">
-    {% if user.is_authenticated  %}
-    <h2> <img src="https://s.gravatar.com/avatar/{{user.email|makemd5}}?s=80" alt=""> 어서오세요, {{user.username}}</h2>
-    <a href="{% url 'acounts:logout' %}" class="btn btn-warning">로그아웃</a>
-    <a href="{% url 'acounts:update' %}" class="btn btn-warning">회원정보 수정</a>
-    <a href="{% url 'acounts:change_password' %}" class="btn btn-warning">비밀번호 변경</a>
-
-    <form action="{% url 'acounts:delete' %}" method="post" style="display : inline">
-      {% csrf_token %}
-      <input type="submit" value="회원탈퇴" class="btn btn-danger">
-
-    </form>
-
-    {% else %}
-    <h3>로그인 하셔야 서비스 이용이 가능합니다.</h3>
-    <a href="{% url 'acounts:signup' %}">회원가입</a>
-    <a href="{% url 'acounts:login' %}">로그인</a>
-    {% endif %}
-
-
-    <hr>
-    {% block body %}
-    {% endblock  %}
-  </div>
-  {% bootstrap_javascript jquery='full' %}
-</body>
-
-</html>
-```
+  
 
