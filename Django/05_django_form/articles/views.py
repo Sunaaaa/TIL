@@ -4,13 +4,20 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Article, Comment
 from .forms import ArticleForm, CommentForm
 from IPython import embed
+import hashlib
 
 # Create your views here.
 def index(request):
     # embed()
+    # if request.user.is_authenticated:
+    #     gravatar_url = hashlib.md5(request.user.email.encode('utf-8').lower().strip()).hexdigest()
+    # else : 
+    #     gravatar_url = None
+
     articles = Article.objects.all()
     context = {
         'articles' : articles,
+        # 'gravatar_url' : gravatar_url,
     }
     return render(request, 'articles/index.html', context)
 

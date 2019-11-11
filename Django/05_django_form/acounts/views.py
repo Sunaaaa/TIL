@@ -5,7 +5,7 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
-from .forms import CustomUserChangeForm
+from .forms import CustomUserChangeForm, CustomUserCreationForm
 # Create your views here.
 # Authentication (인증) -> 신원 확인
 # - 자신이 누구라고 주장하는 사람의 신원을 확인하는 것
@@ -17,7 +17,7 @@ def signup(request):
 
     # 사용자를 만드는 로직
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
 
@@ -29,13 +29,13 @@ def signup(request):
 
     # 회원가입 Form을 던지는 로직
     else:
-        form = UserCreationForm
+        form = CustomUserCreationForm
     
     context = {
         'form' : form,
     }
 
-    return render(request, 'acounts/signup.html', context)
+    return render(request, 'acounts/acount_form.html', context)
 
 def login(request):
 
@@ -57,7 +57,7 @@ def login(request):
         'form' : form,
     } 
 
-    return render(request, 'acounts/login.html', context)
+    return render(request, 'acounts/acount_form.html', context)
 
 def logout(request):
     # 이 서버를 보고 있는 사용자의 정보가 자동으로 들어가서 로그아웃을 수행한다.
@@ -90,7 +90,7 @@ def update(request):
         'form' : form
     }
 
-    return render(request, 'acounts/update.html', context)
+    return render(request, 'acounts/acount_form.html', context)
 
 # 비밀번호 수정
 def change_password(request):
@@ -109,4 +109,4 @@ def change_password(request):
         'form' : form
     }
 
-    return render(request, 'acounts/change_password.html', context)
+    return render(request, 'acounts/acount_form.html', context)
