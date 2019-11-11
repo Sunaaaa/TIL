@@ -88,7 +88,7 @@
 
   <br>
 
-  ![1573436036170](C:/Users/student/AppData/Roaming/Typora/typora-user-images/1573436036170.png)
+  ![1573436036170](https://user-images.githubusercontent.com/39547788/68581725-5551ac00-04bc-11ea-89a6-82ad152fc270.png)
 
 
 
@@ -233,19 +233,19 @@
 
     - 초기화면 
 
-      ![1573129312576](C:/Users/student/AppData/Roaming/Typora/typora-user-images/1573129312576.png)
+      ![1573129312576](https://user-images.githubusercontent.com/39547788/68582199-87afd900-04bd-11ea-802c-080212b45341.png)
 
       <br>
 
     - 유효성 검증 실패 시 화면
 
-      ![1573129333422](C:/Users/student/AppData/Roaming/Typora/typora-user-images/1573129333422.png)
+      ![1573129333422](https://user-images.githubusercontent.com/39547788/68582200-88486f80-04bd-11ea-9727-505f1b2fe30b.png)
 
       <br>
 
     - admin 페이지를 통해 회원가입 확인!
 
-      ![1573129375367](C:/Users/student/AppData/Roaming/Typora/typora-user-images/1573129375367.png)
+      ![1573129375367](https://user-images.githubusercontent.com/39547788/68582201-88486f80-04bd-11ea-9e3a-56c7e8eec3fd.png)
 
       <br>
 
@@ -373,13 +373,13 @@
 
       - 로그인 성공
 
-        ![1573129555042](C:/Users/student/AppData/Roaming/Typora/typora-user-images/1573129555042.png)
+        ![1573129555042](https://user-images.githubusercontent.com/39547788/68582202-88486f80-04bd-11ea-8efd-18ec983fadc3.png)
 
         <br>
 
       - 로그인 실패
 
-        ![1573129594610](C:/Users/student/AppData/Roaming/Typora/typora-user-images/1573129594610.png)
+        ![1573129594610](https://user-images.githubusercontent.com/39547788/68582203-88486f80-04bd-11ea-89e3-12baf754db77.png)
 
         <br>
 
@@ -387,7 +387,7 @@
 
     - 로그인이 성공한 경우, article의 index 페이지로 이동한다.
 
-      ![1573129637708](C:/Users/student/AppData/Roaming/Typora/typora-user-images/1573129637708.png)
+      ![1573129637708](https://user-images.githubusercontent.com/39547788/68582205-88e10600-04bd-11ea-9c72-8e598d6ba738.png)
 
       <br>
 
@@ -564,7 +564,7 @@ from django.contrib.auth.decorators import login_required
 
 - Application의 이름이 accounts가 아닌 acounts 이기 때문에 위의 코드를 그대로 수행하면 에러가 발생한다.
 
-  ![1573437286157](C:/Users/student/AppData/Roaming/Typora/typora-user-images/1573437286157.png)
+  ![1573437286157](https://user-images.githubusercontent.com/39547788/68581726-5551ac00-04bc-11ea-8ff0-07f51d2465fe.png)
 
   <br>
 
@@ -578,7 +578,7 @@ from django.contrib.auth.decorators import login_required
 
   - URL이 `http://127.0.0.1:8000/acounts/login/?next=/articles/create/`
 
-    ![1573437646307](C:/Users/student/AppData/Roaming/Typora/typora-user-images/1573437646307.png)
+    ![1573437646307](https://user-images.githubusercontent.com/39547788/68581727-5551ac00-04bc-11ea-98f3-2edea5116b10.png)
 
 <br>
 
@@ -730,13 +730,13 @@ from django.contrib.auth.decorators import login_required
 
     - 로그인 한 사용자의 index 페이지에 로그아웃 버튼이 보여진다. 
 
-      ![1573130825142](C:/Users/student/AppData/Roaming/Typora/typora-user-images/1573130825142.png)
+      ![1573130825142](https://user-images.githubusercontent.com/39547788/68582193-87174280-04bd-11ea-8ff4-5884e15b4edd.png)
 
       <br>
 
     - 로그아웃 한 사용자의 index 페이지에 회원가입 과 로그인 버튼이 보여진다.
 
-      ![1573130872598](C:/Users/student/AppData/Roaming/Typora/typora-user-images/1573130872598.png)
+      ![1573130872598](https://user-images.githubusercontent.com/39547788/68582194-87174280-04bd-11ea-8410-17bb75a5d6ef.png)
 
 <br>
 
@@ -809,7 +809,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, User
 
 - 너무 많은 수정 권한을 부여하게 된다. --> **회원정보수정 Form Customizing**을 통해 제한하자!!!!!!!
 
-  ![1573460527170](C:/Users/student/AppData/Roaming/Typora/typora-user-images/1573460527170.png)
+  ![1573460527170](https://user-images.githubusercontent.com/39547788/68581728-55ea4280-04bc-11ea-97d0-a07cc2cfa10e.png)
 
   <br>
 
@@ -825,7 +825,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, User
 
 - acounts/ forms.py 생성
 
-  ![1573460738269](C:%5CUsers%5Cstudent%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1573460738269.png)
+  ![1573460738269](https://user-images.githubusercontent.com/39547788/68581729-55ea4280-04bc-11ea-913a-4fb14c0f0692.png)
 
   <br>
 
@@ -897,7 +897,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, User
 
   - 로그인 한 사용자만이 회원정보 수정을 할 수 있다. 
 
-  ![1573461639042](C:%5CUsers%5Cstudent%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1573461639042.png)
+  ![1573461639042](https://user-images.githubusercontent.com/39547788/68581730-55ea4280-04bc-11ea-9de6-4f3ecf2d0261.png)
 
 <br><br>
 
@@ -936,8 +936,12 @@ def change_password(request):
 
 
 - 실행 화면
+
   - 비밀번호 변경
-  - 자동 로그아웃 되어 index.html로 이동한다. 
+
+    ![1573469643514](https://user-images.githubusercontent.com/39547788/68581992-0eb08180-04bd-11ea-8174-6e0d308cbef7.png)
+
+    <br>
 
 
 
@@ -1028,29 +1032,31 @@ def change_password(request):
     {% endblock  %}
     ```
 
+    <br>
+
 - 실행 화면
 
   - 회원가입
 
-    ![1573468148929](C:%5CUsers%5Cstudent%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1573468148929.png)
+    ![1573468148929](https://user-images.githubusercontent.com/39547788/68581735-5682d900-04bc-11ea-97e6-e2690b1edebf.png)
 
     <br>
 
   - 로그인
 
-    ![1573468171529](C:%5CUsers%5Cstudent%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1573468171529.png)
+    ![1573468171529](https://user-images.githubusercontent.com/39547788/68581736-5682d900-04bc-11ea-857c-74c47029c59b.png)
 
     <br>
 
   - 회원정보 수정
 
-    ![1573468067263](C:%5CUsers%5Cstudent%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1573468067263.png)
+    ![1573468067263](https://user-images.githubusercontent.com/39547788/68581731-55ea4280-04bc-11ea-8360-b03c88017454.png)
 
     <br>
 
   - 비밀번호 변경
 
-    ![1573468102712](C:%5CUsers%5Cstudent%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1573468102712.png)
+    ![1573468102712](https://user-images.githubusercontent.com/39547788/68581733-5682d900-04bc-11ea-931e-91cb1ff226ee.png)
 
     
 
@@ -1292,7 +1298,7 @@ def change_password(request):
 
 - acounts/ **templatetags** 폴더 생성
 
-  ![1573468812214](C:%5CUsers%5Cstudent%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1573468812214.png)
+  ![1573468812214](https://user-images.githubusercontent.com/39547788/68581737-5682d900-04bc-11ea-93d8-5bbc1416f746.png)
 
   <br>
 
@@ -1313,7 +1319,7 @@ def change_password(request):
       return hashlib.md5(email.encode('utf-8').lower().strip()).hexdigest()
   ```
 
-  ![1573468828733](C:%5CUsers%5Cstudent%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1573468828733.png)
+  ![1573468828733](https://user-images.githubusercontent.com/39547788/68581738-571b6f80-04bc-11ea-95d7-ce4fa5f6f9dd.png)
 
   <br>
 
@@ -1398,4 +1404,3 @@ def change_password(request):
     
 
   
-
