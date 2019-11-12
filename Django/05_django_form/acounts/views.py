@@ -22,7 +22,7 @@ def signup(request):
             user = form.save()
 
             # 회원가입 후 바로 로그인 되어 메인페이지로 이동
-            auth_login(request, user)
+            auth_login(request.user)
 
             return redirect('articles:index')
 

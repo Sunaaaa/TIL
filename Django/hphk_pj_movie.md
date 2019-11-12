@@ -336,3 +336,12 @@ $ pip install pylint-django
 
 
 <br>
+
+
+
+## 7. Authentication
+
+### 7.1 accounts Application 생성 및 설정
+
+![1573526265818](hphk_pj_movie.assets/1573526265818.png)
+

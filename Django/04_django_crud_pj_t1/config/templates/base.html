@@ -9,7 +9,21 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
+
   <div class="container">
+  
+    {% if user.is_authenticated %}
+      <div class="ml">
+        {{user.username}} 님 
+        <a href="{% url 'accounts:update' %}" class="btn btn-warning">회원정보 수정</a>
+        <a href="{% url 'accounts:password' %}" class="btn btn-warning">비밀번호 변경</a>
+        <a href="{% url 'accounts:logout' %}" class="btn btn-danger">로그아웃</a>
+      </div>
+    {% else %}
+      <a href="{% url 'accounts:login' %}" class="btn btn-warning">로그인</a>
+      <a href="{% url 'accounts:signup' %}" class="btn btn-warning">회원가입</a>
+    {% endif %}
+
 
     {% block body %}
     {% endblock  %}
