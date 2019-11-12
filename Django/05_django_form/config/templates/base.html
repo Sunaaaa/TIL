@@ -14,7 +14,9 @@
 <body>
   <div class="container">
     {% if user.is_authenticated  %}
-    <h2> <img src="https://s.gravatar.com/avatar/{{user.email|makemd5}}?s=80&d=mp" alt=""> 어서오세요, {{user.username}}</h2>
+    <div class="my-3">
+      <h2> <img src="https://s.gravatar.com/avatar/{{user.email|makemd5}}?s=80&d=mp" alt=""> 어서오세요, {{user.username}}</h2>
+    </div>
     <a href="{% url 'acounts:logout' %}" class="btn btn-warning">로그아웃</a>
     <a href="{% url 'acounts:update' %}" class="btn btn-warning">회원정보 수정</a>
     <a href="{% url 'acounts:change_password' %}" class="btn btn-warning">비밀번호 변경</a>

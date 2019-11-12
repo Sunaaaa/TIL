@@ -1,6 +1,7 @@
 from django.db import models
 from imagekit.models import ProcessedImageField
 from imagekit.processors import Thumbnail
+from django.conf import settings
 
 # Create your models here.
 class Article(models.Model):
@@ -16,6 +17,7 @@ class Article(models.Model):
     # )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     # 객체 표시 형식 수정
     def __str__(self):

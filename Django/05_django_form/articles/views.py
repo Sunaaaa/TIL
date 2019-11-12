@@ -33,12 +33,14 @@ def create(request):
         
         # 유효성 검증
         if form.is_valid():
-            article = form.save()
+            article = form.save(commit=False)
+            article.user = request.user
             # 유효성 검증이 끝난 form은 dict 형태로 뽑혀 나온다.
             # cleaned_data 를 통해 dict 안의 데이터를 검증한다.
             # title = form.cleaned_data.get('title')
             # content = form.cleaned_data.get('content')
             # article = Article.objects.create(title=title, content=content)
+            article.save()
 
             return redirect('articles:detail', article.pk)
     

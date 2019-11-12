@@ -6,6 +6,7 @@
   <hr>
   {% for article in articles %}
   <p>[{{article.pk}}]  {{article.title}} </p>
+  <p> 작성자 : {{article.user}} </p>
   <a href="{% url 'articles:detail' article.pk %}">[MORE]</a>
   {% endfor %}
 
