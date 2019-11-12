@@ -663,6 +663,8 @@ Out[19]: <QuerySet [<Patient: 1번 환자 세환>, <Patient: 2번 환자 민승>
 
 <br>
 
+![1573550823462](django_11_12_M%EB%8C%80N.assets/1573550823462.png)
+
 <br>
 
 #### remove
