@@ -11,33 +11,49 @@
   </div>
 
     <a class="ml-auto btn btn-dark"  href="{% url 'articles:index' %}">[INDEX]</a>
+  {% if request.user == article.user  %}
     <a class="ml-auto btn btn-dark"  href="{% url 'articles:update' article.pk %}">[EDIT]</a>
     <form action="{% url 'articles:delete' article.pk %}" method="POST" style="display : inline;" onclick="return confirm('진짜 삭제할까요...?')">
       {% csrf_token %}
       <input class="ml-auto btn btn-dark"  type="submit" value="DELETE">
-    </form>
+    </form>  
+  {% endif %}
+
 </div>
 
 
 <hr>
 
-<form action="{% url 'articles:comments_create' article.pk %}" method="POST" style=" max-width:500px;">
-  {% comment %} {{comment_form}} {% endcomment %}
-  {% csrf_token %}
-  {% bootstrap_form comment_form layout="horizontal" %}
-  {% buttons submit='댓글 작성' layout="inline" %}
-  {% endbuttons %}
-</form>
+{% if user.is_authenticated %}
+  <form action="{% url 'articles:comments_create' article.pk %}" method="POST" style=" max-width:500px;">
+    {% comment %} {{comment_form}} {% endcomment %}
+    {% csrf_token %}
+    {% bootstrap_form comment_form layout="horizontal" %}
+    {% buttons submit='댓글 작성' layout="inline" %}
+    {% endbuttons %}
+  </form>
+
+{% else %}
+  <a href="{% url 'acounts:login' %}">로그인 해주세요</a>
+
+{% endif %}
+
 <hr>
+
 <p><b>댓글 목록({{comments|length}}개)</b></p>
 <hr>
 {% for comment in comments  %}
-  <p ">[{{forloop.revcounter}} 번 댓글]  {{comment.content}}</p>
-  <form action="{% url 'articles:comments_delete' article.pk comment.pk %}" method="POST" style="display:inline; max-width:500px;">
+
+  <p>[{{forloop.revcounter}} 번 댓글] {{comment.user}} : {{comment.content}}</p>
+  
+  {% if comment.user == request.user %}
+
+  <form action="{% url 'articles:comments_delete' article.pk comment.pk %}"  method="POST" style="display:inline; max-width:500px;">
     {% csrf_token %}
     {% buttons submit='삭제' layout="inline" %}
     {% endbuttons %}
   </form>
+  {% endif %}
 {% endfor %}
 
 {% endblock  %}

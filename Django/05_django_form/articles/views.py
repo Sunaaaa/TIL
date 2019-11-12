@@ -71,30 +71,44 @@ def detail(request, article_pk):
 
 @require_POST
 def delete(request, article_pk):
+    # 삭제할 게시글 가져오기
+    article = get_object_or_404(Article, pk=article_pk)
+
+    # 지금 사용자가 로그인이 되어있는지 확인
     if request.user.is_authenticated:
-        article = get_object_or_404(Article, pk=article_pk)
-        article.delete()
+
+        # 로그인한 사용자와 게시글 작성자 비교 
+        # 같은 경우
+        if request.user == article.user:
+            article.delete()
+
+        # 다른 경우
+        else : 
+            return redirect('articles:detail', article_pk)
     return redirect('articles:index')
 
 @login_required
 def update(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
+    if request.user == article.user:
 
-    if request.method == 'POST':
-        form = ArticleForm(request.POST, instance=article)
+        if request.method == 'POST':
+            form = ArticleForm(request.POST, instance=article)
 
-        if form.is_valid():
-            article = form.save()
-            return redirect('articles:detail', article_pk)
+            if form.is_valid():
+                article = form.save()
+                return redirect('articles:detail', article_pk)
 
-    else :
-        # 빈 값이 아닌 Form의 데이터를 넣어 주는 부분
-        form = ArticleForm(instance=article)
+        else :
+            # 빈 값이 아닌 Form의 데이터를 넣어 주는 부분
+            form = ArticleForm(instance=article)
 
     # 2가지 Form 형식
     # 1. GET 요청 -> 초기값을 Form에 넣어서 사용자에게 던져줌
     # 2. POST -> is_valid가 False 가 리턴되었을때, 
     #            오류 메시지를 포함해서 사용자에게 던져줌
+    else:
+        return redirect('articles:detail' , article_pk)
     context = {
         'form' : form,
         'article' : article,
@@ -114,15 +128,23 @@ def comments_create(request, article_pk):
             # commit=False : DB에 바로 저장되는 것을 막아준다.
             # 객체 저장 
             comment = comment_form.save(commit=False)
+            # 인스턴스 그대로 넣기
             comment.article = article
+            # 데이터 베이스에 저장되어 있는 형식에 맞춰서 넣기 -> article 인스턴스를 불러오지 않아도 된다.
+            # comment.article_id = article_pk
+            comment.user = request.user
             comment.save()
 
     return redirect('articles:detail', article_pk)
 
 @require_POST
 def comments_delete(request, article_pk, comment_pk):
+    # 1. 로그인 여부 확인
     if request.user.is_authenticated:
         article = get_object_or_404(Article, pk=article_pk)        
         comment = get_object_or_404(Comment, pk=comment_pk)
-        comment.delete()    
+
+        # 2. 로그인한 사용자와 댓글 작성자가 같을 경우 삭제를 수행한다.
+        if request.user == comment.user:
+            comment.delete()    
     return redirect('articles:detail', article.pk)
