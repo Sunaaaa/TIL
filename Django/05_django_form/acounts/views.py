@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import get_user_model
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth import login as auth_login
@@ -110,3 +111,11 @@ def change_password(request):
     }
 
     return render(request, 'acounts/acount_form.html', context)
+
+# profile 페이지
+def profile(request, username):
+    person = get_object_or_404(get_user_model(), username=username)
+    context = {
+        'person' : person,
+    }
+    return render(request, 'acounts/profile.html', context)

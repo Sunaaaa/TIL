@@ -309,3 +309,300 @@
 
 ## 2. Profile
 
+> 로그인한 User는 '마이페이지' 버튼을 이용해 자신이 작성한 게시글과 댓글을 한눈에 볼 수 있다. 각 User 마다 프로필 페이지를 만들어주자.
+>
+> - User의 CRUD 로직 중 Read 로직에 해당한다.
+
+<br>
+
+### 2.1 View & URL
+
+#### [ acounts Application ]
+
+> User에 대한 CRUD 로직의 대부분을 acounts Application에서 구현했기 때문에, Profile 페이지 역시 acounts Application에 구현해보자.
+
+<br>
+
+- views.py
+
+  - request로 들어오는 `username`으로 User에 대한 정보를 가져온다.
+
+    ```python 
+    from django.shortcuts import render, redirect, get_object_or_404
+    from django.contrib.auth import get_user_model
+    
+    def profile(request, username):
+        person = get_object_or_404(get_user_model(), username=username)
+        context = {
+            'person' : person,
+        }
+        return render(request, 'acounts/profile.html', context)
+    ```
+
+- urls.py
+
+  - url 패턴에서 `str`을 사용하면 맨아래에 위치해서 마지막에 탐색되게 해야한다. 
+
+    - 조건을 붙일경우에는 위치 상관 없다.
+
+      ```python 
+      from django.urls import path
+      from . import views
+      
+      app_name="acounts"
+      urlpatterns = [
+          path('signup/', views.signup, name="signup"),
+          path('login/', views.login, name="login"),
+          path('logout/', views.logout, name="logout"),
+          path('delete/', views.delete, name="delete"),
+          path('update/', views.update, name="update"),
+          path('password/', views.change_password, name="change_password"),
+          path('<str:username>/', views.profile, name='profile'),
+      ]
+      
+      ```
+
+
+
+<br>
+
+### 2.2 Template
+
+> User가 작성한 게시글, 댓글을 볼 수 있는 profile.html을 만들어보자!
+
+<br>
+
+- base.html
+
+  - 마이페이지로 이동하는 링크 생성
+
+    ```django
+    <a href="{% url 'acounts:profile' user.username %}" class="btn btn-warning">마이페이지</a>
+    ```
+
+    ```django
+    <body>
+      <div class="container">
+        {% if user.is_authenticated  %}
+          .
+          .
+          .
+        <a href="{% url 'acounts:profile' user.username %}" class="btn btn-warning">마이페이지</a>
+    
+    ```
+
+  <br>
+
+- profile.html
+
+  - `article.like_users.all|length` : 게시글에 '좋아요'를 누른 사람들의 수
+
+  - `person.article_set.all` : User가 작성한 게시글 모두를 가져온다.
+
+  - `person.comment_set.all` : User가 작성한 댓글 모두를 가져온다.
+
+  - `coment.created_at|date:"SHORT_DATETIME_FORMAT"` : 날짜 표시 형식을 변형할 수 있다.
+
+    ```django
+    {% extends 'articles/base.html' %}
+    
+    {% block body %}
+    <h1 class="text-center mt-3">{{ person.username }}님의 Profile</h1>
+    <hr>
+    <h3 class="text-center mb-3">{{ person.username }}님이 작성한 게시글</h3>
+    <div class="row">
+      {% for article in person.article_set.all %}
+      <div class="col-12 col-md-6 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              글 제목: {{ article.title }}
+            </h5>
+            <p class="card-text">
+              {{ article.like_users.all|length }}명이 이 글을 좋아합니다. <br>
+              생성시각: {{ article.created_at }}
+            </p>
+            <a href="{% url 'articles:detail' article.pk %}" class="btn btn-primary">상세보기</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    </div>
+    <hr>
+    <h3 class="text-center mb-3">{{ person.username }}님이 작성한 댓글</h3>
+    <div class="container">
+      <div class="row">
+        {% for coment in person.comment_set.all %}
+        <div class="col-12 col-md-6 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">
+                {{ coment.content }}
+              </h5>
+              <p class="card-text">
+                작성시각: {{ coment.created_at|date:"SHORT_DATETIME_FORMAT" }}
+              </p>
+              <a href="{% url 'articles:detail' coment.article.pk %}" class="btn btn-primary">게시글 확인</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endblock %} 
+    ```
+
+  <br>
+
+- 실행 화면
+
+  - 로그인하면 '마이페이지' 버튼이 보인다. 
+
+    ![1573647175560](django_11_13_like_profile_follow.assets/1573647175560.png)
+
+    <br>
+
+  - 마이페이지
+
+    - [1공선아]가 작성한 게시글과 댓글을 볼 수 있다.
+      -  '상세보기' 또는 '게시글 확인' 버튼을 누르면, 해당 게시글의 상세정보를 볼 수 있다. 
+
+    ![1573647090131](django_11_13_like_profile_follow.assets/1573647090131.png)
+
+    <br>
+
+### 2.3 Navigation Bar
+
+> 상단에 메뉴 버튼들을 위해 Nav Bar를 만들어보자!
+
+<br>
+
+- nav bar 또한 모듈화한 템플릿으로 생성한다.
+
+  ![1573647679188](django_11_13_like_profile_follow.assets/1573647679188.png)
+
+  <br>
+
+- _nav.html 
+
+  - base.html의 상단 메뉴 버튼을 생성한 코드들을 _nav.html에 작성하고 bootstrap으로 꾸며보자
+
+    ```django
+    {% load gravatar %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="{% url 'articles:index' %}">
+        <img class="rounded-circle mr-2" src="https://s.gravatar.com/avatar/{{ user.email|makemd5 }}?s=80&d=mp" alt="">
+        Hello, {{ user.username }}
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          {% if user.is_authenticated %}
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'articles:index' %}">메인화면</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'acounts:logout' %}">로그아웃</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'acounts:profile' user.username %}">마이페이지</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'acounts:update' %}">정보수정</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'acounts:change_password' %}">암호변경</a>
+            </li>
+            <form action="{% url 'acounts:delete' %}" method="POST" style="display: inline;">
+              {% csrf_token %}
+              <input type="submit" value="회원탈퇴" class="btn btn-danger">
+            </form>
+          {% else %}
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'acounts:login' %}">로그인</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'acounts:signup' %}">회원가입</span></a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav> 
+    ```
+
+  <br>
+
+- base.html
+
+  - `{% include 'articles/_nav.html' %}`를 `<div class="container">`안으로 넣으면 nav bar가 화면 전체를 차지하지 않게 된다. 
+
+    ```django
+    {% load bootstrap4 %}
+    <!DOCTYPE html>
+    <html lang="en">
+    
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <title>Article</title>
+            {% bootstrap_css %}
+            <!-- FontAwesome -->
+            <script src="https://kit.fontawesome.com/d3ba2beacb.js" crossorigin="anonymous"></script>
+        </head>
+    
+        <body>
+    
+            {% include 'articles/_nav.html' %}
+            <div class="container">
+                {% block body %}
+                {% endblock  %}    
+            </div>
+    
+            {% bootstrap_javascript jquery='full' %}
+        </body>
+    
+    </html>
+    ```
+
+<br>
+
+- 실행 화면
+
+  - 메인화면 nav bar
+
+    ![1573648288591](django_11_13_like_profile_follow.assets/1573648288591.png)
+
+  <br>
+
+  - 반응형으로 페이지의 크기를 작게하면 nav bar 의 모습이 바뀐다.
+
+    ![1573648341016](django_11_13_like_profile_follow.assets/1573648341016.png) 
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
