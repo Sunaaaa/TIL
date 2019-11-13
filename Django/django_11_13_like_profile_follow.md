@@ -588,17 +588,119 @@
 
 
 
+## 3. Follow
+
+> Follow는 User와 User의 M:N 관계이다.
+>
+> Django가 제공하는 User 모델을 대체해서 반복한다. 처음부터 User 모델을 만드는게 아니라, Django가 개발자들이 자신만의 User 모델을 만들 수 있도록 제공해준다.
+>
+> - **AbstractUser**
+
+<br>
+
+### 3.1 User 모델 대체하기
+
+#### [ acounts Application ]
+
+- models.py
+
+  - `ManyToManyField`를 사용하면 자동으로 테이블을 만들어준다
+
+    - 양방향 접근 가능
+
+      ```python 
+      from django.db import models
+      from django.conf import settings
+      from django.contrib.auth.models import AbstractUser
+      
+      # Create your models here.
+      class User(AbstractUser):
+          followers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='followings')
+      ```
+
+  <br>
+
+- settings.py
+
+  ```python 
+  # 기본값 : auth.User
+  AUTH_USER_MODEL = 'acounts.User'
+  ```
+
+  <br>
+
+- migrate
+
+  - 기존에 있던 articles/migrations에 있는 파일들 중 `000숫자`가 붙은 파일들을 삭제
+
+  - `db.sqlite3` 파일도 삭제
+
+    ```bash
+    $ python manage.py makemigrations
+    $ python manage.py migrate
+    ```
+
+  -  sqlite3 로 확인하기
+
+    ![1573649421149](django_11_13_like_profile_follow.assets/1573649421149.png)
+
+  
+
+#### 3.1.1 admin 추가
+
+- admin 생성
+
+  ```bash
+  $ python manage.py createsuperuser
+  사용자 이름: admin
+  이메일 주소:
+  Password:
+  Password (again):
+  비밀번호가 너무 짧습니다. 최소 8 문자를 포함해야 합니다.
+  비밀번호가 너무 일상적인 단어입니다.
+  비밀번호가 전부 숫자로 되어 있습니다.
+  Bypass password validation and create user anyway? [y/N]: y
+  Superuser created successfully.
+  ```
+
+<br>
+
+- admin.py
+
+  ```python 
+  from django.contrib import admin
+  from django.contrib.auth.admin import UserAdmin
+  from .models import User
+  
+  # Register your models here.
+  admin.site.register(User, UserAdmin)
+  ```
+
+  <br>
+
+- 실행 화면
+
+  ![1573649672808](django_11_13_like_profile_follow.assets/1573649672808.png)
+
+  <br>
 
 
 
 
 
+### 3.2 View & URL
 
+#### [ articles Application ]
 
+- views.py
 
+  ```python 
+  from django.contrib.auth import get_user_model
+  
+  
+  ```
 
-
-
+  
 
 
 

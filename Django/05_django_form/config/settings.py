@@ -143,3 +143,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # login_required 요청 경로 커스터마이징
 # 기본 : /accounts/login/
 LOGIN_URL = '/acounts/login/'
+
+# 기본값 : auth.User
+AUTH_USER_MODEL = 'acounts.User'

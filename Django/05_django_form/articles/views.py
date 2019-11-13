@@ -1,6 +1,7 @@
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import get_user_model
 from .models import Article, Comment
 from .forms import ArticleForm, CommentForm
 from IPython import embed
@@ -167,3 +168,27 @@ def like(request, article_pk):
         article.like_users.add(user)
 
     return redirect('articles:index')
+
+def follow(request, article_pk, user_pk):
+    # 게시글 작성한 User
+    person = get_object_or_404(get_user_model(), pk=user_pk)
+
+    # 지금 접속하고 있는 User
+    user = request.user
+
+    # 게시글을 작성한 User와 팔로우 버튼을 누르는 User가 
+    # 다른 경우에만 팔로우를 할 수 있다.
+    if person != user:
+        # 게시글을 작성한 User의 팔로워 명단에 지금 접속하고 있는 User가 있을 경우
+        # -> UnFollow
+        if user in person.followers.all():
+            person.followers.remove(user)
+        # 없을 경우
+        # -> Follow 
+        else : 
+            person.followers.add(user)
+
+    # 게시글 상세 정보로 redirect
+    return redirect('articles:detail', article_pk)
+        
+
