@@ -1,4 +1,4 @@
-# Hashtag
+# 1. Hashtag
 
 > **해시태그**(영어: hashtag)는 소셜 네트워크 서비스(SNS) 등에서 사용되는 기호로, **해시** 기호(#) 뒤에 특정 단어를 쓰면 그 단어에 대한 글을 모아 분류해서 볼 수 있다.
 
@@ -368,7 +368,7 @@
 
 
 
-# Social Login
+# 2. Social Login
 
 > 인증, 계정, 등록 등을 다루는 여러가지 방법이 존재하는데, 우리는 **`django-allauth` 라는 라이브러리를 사용해서 손쉽게 Social Login을 구현할 수 있다.**
 >
@@ -378,7 +378,7 @@
 
 [config]
 
-사전 준비
+### 2.1 사전 준비
 
 [django-allauth](https://django-allauth.readthedocs.io/en/latest/installation.html) 따라가자
 
@@ -388,16 +388,49 @@ $ pip install django-allauth
 
 - settings.py
 
+  - 아래의 코드로 작성
+
+    ```python 
+    AUTHENTICATION_BACKENDS = (
+    
+        # Needed to login by username in Django admin, regardless of `allauth`
+        'django.contrib.auth.backends.ModelBackend',
+    
+    )
+    
+    INSTALLED_APPS = (
+        ...
+        # The following apps are required:
+        'django.contrib.auth',
+        'django.contrib.messages',
+        'django.contrib.sites',
+    
+        'allauth',
+        'allauth.account',
+        'allauth.socialaccount',
+        
+        'allauth.socialaccount.providers.kakao',
+    )
+    
+    SITE_ID = 1
+    ```
+
+  <br>
+
 - config/ urls.py
 
-  ```
-  urlpatterns = [
-      path('acounts/', include('acounts.urls')),
-      path('acounts/', include('allauth.urls')),
-      path('articles/', include('articles.urls')),
-      path('admin/', admin.site.urls),
-  ]
-  ```
+  - `path('acounts/', include('allauth.urls')),`
+
+    ```python 
+    urlpatterns = [
+        path('acounts/', include('acounts.urls')),
+        path('acounts/', include('allauth.urls')),
+        path('articles/', include('articles.urls')),
+        path('admin/', admin.site.urls),
+    ]
+    ```
+
+  <br>
 
 - migrate
 
@@ -414,40 +447,146 @@ $ pip install django-allauth
 
 
 
-Kakao Developers OAuth 등록
+### 2.2 Kakao Developers OAuth 등록
+
+#### 2.2.1 KaKao Developers
+
+- 새로운 App 등록
+
+- 플랫폼 [웹] 추가
+
+  ![1573714222436](../../../Documents/Hashtag.assets/1573714222436.png)
+
+  <br>
+
+- 사이트 도메인 작성 
+
+  ```python 
+  http://127.0.0.1:8000
+  https://127.0.0.1:8000
+  ```
+
+  ![1573714283650](../../../Documents/Hashtag.assets/1573714283650.png)
+
+  <br>
+
+  ![1573714304733](../../../Documents/Hashtag.assets/1573714304733.png)
+
+  <br>
+
+- 로그인 동의항목 설정
+
+  ![1573714373954](../../../Documents/Hashtag.assets/1573714373954.png)
+
+  <br>
+
+- 사용자 관리 활성화 
+
+  - 카카오 계정으로 로그인 및 API 사용을 위해 사용자 관리를 활성화 한다.
+
+    ![1573714474220](../../../Documents/Hashtag.assets/1573714474220.png)
+
+    <br>
+
+- Client Secret 비밀키 발급
+
+  - REST API로 토큰 발급 시 보안을 강화하기 위해 Client Secret을 사용할 수 있다. 
+
+  - [고급 설정] -> 코드 발급
+
+    ![1573714558574](../../../Documents/Hashtag.assets/1573714558574.png)
+
+    <br>
+
+  - Client Secret 활성화
+
+    ![1573714583253](../../../Documents/Hashtag.assets/1573714583253.png)
+
+    <br>
+
+#### 2.2.2 admin 페이지
+
+- 소셜 어플리케이션 추가
+
+  ![1573714638508](../../../Documents/Hashtag.assets/1573714638508.png)
+
+  <br>
+
+- 소셜 어플리케이션 추가 폼 작성 후 저장
+
+  ![1573714665529](../../../Documents/Hashtag.assets/1573714665529.png)
+
+  <br>
+
+- 소셜 계정 등록 완료
+
+  ![1573714758367](../../../Documents/Hashtag.assets/1573714758367.png)
+
+  <br>
 
 
 
+### 2.3 카카오 로그인 연결
 
+- social_login.html
 
-social_login.html
+  - acount_form.html 대신 '카카오 로그인' 버튼이 있는 템플릿을 생성한다. 
 
-```
-{% extends 'base.html' %}
-{% load bootstrap4 %}
-{% load socialaccount %}
-{% block body %}
+    ```django
+    {% extends 'base.html' %}
+    {% load bootstrap4 %}
+    {% load socialaccount %}
+    {% block body %}
+    
+    {% if request.resolver_match.url_name == 'signup' %}
+    <h1>회원가입</h1>
+    {% elif request.resolver_match.url_name == 'login' %}
+    <h1>로그인</h1>
+    {% elif request.resolver_match.url_name == 'update' %}
+    <h1>회원정보 수정</h1>
+    {% else %}
+    <h1>비밀번호 변경</h1>
+    {% endif %}
+    <hr>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% buttons submit='수정' reset='초기화' %}
+        {% endbuttons %}
+        <a href="{% provider_login_url 'kakao' %} ">카카오 로그인</a>
+    </form>
+    
+    {% endblock  %}
+    ```
 
-{% if request.resolver_match.url_name == 'signup' %}
-<h1>회원가입</h1>
-{% elif request.resolver_match.url_name == 'login' %}
-<h1>로그인</h1>
-{% elif request.resolver_match.url_name == 'update' %}
-<h1>회원정보 수정</h1>
-{% else %}
-<h1>비밀번호 변경</h1>
-{% endif %}
-<hr>
-<form action="" method="post">
-{% csrf_token %}
-{% bootstrap_form form %}
-{% buttons submit='수정' reset='초기화' %}
-{% endbuttons %}
-<a href="{% provider_login_url 'kakao' %} ">카카오 로그인</a>
-</form>
+    <br>
 
-{% endblock  %}
-```
+- views.py
+
+  - 템플릿을 acounts/acount_form.html에서 acounts/social_login.html으로 변경한다.
+
+    ```python 
+    def login(request):
+    
+        if request.user.is_authenticated:
+            return redirect('articles:index')
+    
+        if request.method == "POST":
+            form = AuthenticationForm(request, request.POST)
+            if form.is_valid():
+                auth_login(request, form.get_user())
+                return redirect(request.GET.get('next') or 'articles:index')
+        else : 
+            form = AuthenticationForm()
+    
+        context = {
+            'form' : form,
+        } 
+    
+        return render(request, 'acounts/social_login.html', context)
+    ```
+
+  <br>
 
 - 실행 화면
 
@@ -457,23 +596,57 @@ social_login.html
 
     <br>
 
-  - 카카오 로그인 버튼
+  - 카카오 로그인 버튼 클릭
 
-    ![1573709373302](../../../Documents/Hashtag.assets/1573709373302.png)
+    - 카카오에 로그인이 되어 있는 경우
 
+      ![1573709373302](../../../Documents/Hashtag.assets/1573709373302.png)
 
+      <br>
+
+    - 카카오에 로그인이 되어있지 않은 경우
+
+      ![1573713647897](../../../Documents/Hashtag.assets/1573713647897.png)
+
+      
+
+<br>
+
+**문제 발생!!**
 
 - 로그인을 하면 에러 발생 
 
   ![1573709431232](../../../Documents/Hashtag.assets/1573709431232.png)
 
+<br>
 
+**해결!!**
 
 - 로그인 후 redirect 경로를 커스터마이징 한다.
+
   - settings.py
 
-```python
-# 로그인 후 리다이렉트 경로
-LOGIN_REDIRECT_URL = 'articles:index'
-```
+    ```python 
+    # 로그인 후 리다이렉트 경로
+    LOGIN_REDIRECT_URL = 'articles:index'
+    ```
+
+    <br>
+
+- 실행 화면
+
+  - 카카오 계정으로 로그인 성공!!!
+
+    ![1573714841723](../../../Documents/Hashtag.assets/1573714841723.png)
+
+    <br>
+
+  - 나의 카카오 계정 이메일 주소 확인!
+
+    ![1573714927069](../../../Documents/Hashtag.assets/1573714927069.png)
+
+    <br>
+
+
+  
 
