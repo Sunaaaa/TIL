@@ -47,9 +47,11 @@
 
   - sqlite3로 테이블 생성 확인
 
-    ![1573698921703](Hashtag.assets/1573698921703.png)
+    ![1573698921703](https://user-images.githubusercontent.com/39547788/68834184-861e2500-06f8-11ea-9205-1a831aeaa299.png)
 
 <br>
+
+
 
 ### 1.2 해쉬 태그 처리 
 
@@ -172,13 +174,13 @@
 
       - '#빵'을 추가하여 게시글을 수정한다.
 
-        ![1573696306678](Hashtag.assets/1573696306678.png)
+        ![1573696306678](https://user-images.githubusercontent.com/39547788/68834175-84ecf800-06f8-11ea-8728-63c1a02d71e9.png)
 
         <br>
 
       - sqlite3를 통해 해시태그가 등록된 것을 확인한다.
 
-        ![1573696334981](Hashtag.assets/1573696334981.png)
+        ![1573696334981](https://user-images.githubusercontent.com/39547788/68834176-84ecf800-06f8-11ea-98a1-bc24dd57fa18.png)
 
         <br>
 
@@ -186,13 +188,13 @@
 
         - '#행복', '#감성' 지우기
 
-          ![1573696428154](Hashtag.assets/1573696428154.png)
+          ![1573696428154](https://user-images.githubusercontent.com/39547788/68834177-85858e80-06f8-11ea-973f-cd2ed4ba9d29.png)
 
           <br>
 
         - sqlite3로 확인하기
 
-          ![1573696448379](Hashtag.assets/1573696448379.png)
+          ![1573696448379](https://user-images.githubusercontent.com/39547788/68834178-85858e80-06f8-11ea-8e28-9f5d2084e4f2.png)
 
 <br>
 
@@ -274,7 +276,7 @@
 
 - 실행 화면
 
-  ![1573697453466](Hashtag.assets/1573697453466.png)
+  ![1573697453466](https://user-images.githubusercontent.com/39547788/68834179-85858e80-06f8-11ea-96b8-0cd3162b8183.png)
 
 
 
@@ -342,7 +344,7 @@
 
 - 실행 화면
 
-  ![1573698218224](Hashtag.assets/1573698218224.png)
+  ![1573698218224](https://user-images.githubusercontent.com/39547788/68834180-85858e80-06f8-11ea-9a41-6a3b64d83741.png)
 
   <br>
 
@@ -360,7 +362,7 @@
 
     - a 태그가 잘 적용되어 나오는 것을 확인할 수 있다. 
 
-      ![1573698288150](Hashtag.assets/1573698288150.png)
+      ![1573698288150](https://user-images.githubusercontent.com/39547788/68834182-861e2500-06f8-11ea-85c2-a11ba53d7299.png)
 
   <br>
 
@@ -455,7 +457,7 @@ $ pip install django-allauth
 
 - 플랫폼 [웹] 추가
 
-  ![1573714222436](../../../Documents/Hashtag.assets/1573714222436.png)
+  ![1573714222436](https://user-images.githubusercontent.com/39547788/68834191-86b6bb80-06f8-11ea-99a4-aca3d3b2b8ed.png)
 
   <br>
 
@@ -466,17 +468,17 @@ $ pip install django-allauth
   https://127.0.0.1:8000
   ```
 
-  ![1573714283650](../../../Documents/Hashtag.assets/1573714283650.png)
+  ![1573714283650](https://user-images.githubusercontent.com/39547788/68834192-874f5200-06f8-11ea-942a-2d2a6b08b877.png)
 
   <br>
 
-  ![1573714304733](../../../Documents/Hashtag.assets/1573714304733.png)
+  ![1573714304733](https://user-images.githubusercontent.com/39547788/68834193-874f5200-06f8-11ea-8836-871d0ef8318d.png)
 
   <br>
 
 - 로그인 동의항목 설정
 
-  ![1573714373954](../../../Documents/Hashtag.assets/1573714373954.png)
+  ![1573714373954](https://user-images.githubusercontent.com/39547788/68834194-874f5200-06f8-11ea-8000-62e8cbb93d06.png)
 
   <br>
 
@@ -484,7 +486,7 @@ $ pip install django-allauth
 
   - 카카오 계정으로 로그인 및 API 사용을 위해 사용자 관리를 활성화 한다.
 
-    ![1573714474220](../../../Documents/Hashtag.assets/1573714474220.png)
+    ![1573714474220](https://user-images.githubusercontent.com/39547788/68834196-874f5200-06f8-11ea-95af-62e877cdd05e.png)
 
     <br>
 
@@ -494,13 +496,13 @@ $ pip install django-allauth
 
   - [고급 설정] -> 코드 발급
 
-    ![1573714558574](../../../Documents/Hashtag.assets/1573714558574.png)
+    ![1573714558574](https://user-images.githubusercontent.com/39547788/68834197-87e7e880-06f8-11ea-9f6d-03db31d27e33.png)
 
     <br>
 
   - Client Secret 활성화
 
-    ![1573714583253](../../../Documents/Hashtag.assets/1573714583253.png)
+    ![1573714583253](https://user-images.githubusercontent.com/39547788/68834198-87e7e880-06f8-11ea-8237-210393048b34.png)
 
     <br>
 
@@ -508,19 +510,19 @@ $ pip install django-allauth
 
 - 소셜 어플리케이션 추가
 
-  ![1573714638508](../../../Documents/Hashtag.assets/1573714638508.png)
+  ![1573714638508](https://user-images.githubusercontent.com/39547788/68834170-84546180-06f8-11ea-996e-c67fedfbab4c.png)
 
   <br>
 
 - 소셜 어플리케이션 추가 폼 작성 후 저장
 
-  ![1573714665529](../../../Documents/Hashtag.assets/1573714665529.png)
+  ![1573714665529](https://user-images.githubusercontent.com/39547788/68834171-84546180-06f8-11ea-8d94-e969325c6177.png)
 
   <br>
 
 - 소셜 계정 등록 완료
 
-  ![1573714758367](../../../Documents/Hashtag.assets/1573714758367.png)
+  ![1573714758367](https://user-images.githubusercontent.com/39547788/68834172-84546180-06f8-11ea-8ceb-5b0abf4e0f50.png)
 
   <br>
 
@@ -592,7 +594,7 @@ $ pip install django-allauth
 
   - 로그인 버튼
 
-    ![1573709346262](../../../Documents/Hashtag.assets/1573709346262.png)
+    ![1573709346262](https://user-images.githubusercontent.com/39547788/68834185-861e2500-06f8-11ea-8615-51d2416231c2.png)
 
     <br>
 
@@ -600,13 +602,13 @@ $ pip install django-allauth
 
     - 카카오에 로그인이 되어 있는 경우
 
-      ![1573709373302](../../../Documents/Hashtag.assets/1573709373302.png)
+      ![1573715996694](https://user-images.githubusercontent.com/39547788/68835086-9f27d580-06fa-11ea-9318-b2ed2f552202.png)
 
       <br>
 
     - 카카오에 로그인이 되어있지 않은 경우
 
-      ![1573713647897](../../../Documents/Hashtag.assets/1573713647897.png)
+      ![1573713647897](https://user-images.githubusercontent.com/39547788/68834190-86b6bb80-06f8-11ea-9f95-5c5bb9f23389.png)
 
       
 
@@ -616,7 +618,7 @@ $ pip install django-allauth
 
 - 로그인을 하면 에러 발생 
 
-  ![1573709431232](../../../Documents/Hashtag.assets/1573709431232.png)
+  ![1573709431232](https://user-images.githubusercontent.com/39547788/68834189-86b6bb80-06f8-11ea-85df-87d09063f98f.png)
 
 <br>
 
@@ -637,15 +639,16 @@ $ pip install django-allauth
 
   - 카카오 계정으로 로그인 성공!!!
 
-    ![1573714841723](../../../Documents/Hashtag.assets/1573714841723.png)
+    ![1573714841723](https://user-images.githubusercontent.com/39547788/68834173-84ecf800-06f8-11ea-9763-bf30ddf54159.png)
 
     <br>
 
   - 나의 카카오 계정 이메일 주소 확인!
 
-    ![1573714927069](../../../Documents/Hashtag.assets/1573714927069.png)
+    ![1573714927069](https://user-images.githubusercontent.com/39547788/68834174-84ecf800-06f8-11ea-93af-b272b4569d63.png)
 
     <br>
+    
 
 
   
