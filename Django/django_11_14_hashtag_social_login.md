@@ -648,7 +648,6 @@ $ pip install django-allauth
     ![1573714927069](https://user-images.githubusercontent.com/39547788/68834174-84ecf800-06f8-11ea-93af-b272b4569d63.png)
 
     <br>
-    
 
 
   
