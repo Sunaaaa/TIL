@@ -59,12 +59,14 @@ def detail(request, article_pk):
     # article = Article.objects.get(pk=article_pk)
                                 # Class    / PK 값
     article = get_object_or_404(Article, pk=article_pk)
+    person = get_object_or_404(get_user_model(), pk=article.user_id)    
     comments = article.comment_set.all()
 
     comment_form = CommentForm()
 
     context = {
         'article' : article,
+        'person': person,
         'comment_form' : comment_form,
         'comments' : comments,
     }

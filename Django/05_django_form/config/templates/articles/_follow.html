@@ -5,12 +5,12 @@
   </p>
   <hr class="my-4">
   {% if user != article.user %}
-    {% comment %} <a class="btn btn-primary btn-lg" href="{% url 'articles:follow' article.pk person.pk %}" role="button">
+    <a class="btn btn-primary btn-lg" href="{% url 'articles:follow' article.pk person.pk %}" role="button">
       {% if user in person.followers.all %}
         Unfollow
       {% else %}
         Follow
       {% endif %}
-    </a> {% endcomment %}
+    </a>
   {% endif %}
 </div> 
