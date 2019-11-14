@@ -371,11 +371,109 @@
 # Social Login
 
 > 인증, 계정, 등록 등을 다루는 여러가지 방법이 존재하는데, 우리는 **`django-allauth` 라는 라이브러리를 사용해서 손쉽게 Social Login을 구현할 수 있다.**
+>
+> [django-allauth](https://django-allauth.readthedocs.io/en/latest/installation.html) 따라가자
 
 <br>
 
+[config]
+
 사전 준비
+
+[django-allauth](https://django-allauth.readthedocs.io/en/latest/installation.html) 따라가자
+
+```bash
+$ pip install django-allauth
+```
+
+- settings.py
+
+- config/ urls.py
+
+  ```
+  urlpatterns = [
+      path('acounts/', include('acounts.urls')),
+      path('acounts/', include('allauth.urls')),
+      path('articles/', include('articles.urls')),
+      path('admin/', admin.site.urls),
+  ]
+  ```
+
+- migrate
+
+  ```bash
+  $ python manage.py makemigrations
+  No changes detected
+  
+  $ python manage.py migrate
+  ```
+
+  
+
+<br>
 
 
 
 Kakao Developers OAuth 등록
+
+
+
+
+
+social_login.html
+
+```
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load socialaccount %}
+{% block body %}
+
+{% if request.resolver_match.url_name == 'signup' %}
+<h1>회원가입</h1>
+{% elif request.resolver_match.url_name == 'login' %}
+<h1>로그인</h1>
+{% elif request.resolver_match.url_name == 'update' %}
+<h1>회원정보 수정</h1>
+{% else %}
+<h1>비밀번호 변경</h1>
+{% endif %}
+<hr>
+<form action="" method="post">
+{% csrf_token %}
+{% bootstrap_form form %}
+{% buttons submit='수정' reset='초기화' %}
+{% endbuttons %}
+<a href="{% provider_login_url 'kakao' %} ">카카오 로그인</a>
+</form>
+
+{% endblock  %}
+```
+
+- 실행 화면
+
+  - 로그인 버튼
+
+    ![1573709346262](../../../Documents/Hashtag.assets/1573709346262.png)
+
+    <br>
+
+  - 카카오 로그인 버튼
+
+    ![1573709373302](../../../Documents/Hashtag.assets/1573709373302.png)
+
+
+
+- 로그인을 하면 에러 발생 
+
+  ![1573709431232](../../../Documents/Hashtag.assets/1573709431232.png)
+
+
+
+- 로그인 후 redirect 경로를 커스터마이징 한다.
+  - settings.py
+
+```python
+# 로그인 후 리다이렉트 경로
+LOGIN_REDIRECT_URL = 'articles:index'
+```
+

@@ -58,7 +58,7 @@ def login(request):
         'form' : form,
     } 
 
-    return render(request, 'acounts/acount_form.html', context)
+    return render(request, 'acounts/social_login.html', context)
 
 def logout(request):
     # 이 서버를 보고 있는 사용자의 정보가 자동으로 들어가서 로그아웃을 수행한다.
