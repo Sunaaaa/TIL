@@ -2,7 +2,7 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import get_user_model
-from .models import Article, Comment
+from .models import Article, Comment, Hashtag
 from .forms import ArticleForm, CommentForm
 from IPython import embed
 import hashlib
@@ -25,8 +25,6 @@ def index(request):
 @login_required
 def create(request):
     if request.method=="POST":
-        # embed()
-
         # Binding  과정
         # Form 인스턴스를 생성하고, 전달받은 데이터를 채운다.
         # 인스턴스에 데이터를 채워서, 유효성 검증을 진행한다.
@@ -38,18 +36,20 @@ def create(request):
             article.user = request.user
             # 유효성 검증이 끝난 form은 dict 형태로 뽑혀 나온다.
             # cleaned_data 를 통해 dict 안의 데이터를 검증한다.
-            # title = form.cleaned_data.get('title')
-            # content = form.cleaned_data.get('content')
-            # article = Article.objects.create(title=title, content=content)
             article.save()
+
+            # hashtag
+            # article.content.split() : 게시글 내용을 잘라서 리스트로 만든다.
+            for word in article.content.split():
+                # word가 '#'으로 시작할 경우 해시태그 등록
+                if word.startswith('#'):
+                    hashtag, created = Hashtag.objects.get_or_create(content=word)
+                    article.hashtags.add(hashtag)
 
             return redirect('articles:detail', article.pk)
     
     else :
         form = ArticleForm()
-    # Form으로 전달 받는 형태가 2가지
-    # 1. GET 요청 -> 비어있는 Form 전달
-    # 2. 유효성 검증 실패 -> 에러 메시지도 담겨서 Form 전달        
     context = {
         'form' : form
     }
@@ -98,6 +98,15 @@ def update(request, article_pk):
 
             if form.is_valid():
                 article = form.save()
+
+                # hashtag
+                article.hashtags.clear()
+                for word in article.content.split():
+                    if word.startswith('#'):
+                        hashtag, created = Hashtag.objects.get_or_create(content=word)
+                        article.hashtags.add(hashtag)
+
+
                 return redirect('articles:detail', article_pk)
 
         else :
@@ -192,3 +201,15 @@ def follow(request, article_pk, user_pk):
     return redirect('articles:detail', article_pk)
         
 
+def hashtag(request, hash_pk):
+    # 해시 태그 가져오기
+    hashtag = get_object_or_404(Hashtag, pk=hash_pk)
+
+    # 해당 해시태그를 참조하는 게시글을 가져오기
+    articles = hashtag.article_set.order_by('-pk')
+    context = {
+        'hashtag' : hashtag,
+        'articles' : articles,
+    }
+
+    return render(request, 'articles/hashtag.html', context)

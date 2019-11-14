@@ -4,6 +4,12 @@ from imagekit.processors import Thumbnail
 from django.conf import settings
 
 # Create your models here.
+
+class Hashtag(models.Model):
+    # 해쉬태그가 없어도 게시글이 작성될 수 있도록 blank=True 옵션 
+    content = models.TextField(blank=True)
+
+
 class Article(models.Model):
     title = models.CharField(max_length=40)
     content = models.TextField()
@@ -13,6 +19,7 @@ class Article(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_articles', blank=True)
+    hashtags = models.ManyToManyField(Hashtag, blank=True)
 
     # 객체 표시 형식 수정
     def __str__(self):

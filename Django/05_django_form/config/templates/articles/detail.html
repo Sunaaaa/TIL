@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
+
+{% load make_link %}
+
 {% block body %}
 {% include 'articles/_follow.html' %}
 {% load bootstrap4 %}
 <div class="container">
   <h2>{{article.title}}</h2>
   <div class="text-align mt-4">
-    <p>내용  :  {{article.content}}</p>
+    <p>내용  :  {{article|hashtag_link|safe}}</p>
     <p>최초 업로드 날짜  :  {{article.created_at}}</p>
     <p>최종 수정 날짜  :  {{article.updated_at}}</p>
   </div>
