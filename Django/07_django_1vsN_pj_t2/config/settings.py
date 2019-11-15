@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'movies',
     'bootstrap4',
+    'imagekit',
     'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
