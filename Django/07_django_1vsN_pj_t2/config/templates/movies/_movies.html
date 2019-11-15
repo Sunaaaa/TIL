@@ -5,7 +5,12 @@
         {{ movie.title }}
       </h5>
       <hr>
-      <img class="mx-auto" src="{{movie.poster.url}}" alt="{{movie.title}}" style="width : 100px; height : 150px; display : block;">
+      {% if movie.poster %}
+        <img class="mx-auto" src="{{movie.poster.url}}" alt="{{movie.title}}" style="width : 100px; height : 150px; display : block;">
+
+      {% else %}
+  <p>Sorry, no image.</p>
+      {% endif %}
       <a href="{% url 'movies:detail' movie.pk %}" class="btn btn-warning">상세보기</a>
     </div>
   </div>
