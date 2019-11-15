@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{% url 'movies:index' %}">
+    Hello, {{ user.username }}
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      {% if user.is_authenticated %}
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'movies:index' %}">메인화면</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'accounts:logout' %}">로그아웃</a>
+        </li>
+      {% else %}
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'accounts:login' %}">로그인</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'accounts:signup' %}">회원가입</span></a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav> 

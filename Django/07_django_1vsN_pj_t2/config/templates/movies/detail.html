@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+  <hr>
+
+    <h1 class="text-center">{{movie.title}}</h1>
+    <p class="text-center"> ( {{movie.created_at}} ,  {{movie.updated_at}} ) </p>
+
+  <hr>
+    <div class="container">
+      <img class="mx-auto" src="{{movie.poster.url}}" alt="{{movie.title}}" style="display : block;">
+    </div>
+    <div class="container">    
+      <h3>줄거리</h3>
+      <p> {{movie.description}}</p>
+    </div>
+  <hr>
+  
+  <div class="ml-3">
+    <a class="btn btn-warning" href="{% url 'movies:index' %}">INDEX</a>
+{% comment %} 
+    <a class="btn btn-default" href="{% url 'movies:update' movie.pk %}">[EDIT]</a>
+ {% endcomment %}
+    <form action="{% url 'movies:delete' movie.pk %}" method="POST" style="display : inline">
+    {% csrf_token %}
+      <input class="btn btn-danger" type="submit" value="DELETE" >
+      {% comment %} <a class="btn btn-default" href="{% url 'movies:delete' movie.pk %}">[DELETE]</a> {% endcomment %}
+    </form>
+  
+  </div>
+</div>
+
+{% endblock  %}

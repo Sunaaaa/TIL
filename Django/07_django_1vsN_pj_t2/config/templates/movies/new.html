@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+  {% if request.resolver_match.url_name == 'new' %}
+    <h1 class="text-center">새로운 영화</h1>
+  {% else %}
+    <h1 class="text-center">영화 정보 수정</h1>
+  {% endif %}
+  
+  <form action="" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %} 
+    {% buttons submit='제출' reset='초기화' %}
+    {% endbuttons %}
+  </form>
+  <hr>
+  <a href="{% url 'movies:index' %}">[BACK]</a>
+
+{% endblock  %}

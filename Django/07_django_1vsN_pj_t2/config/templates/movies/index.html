@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
 {% block body %}
-  <h1>Articles</h1>
+  <h1>Movie</h1>
   <hr>
-  <a href="{% url 'articles:create' %}">[NEW]</a>
+  <a href="{% url 'movies:new' %}">[NEW]</a>
   <hr>
   <div class="row">
-    {% for article in articles %}
+    {% for movie in movies %}
       <!-- 모듈화 시켜둔 article 템플릿 가져오기 -->
-      {% include 'articles/_article.html' %}
+      {% include 'movies/_movies.html' %}
+      {% empty %}
+      <p>Sorry, no movie.</p>
     {% endfor %}  
+    
   </div>
-
 
 {% endblock  %}

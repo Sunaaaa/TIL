@@ -2,17 +2,11 @@
   <div class="card">
     <div class="card-body">
       <h5 class="card-title">
-        영화 제목: {{ article.title }}
+        {{ movie.title }}
       </h5>
       <hr>
-      <p>
-        {{created_at}}
-        {{updated_at}}
-      </p>
-      <p>
-        {{description}}
-      </p>
-      <a href="{% url 'articles:detail' article.pk %}" class="btn btn-warning">상세보기</a>
+      <img class="mx-auto" src="{{movie.poster.url}}" alt="{{movie.title}}" style="width : 100px; height : 150px; display : block;">
+      <a href="{% url 'movies:detail' movie.pk %}" class="btn btn-warning">상세보기</a>
     </div>
   </div>
 </div> 
