@@ -1,0 +1,27 @@
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MOVIES</title>
+  {% bootstrap_css %}
+  <!-- FontAwesome -->
+  <script src="https://kit.fontawesome.com/d3ba2beacb.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    {% comment %} {% include 'articles/_nav.html' %} {% endcomment %}
+    <div class="container">
+    {% block body %}
+    {% endblock  %}
+    
+    </div>
+
+  {% bootstrap_javascript jquery='full' %}
+</body>
+
+</html>

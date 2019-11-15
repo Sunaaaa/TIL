@@ -8,15 +8,7 @@ class Movie(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField()
 
-    poster = ProcessedImageField(
-        processors=[Thumbnail(200,300)],    # 처리할 작업
-        format='JPEG',              # 이미지 포맷
-        options={                   # 각종 추가 옵션
-            'quality' : 90
-        },
-        upload_to = 'movies/image' # 저장 위치
-        # 실제 경로 : MEDIA_ROOT/movies/image
-    )
+    poster =  models.ImageField(blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

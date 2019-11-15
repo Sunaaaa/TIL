@@ -1,0 +1,18 @@
+<div class="col-12 col-md-6 mb-3">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">
+        영화 제목: {{ article.title }}
+      </h5>
+      <hr>
+      <p>
+        {{created_at}}
+        {{updated_at}}
+      </p>
+      <p>
+        {{description}}
+      </p>
+      <a href="{% url 'articles:detail' article.pk %}" class="btn btn-warning">상세보기</a>
+    </div>
+  </div>
+</div> 
