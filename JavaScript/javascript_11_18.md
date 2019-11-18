@@ -257,13 +257,19 @@ if (userName === '도현'){
 document.write(message)		
 ```
 
+- 프롬프트를 이용해서 받은 `userName`을 받아 if문을 실행하고, `userName`을 확인해보자!
 
+  ![1574053038541](tpassets/1574053038541.png)
 
+  <br>
 
+  ![1574053046831](tpassets/1574053046831.png)
 
+  <br>
 
+  ![1574053056624](tpassets/1574053056624.png)
 
-
+<br>
 
 
 
@@ -271,13 +277,60 @@ document.write(message)
 
 ### 3.1 while 문
 
+```
+let i = 0 
+while (i<6){
+  console.log(i)
+  i++
+}
+```
 
+![1574053105865](tpassets/1574053105865.png)
 
-
+<br>
 
 ### 3.2 for 문
 
+1. JavaScript 의 가장 기본적인 반복문
 
+   - for 문에서 사용할 변수 하나를 정의하고, 그 변수가 특정 조건에 false 값이 될 때까지 계속 연산-반복
+
+     ```
+     for (let j = 0; j < 6; j++){
+       console.log(j)
+     }
+     ```
+
+     ![1574053228162](tpassets/1574053228162.png)
+
+     <br>
+
+2. Python 의 for in 문법과 비슷하게 사용가능!
+
+   ```
+   const numbers = [1,2,3,4,5]
+   for (let number of numbers){
+     console.log(number)
+   }
+   ```
+
+   ![1574053248755](tpassets/1574053248755.png)
+
+   <br>
+
+3. number 값 재 할당이 필요없으면 상수 사용 가능!
+
+   - 직접 list를 지정하는 것도 가능하다.
+
+     ```
+     for (let number of [1,2,3,4,5]){
+       console.log(number)
+     }
+     ```
+
+     ![1574053276755](tpassets/1574053276755.png)
+
+     <br>
 
 
 
@@ -295,15 +348,70 @@ document.write(message)
 
 - 인터프리터가 함수에 닿지 않았는데 위로 끌어올려 (호이스팅) 실행시킨다. 
 
+  - 함수 정의보다 함수 호출이 먼저된 경우
+
+    ```
+    console.log(add(2,1))
+    function add(num1, num2){
+      return num1 + num2
+    }
+    ```
+
+    
+
+  - 함수 호출보다 함수 정의가 먼저된 경우
+
+    ```
+    function add(num1, num2){
+      return num1 + num2
+    }
+    console.log(add(2,1))
+    ```
+
+    
+
 
 
 ### 4.2 표현식 
 
 - 함수 정의되기 전에 함수가 호출이 되면 ERROR
 
+  - 함수 정의보다 함수 호출이 먼저된 경우
+
+    ```
+    console.log(sub(2,1))
+    const sub = function(num1, num2){
+      return num1-num2
+    }
+    ```
+
+    
+
+  - 함수 호출보다 함수 정의가 먼저된 경우
+
+    ```
+    const sub = function(num1, num2){
+      return num1-num2
+    }
+    console.log(sub(2,1))
+    ```
+
+    
 
 
 
+### 4.3 type
+
+- type을 확인하면 둘다 function으로 동일!
+
+  작동 방법만 다르다.
+
+  ```
+  console.log(typeof(add))
+  console.log(typeof(sub))
+  ```
+
+  
 
 
 
@@ -321,3 +429,322 @@ document.write(message)
 >
 > - 화살표 함수의 경우 `function` 키워드로 정의한 함수와 100% 동일하지 않다. 
 > - 화살표 함수는 항상 **익명함수 (Anonymouse Function) !!!**
+
+
+
+
+
+1. `function` 키워드 생략 가능
+2. 함수에 매개변수 하나 
+3. 함수 바디에 표현식 하나 
+4. 인자가 없는 경우 
+5. 객체를 return 하는 경우
+   - `return `키워드 有
+   - `return `키워드 無
+6. 기본 인자 부여
+
+
+
+
+
+## 익명 / 1회용 함수 (Anonymouse Function)
+
+> JavaScript에서는 1회용으로 사용하는 함수의 이름을 짓지 않아도 된다. 
+>
+> 일반적으로 함수를 정의하고 변수에 함수를 저장하는 과정 등을 거쳐 실행한다. 
+>
+> 하지만, `즉시실행함수`는 함수가 선언되자마자 즉시 실행된다. 
+>
+> <hr>
+>
+> **Why ?**  **초기화**에 사용한다.
+>
+> - `즉시 실행함수`는 선언되자마자 실행되기 때문에, 같은 함수를 다시 호출할 수 없다. 그래서 초기화 부분에 주로 사용한다.
+
+
+
+- `function`키워드를 활용해서 함수를 선언할 때는, 이름을 지정하지 않으면 ERROR가 난다. 
+
+  ```javascript
+  function (num) {return num ** 3}
+  ```
+
+
+
+해결!
+
+1. 기명 함수로 만들기 (변수, 상수에 할당)
+
+   ```javascript
+   const cube = function (num) {return num ** 3}
+   ```
+
+   - 화살표 함수 또한 기본적으로 익명함수이지만, 변수 및 상수에 할당해서 기명함수처럼 사용 가능
+
+     ```javascript
+     const squareRoot = num => num ** 0.5
+     ```
+
+2. 익명함수 바로 실행시키기
+
+   ```javascript
+   console.log(function (num) {return num ** 3}(2))
+   console.log((num => num ** 0.5)(4))
+   ```
+
+   
+
+
+
+
+
+## 6. 배열 (Array)
+
+
+
+
+
+
+
+## 7. Object
+
+> JavaScript 또한 객체지향!
+
+```
+const me = {
+  // key 가 한 단어일 때
+  name : '선호', 
+
+  // key가 여러 단어일 때, ' '로 감싸준다.
+  'phone number' : '01012345678',
+
+  appleProducts : {
+    iphone : 'xs', 
+    watch : 'series5', 
+    macbook : 'pro2019'
+  }
+}
+```
+
+
+
+
+
+
+
+### 7.2 ES5 방식
+
+```javascript
+// ES5
+
+var books = ['자바스크립트 입문', '장고 웹 프로그래밍']
+var comics = {
+  'DC' : ['Aquaman', 'Jocker'],
+  'Marvel' : ['Avengers', 'Spider Man']
+}
+
+var magazines = null
+var bookShop = {
+  books : books,
+  comics : comics,
+  magazines : magazines
+}
+
+console.log(bookShop)
+console.log(typeof bookShop)
+console.log(bookShop.books)
+console.log(bookShop.books[0])
+```
+
+
+
+
+
+### 7.3 ES6 이후 
+
+- 객체의 Key와 Value가 똑같으면, 마치 배열처럼 한번만 작성 가능
+
+  ```javascript
+  var books = ['자바스크립트 입문', '장고 웹 프로그래밍']
+  var comics = {
+    'DC' : ['Aquaman', 'Jocker'],
+    'Marvel' : ['Avengers', 'Spider Man']
+  }
+  
+  var magazines = null
+  var bookShop = {
+    books,
+    comics,
+    magazines
+  }
+  
+  console.log(bookShop)
+  console.log(typeof bookShop)
+  console.log(bookShop.books)
+  console.log(bookShop.books[0])
+  
+  
+  ```
+
+  
+
+
+
+
+
+### JSON
+
+> **JSON** (JavaScript Object Notation) : JavaScript 객체 표기법
+>
+> 웹에서 데이터를 주고받을 때 대표적으로 JSON, XML, YAML 형식 등이 있다. **주로 JSON을 사용한다.**
+>
+> - Key-Value 형태의 자료구조를 JavaScript Object와 유사한 모습으로 표현하는 표기법
+> - 하지만 JSON을 모습만 비슷할 뿐, 실제 Object처럼 사용하기 위해서는 다른 언어들과 마찬가지로 **parsing (구문 분석) 하는 작업이 필요**하다.
+
+<br>
+
+JSON : String
+
+JavaScript Object : Object
+
+
+
+#### [ Object VS JSON  ] 
+
+JSON
+
+- 데이터를 표현하기 위한 단순 문자열 (String)
+
+Object
+
+- JavaScript의 Key-Value Pair의 자료구조
+
+
+
+
+
+
+
+
+
+## 8. Array Helper Method
+
+> **Helper** 란 **자주 사용하는 로직을 재활용**할 수 있게 만든 일종의 Library
+>
+> ES6부터 본격적으로 사용되기 시작했다. 
+>
+> [MDN](https://developer.mozilla.org/ko/)를 참고하여 더우우우우우우우우우우욱더 상세한 사용법을 알아보자!
+
+<br>
+
+### 8.1 forEach
+
+- `arr.forEach(callback(element, index, array))`
+
+  - 주어진 callback 함수를 배열에 있는 각 요소에 대해 한번씩 실행
+
+    ```javascript
+    const IOT1 = ['수연', '승찬', '한석', '경희', '영선']
+    IOT1.forEach(function(student){
+      console.log(student)
+    })
+    ```
+
+    
+
+
+
+
+
+#### [실습] 
+
+#### 1. for를 forEach로 바꾸기 
+
+##### for
+
+```javascript
+function handleStudents(){
+  const students = [
+    { id : 1, name : '오은애', status : '응애?'},
+    { id : 15, name : '서혁진', status : '기염둥이....?'},
+    { id : 28, name : '김영선', status : '너무 쉽네 JS...'},
+  ]
+
+  for (let i = 0; i < students.length; i++){
+    console.log(students[i])
+    console.log(students[i].name)
+    console.log(students[i].status)
+  }
+}
+handleStudents()
+```
+
+
+
+<br>
+
+##### forEach
+
+```javascript
+function handleStudents(){
+  const students = [
+    { id : 1, name : '오은애', status : '응애?'},
+    { id : 15, name : '서혁진', status : '기염둥이....?'},
+    { id : 28, name : '김영선', status : '너무 쉽네 JS...'},
+  ]
+
+  students.forEach(students => {
+    console.log(students)
+    console.log(students.name)
+    console.log(students.status)
+  })
+}
+handleStudents()
+```
+
+- 실행 결과는 같다 
+
+  ![1574059170995](tpassets/1574059170995.png)
+
+  <br>
+
+
+
+#### 2. images 배열 안에 있는 정보를 곱해 넓이를 구하여, areas 배열에 저장
+
+```javascript
+const images = [
+  { height : 30, width : 55 },
+  { height : 50, width : 178 },
+  { height : 81, width : 35 },
+]
+const areas = []
+
+// forEach
+images.forEach(images => {
+  areas.push(images.height * images.width)
+})
+
+console.log(areas)
+```
+
+- 실행 결과
+
+  ![1574059480580](tpassets/1574059480580.png)
+
+  <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
