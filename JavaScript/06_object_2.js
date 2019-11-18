@@ -43,5 +43,3 @@ console.log(bookShop.books)
 console.log("")
 console.log(bookShop.books[0])
 console.log("")
-
-

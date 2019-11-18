@@ -2,8 +2,6 @@
 
 
 
-
-
 ## 0. 사전 준비 
 
 > HTML로 뼈대를 잡고 CSS로 꾸미고, JavaScript로 활력을 불어 넣는다. 
@@ -23,7 +21,7 @@
   
   - Windows Installer (.ms) 64bit
   
-    ![1574043022907](tpassets/1574043022907.png)
+    
 
 
 
@@ -82,44 +80,52 @@
 
 ### 0.3 Naming Convention
 
-#### lower Camel Case
-
-- 단봉 낙타 표기법
-- JavaScript의 기본 표기법
-
-
-
-#### Upper Camel Case
-
-- 쌍봉 낙타 표기번
-
-
-
-#### snake_case
-
-
-
-#### kebob-case
-
-
-
-### 0.4 Extentions (추천)
-
-- `auto close tag`
-- `rainbow brackets`
-- `indent-rainbow`
+> #### lower Camel Case
+>
+> - 단봉 낙타 표기법
+> - JavaScript의 기본 표기법
+>
+> 
+>
+> #### Upper Camel Case
+>
+> - 쌍봉 낙타 표기번
+>
+> 
+>
+> #### snake_case
+>
+> - 단어가 합쳐진 부분마다 중간에 언더라인(`_`) 을 붙여 주는 방법
+>   - **Train_Case**
+>     - 각 단어의 맨 앞글자를 대문자로 표기
+>   - **spinal_case**
+>     - 각 단어의 맨 앞글자를 소문자로 표기
+>
+> 
+>
+> #### kebob-case
+>
+> - 단어가 합쳐진 부분마다 중간에 Dash(`-`) 들을 붙여 주는 방법
 
 <br>
 
+### 0.4 Extentions (추천)
 
+> - `auto close tag`
+> - `rainbow brackets`
+> - `indent-rainbow`
 
-실행 방법
+<br>
+
+### 0.5 .js 실행 방법
 
 ```bash
 $ node [파일명]
 ```
 
 ![1574044421490](tpassets/1574044421490.png)
+
+<br><br>
 
 ## 1. Variable
 
@@ -175,6 +181,25 @@ $ node [파일명]
 
 ### 1.2 const (상수) 
 
+> 변수 와 상수는 어디에 써야 할까?
+>
+> - 어디에 변수를 쓰고, 어디에 상수를 쓰는지에 대한 결정은 프로그래머의 몫
+> - `파이 근삿값`과 같은 상수가 적절 (변할 일이 없는 값)
+>
+> 
+>
+> `var` VS `let` VS `const`
+>
+> - `var` : 할당 및 선언 자유, 함수 스코프
+> - `let` : 할당 자유, 선언은 한번만, 블록 스코프
+> - `const` : 할당과 선언 한번만, 블록 스코프 
+>
+> 
+>
+> `var`는 호이스팅과 같은 문제를 야기하기 때문에, 앞으로는 `let`과 `const`를 사용해서 개발을 진행하자!!!
+
+<br>
+
 - 값이 변하지 않는 상수를 선언하는 키워드 
   - 상수의 값은 재할당을 통해 바뀔 수 없고, 재선언도 **불가능**하다.
 - `let`과 동일하게 `Block Scope`를 갖는다.
@@ -182,6 +207,10 @@ $ node [파일명]
   - 일단 상수를 사용하고, 값이 바뀌는게 자연스러운 상황이면 그때 변수(`let`)로 바꿔서 사용하는 것을 권장한다.
 
 
+
+<br>
+
+#### [ 실습 ]
 
 - 초기값을 생략하면 **ERROR** 발생
 
@@ -205,36 +234,55 @@ $ node [파일명]
 
   <br>
 
-- 상수 값 재할당
+- 상수 값 재할당 **ERROR** -> Assignment
 
   ```javascript
-  
+  MY_FAV = 10
   ```
 
-- 상수 재 선언
+  ![1574060996088](tpassets/1574060996088.png)
 
+  <br>
+
+- 이미 선언된 상수명으로 상수 재 선언 **ERROR** 
+
+  ```javascript
+  const MY_FAV = 20
   ```
-  
+
+  ![1574061165254](tpassets/1574061165254.png)
+
+  <br>
+
+- 이미 선언된 상수명으로 변수 선언 **ERROR** 
+
+  ```javascript
+  let MY_FAV = 11
   ```
 
+  ![1574061171863](tpassets/1574061171863.png)
+
+  <br>
+
+- 상수도 블록 유효 범위 (`Block Scope`) 를 갖는다. 
+
+  ```javascript
+  const MY_FAV = 7
+  console.log("My Favourite number is ... " + MY_FAV)
   
+  if (MY_FAV === 7){
+    const MY_FAV = 11
+    console.log("My Favourite number is ... " + MY_FAV)
+  }
+  
+  console.log("My Favourite number is ... " + MY_FAV)
+  ```
+
+  ![1574061267940](tpassets/1574061267940.png)
 
 
 
-- 변수 와 상수는 어디에 써야 할까?
-  - 어디에 변수를 쓰고, 어디에 상수를 쓰는지에 대한 결정은 프로그래머의 몫
-  - `파이 근삿값`과 같은 상수가 적절 (변할 일이 없는 값)
-- `var` VS `let` VS `const`
-  - `var` : 할당 및 선언 자유, 함수 스코프
-  - `let` : 할당 자유, 선언은 한번만, 블록 스코프
-  - `const` : 할당과 선언 한번만, 블록 스코프 
-- `var`는 호이스팅과 같은 문제를 야기하기 때문에, 앞으로는 `let`과 `const`를 사용해서 개발을 진행하자!!!
-
-
-
-
-
-
+<br><br>
 
 ## 2. 조건문
 
@@ -271,13 +319,13 @@ document.write(message)
 
 <br>
 
-
+<br>
 
 ## 3. Loop
 
 ### 3.1 while 문
 
-```
+```javascript
 let i = 0 
 while (i<6){
   console.log(i)
@@ -295,7 +343,7 @@ while (i<6){
 
    - for 문에서 사용할 변수 하나를 정의하고, 그 변수가 특정 조건에 false 값이 될 때까지 계속 연산-반복
 
-     ```
+     ```javascript
      for (let j = 0; j < 6; j++){
        console.log(j)
      }
@@ -307,7 +355,7 @@ while (i<6){
 
 2. Python 의 for in 문법과 비슷하게 사용가능!
 
-   ```
+   ```javascript
    const numbers = [1,2,3,4,5]
    for (let number of numbers){
      console.log(number)
@@ -322,7 +370,7 @@ while (i<6){
 
    - 직접 list를 지정하는 것도 가능하다.
 
-     ```
+     ```javascript
      for (let number of [1,2,3,4,5]){
        console.log(number)
      }
@@ -336,84 +384,100 @@ while (i<6){
 
 
 
+<br>
+
 ## 4. 함수 (function)
 
-> 함수 선언식 (statement) : 코드가 실행되기 전에 로드된다.
+> **함수 선언식** (statement) : 코드가 실행되기 전에 로드된다.
 >
-> 함수 표현식 : 
+> **함수 표현식** (expression) : 인터프리터가 해당 코드에 도달했을 때 로드된다. 
 
-
+<br>
 
 ### 4.1 선언식 
 
 - 인터프리터가 함수에 닿지 않았는데 위로 끌어올려 (호이스팅) 실행시킨다. 
 
+  **함수 호출과 함수 정의의 위치에 관계없이 모두 정상적으로 실행**된다. 
+
   - 함수 정의보다 함수 호출이 먼저된 경우
 
-    ```
+    ```javascript
     console.log(add(2,1))
     function add(num1, num2){
       return num1 + num2
     }
     ```
 
-    
+    ![1574061672790](tpassets/1574061672790.png)
+
+    <br>
 
   - 함수 호출보다 함수 정의가 먼저된 경우
 
-    ```
+    ```javascript
     function add(num1, num2){
       return num1 + num2
     }
     console.log(add(2,1))
     ```
 
-    
+    ![1574061701817](tpassets/1574061701817.png)
 
-
+<br>
 
 ### 4.2 표현식 
 
-- 함수 정의되기 전에 함수가 호출이 되면 ERROR
+- **함수를 변수에 담는 모양**
 
-  - 함수 정의보다 함수 호출이 먼저된 경우
+- 함수 정의되기 전에 함수가 호출이 되면 **ERROR**
 
-    ```
+  **반.드.시** 함수 정의가 호출보다 우선되어야 한다. 
+
+  - 함수 정의보다 함수 호출이 먼저된 경우  **ERROR**
+
+    ```javascript
     console.log(sub(2,1))
     const sub = function(num1, num2){
       return num1-num2
     }
     ```
 
-    
+    ![1574061904011](tpassets/1574061904011.png)
+
+    <br>
 
   - 함수 호출보다 함수 정의가 먼저된 경우
 
-    ```
+    ```javascript
     const sub = function(num1, num2){
       return num1-num2
     }
     console.log(sub(2,1))
     ```
 
+    ![1574062017069](tpassets/1574062017069.png)
+
+    <br>
+
     
 
-
-
-### 4.3 type
+### 4.3 typeof
 
 - type을 확인하면 둘다 function으로 동일!
 
   작동 방법만 다르다.
 
+  ```javascript
+  console.log(typeof add)
+  console.log(typeof sub)
   ```
-  console.log(typeof(add))
-  console.log(typeof(sub))
-  ```
 
-  
+  ![1574062153169](tpassets/1574062153169.png)
 
 
+
+<br>
 
 <br>
 
@@ -430,24 +494,120 @@ while (i<6){
 > - 화살표 함수의 경우 `function` 키워드로 정의한 함수와 100% 동일하지 않다. 
 > - 화살표 함수는 항상 **익명함수 (Anonymouse Function) !!!**
 
+### 5.1 기본 function 
+
+```javascript
+const iot1 = function(name){
+  return `hello! ${name}!!`
+}
+iot1('선아')
+```
+
+![1574062277757](tpassets/1574062277757.png)
+
+<br>
+
+### 5.2 화살표 함수 
+
+#### 1. `function` 키워드 생략 가능
+
+```javascript
+const iot1 = (name) => {return `hello! ${name} `}
+iot1('선아')
+```
+
+![1574062617808](tpassets/1574062617808.png)
+
+<br>
+
+#### 2. 함수에 매개변수 하나인 경우,  `( ) `생략
+
+```javascript
+const iot1 = name => {return `hello! ${name} `}
+iot1('선아')
+```
+
+![1574062655353](tpassets/1574062655353.png)
+
+<br>
+
+#### 3. 함수 바디에 표현식 하나인 경우,  `{ }`, `return` 생략
+
+```javascript
+const iot1 = name => `hello! ${name} `
+iot1('선아')
+```
+
+![1574062716783](tpassets/1574062716783.png)
+
+<br>
+
+#### 4. 인자가 없는 경우, `( )` 혹은 `_`로 표시 가능!
+
+```javascript
+let noArgs = () => {return 5}
+noArgs()
+
+let noArgs = _ => {return 5}
+noArgs()
+
+let noArgs = _ => 5
+noArgs()
+```
+
+![1574063016299](tpassets/1574063016299.png)
+
+<br>
+
+#### 5. 객체를 return 하는 경우
+
+- ##### `return `키워드 有
+
+  - 객체를 return할 때는 return 키워드를 명시적으로 적어준다.
+
+    ```javascript
+    let returnObject = () => {return {key:'value'}}
+    console.log(returnObject())
+    console.log(typeof(returnObject()))
+    ```
+
+    ![1574063152140](tpassets/1574063152140.png)
+
+    <br>
+
+  
+
+- ##### `return `키워드 無
+
+  - `return` 대신 `()` 를 붙인다.
+
+    ```javascript
+    returnObject = () => ({key : 'value'})
+    console.log(returnObject())
+    console.log(typeof(returnObject()))
+    ```
+
+    ![1574063212775](tpassets/1574063212775.png)
+
+  <br>
+
+#### 6. 기본 인자 부여
+
+```javascript
+const sayHello = (name='혁진') => `안녕! ${name} `
+console.log(sayHello('선아'))
+console.log(sayHello())
+```
+
+![1574063267569](tpassets/1574063267569.png)
+
+<br>
 
 
 
 
-1. `function` 키워드 생략 가능
-2. 함수에 매개변수 하나 
-3. 함수 바디에 표현식 하나 
-4. 인자가 없는 경우 
-5. 객체를 return 하는 경우
-   - `return `키워드 有
-   - `return `키워드 無
-6. 기본 인자 부여
 
-
-
-
-
-## 익명 / 1회용 함수 (Anonymouse Function)
+### 5.3 익명 / 1회용 함수 (Anonymouse Function)
 
 > JavaScript에서는 1회용으로 사용하는 함수의 이름을 짓지 않아도 된다. 
 >
@@ -461,7 +621,9 @@ while (i<6){
 >
 > - `즉시 실행함수`는 선언되자마자 실행되기 때문에, 같은 함수를 다시 호출할 수 없다. 그래서 초기화 부분에 주로 사용한다.
 
+<br>
 
+**ERROR**
 
 - `function`키워드를 활용해서 함수를 선언할 때는, 이름을 지정하지 않으면 ERROR가 난다. 
 
@@ -469,9 +631,11 @@ while (i<6){
   function (num) {return num ** 3}
   ```
 
+  ![1574063433867](tpassets/1574063433867.png)
 
+<br>
 
-해결!
+**해결!!!**
 
 1. 기명 함수로 만들기 (변수, 상수에 할당)
 
@@ -485,6 +649,10 @@ while (i<6){
      const squareRoot = num => num ** 0.5
      ```
 
+     ![1574063527901](tpassets/1574063527901.png)
+
+     <br>
+
 2. 익명함수 바로 실행시키기
 
    ```javascript
@@ -492,25 +660,194 @@ while (i<6){
    console.log((num => num ** 0.5)(4))
    ```
 
-   
+   ![1574063552707](tpassets/1574063552707.png)
 
 
 
 
+
+<br><br>
 
 ## 6. 배열 (Array)
 
+```javascript
+const numbers = [1,2,3,4,5]
+```
 
 
 
+- 배열의 값
+
+  ```javascript
+  // 배열의 첫번째 인덱스의 요소 값
+  numbers[0] 
+  // 1
+  
+  numbers[-1] 
+  // undefined -> 정확한 양의 정수만 가능
+  ```
+
+  <br>
+
+- `length` : 길이 
+
+  ```javascript
+  numbers.length
+  // 5
+  ```
+
+  <br>
+
+- `reverse()` 
+
+  - 배열을 거꾸로 출력하여 저장
+
+  - **원본 파괴**
+
+    ```javascript
+    // 원본 파괴 
+    numbers.reverse()
+    numbers 
+    // [5,4,3,2,1]
+    
+    numbers.reverse()
+    numbers
+    // [1,2,3,4,5]
+    ```
+
+    <br>
+
+- `push`
+
+  - 배열에 새로운 요소 추가
+
+  - 기본적으로 push 이후에는 배열의 길이를 return
+
+    ```javascript
+    numbers.push('a')
+    // 6
+    numbers
+    // [1,2,3,4,5,'a']
+    ```
+
+    <br>
+
+- `pop`
+
+  - 배열의 가장 마지막 요소 제거 
+
+  - 배열의 가장 마지막 요소를 제거한 이후의 배열 return 
+
+    ```javascript
+    numbers.pop()
+    // 'a'
+    numbers
+    // [1,2,3,4,5]
+    ```
+
+    <br>
+
+- `unshift`
+
+  - 배열 가장 앞에 요소 추가
+
+  - 추가된 이후에 length를 return
+
+    ```javascript
+    numbers.unshift('a')
+    // 6 
+    numbers
+    // ['a', 1,2,3,4,5]
+    ```
+
+    <br>
+
+- `shift`
+
+  - 배열의 가장 앞의 요소 제거 
+
+  - 배열의 가장  앞의 요소를 제거한 이후의 배열 return 
+
+    ```javascript
+    numbers.shift('a')
+    // 'a'
+    numbers
+    // [1,2,3,4,5]
+    ```
+
+  <br>
+
+- `push` & `shift`
+
+  ```
+  numbers.push('a', 'b')
+  numbers
+  // [1,2,3,4,5, 'a', 'b']
+  
+  numbers.unshift('a')
+  numbers
+  // ['a', 1,2,3,4,5, 'a', 'b']
+  ```
+
+  <br>
+
+- `indexOf` 
+
+  - 인자로 주어진 값이 배열 중 가장 먼저 있는 값의 인덱스를 return 
+
+    ```javascript
+    // 가장 먼저 있는 'a'의 인덱스를 return 
+    numbers.indexOf('a')
+    // 0
+    
+    // 가장 먼저 있는 'b'의 인덱스를 return 
+    numbers.indexOf('b')
+    // 8
+    ```
+
+  - 만약, 찾고자 하는 요소가 Array에 없는 경우 -1을 return
+
+    ```javascript
+    // 만약, 찾고자 하는 요소가 Array에 없는 경우 -1을 return 
+    numbers.indexOf('c')
+    // -1
+    ```
+
+    <br>
+
+- `join`
+
+  - 배열의 요소를 join 함수 인자를 기준으로 묶어서 문자열로 return
+
+    ```javascript
+    // ','를 기준으로 문자열을 return 한다. 
+    numbers.join()
+    // 'a,1,2,3,4,5,a,b' (기본값은 ',')
+    
+    // 각 요소를 '-'로 붙여 문자열을 return 한다. 
+    numbers.join('-')
+    // 'a-1-2-3-4-5-a-b'
+    
+    // 모든 요소가 다 붙어서 문자열을 return 한다. 
+    numbers.join('')
+    // 'a12345ab'
+    ```
+
+  
 
 
+
+<br><br>
 
 ## 7. Object
 
-> JavaScript 또한 객체지향!
+> JavaScript 또한 객체지향! 객체를 생성해보자!
 
-```
+<br>
+
+### 7.1 Object 생성
+
+```javascript
 const me = {
   // key 가 한 단어일 때
   name : '선호', 
@@ -528,11 +865,35 @@ const me = {
 
 
 
+<br>
+
+### 7.2 Object 접근
+
+```javascript
+// key가 한단어일 때 
+console.log(me.name)
+// "선호"
+
+// key가 여러단어일 때는 []를 통해 접근
+console.log(me['name'])
+// "선호"
+console.log(me['phone number'])
+// "01012345678"
+
+console.log(me.appleProducts)
+// { iphone : 'xs', watch : 'series5',  macbook : 'pro2019' }
+
+console.log(me.appleProducts.iphone)
+// "xs"
+```
+
+![1574064593157](tpassets/1574064593157.png)
+
+<br>
 
 
 
-
-### 7.2 ES5 방식
+### 7.3 ES5 방식
 
 ```javascript
 // ES5
@@ -556,11 +917,13 @@ console.log(bookShop.books)
 console.log(bookShop.books[0])
 ```
 
+![1574064679253](tpassets/1574064679253.png)
+
+<br>
 
 
 
-
-### 7.3 ES6 이후 
+### 7.4 ES6 이후 
 
 - 객체의 Key와 Value가 똑같으면, 마치 배열처럼 한번만 작성 가능
 
@@ -578,21 +941,24 @@ console.log(bookShop.books[0])
     magazines
   }
   
+  console.log("ES6")
   console.log(bookShop)
+  console.log("")
   console.log(typeof bookShop)
+  console.log("")
   console.log(bookShop.books)
+  console.log("")
   console.log(bookShop.books[0])
-  
-  
+  console.log("")
   ```
 
-  
+![1574064720650](tpassets/1574064720650.png)
+
+<br>
 
 
 
-
-
-### JSON
+### 7.5 JSON
 
 > **JSON** (JavaScript Object Notation) : JavaScript 객체 표기법
 >
@@ -603,29 +969,48 @@ console.log(bookShop.books[0])
 
 <br>
 
-JSON : String
-
-JavaScript Object : Object
-
-
-
 #### [ Object VS JSON  ] 
 
-JSON
+##### JSON
 
 - 데이터를 표현하기 위한 단순 문자열 (String)
 
-Object
+##### Object
 
 - JavaScript의 Key-Value Pair의 자료구조
 
 
 
+```javascript
+console.log("Object -> String")
+
+// JSON Object -> String
+const jsonData = JSON.stringify({
+  도현 : '합기도',
+  혁진 : '감자',
+})
+
+console.log(jsonData)
+console.log(typeof jsonData)
+
+console.log(" ---------------------------- ")
+console.log("String -> Object")
+
+// String -> Object
+const parseData = JSON.parse(jsonData)
+
+console.log(parseData)
+console.log(typeof parseData)
+
+```
 
 
 
+![1574064795805](tpassets/1574064795805.png)
 
 
+
+<br><br>
 
 ## 8. Array Helper Method
 
@@ -639,6 +1024,23 @@ Object
 
 ### 8.1 forEach
 
+- 기존의 ES5의 for문 
+
+  ```javascript
+  var iot1 = ['도현', '혁진', '은애']
+  
+  console.log("ES5")
+  for (var i = 0; i < iot1.length; i++){
+    console.log(iot1[i])
+  }
+  ```
+
+  ![1574059900059](tpassets/1574059900059.png)
+
+  <br>
+
+#### [  ES6+ 형식 ]
+
 - `arr.forEach(callback(element, index, array))`
 
   - 주어진 callback 함수를 배열에 있는 각 요소에 대해 한번씩 실행
@@ -650,20 +1052,49 @@ Object
     })
     ```
 
-    
+    ![1574059927325](tpassets/1574059927325.png)
+
+    <br>
+
+- **한줄로 리팩토링** 할 수 있다. 
+
+  ```javascript
+  console.log("한줄")
+  IOT1.forEach(student => console.log(student))
+  ```
+
+  ![1574060201309](tpassets/1574060201309.png)
+
+  <br>
+
+- forEach는 기본으로 들어오는 return 값이 없다.
+
+  ```javascript
+  console.log("RETURN 값이 없다 .")
+  console.log("-----")
+  const IOT1 = ['수연', '승찬', '한석', '경희', '영선']
+  const result = IOT1.forEach(
+    student => console.log(student)
+  )
+  console.log("====")
+  console.log("RETURN 값")
+  console.log(result)
+  ```
+
+  ![1574060376620](tpassets/1574060376620.png)
+
+  <br>
 
 
 
+#### [ 실습 ] 
 
+##### 1. for를 forEach로 바꾸기 
 
-#### [실습] 
-
-#### 1. for를 forEach로 바꾸기 
-
-##### for
+###### for
 
 ```javascript
-function handleStudents(){
+function handleStudents_for(){
   const students = [
     { id : 1, name : '오은애', status : '응애?'},
     { id : 15, name : '서혁진', status : '기염둥이....?'},
@@ -676,17 +1107,17 @@ function handleStudents(){
     console.log(students[i].status)
   }
 }
-handleStudents()
+handleStudents_for()
 ```
 
 
 
 <br>
 
-##### forEach
+###### forEach
 
 ```javascript
-function handleStudents(){
+function handleStudents_forEach(){
   const students = [
     { id : 1, name : '오은애', status : '응애?'},
     { id : 15, name : '서혁진', status : '기염둥이....?'},
@@ -699,7 +1130,7 @@ function handleStudents(){
     console.log(students.status)
   })
 }
-handleStudents()
+handleStudents_forEach()
 ```
 
 - 실행 결과는 같다 
@@ -710,7 +1141,7 @@ handleStudents()
 
 
 
-#### 2. images 배열 안에 있는 정보를 곱해 넓이를 구하여, areas 배열에 저장
+##### 2. images 배열 안에 있는 정보를 곱해 넓이를 구하여, areas 배열에 저장
 
 ```javascript
 const images = [
@@ -733,6 +1164,16 @@ console.log(areas)
   ![1574059480580](tpassets/1574059480580.png)
 
   <br>
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -60,6 +60,7 @@ numbers
 numbers.indexOf('a')
 // 0
 
+// 가장 먼저 있는 'b'의 인덱스를 return 
 numbers.indexOf('b')
 // 8
 

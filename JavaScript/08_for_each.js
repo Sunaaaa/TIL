@@ -15,19 +15,25 @@ IOT1.forEach(function(student){
   console.log(student)
 })
 
-// 한줄로 리팩토링 가능!
 console.log("====")
 
+// 한줄로 리팩토링 가능!
+
 console.log("한줄")
+console.log("-----")
+const IOT1 = ['수연', '승찬', '한석', '경희', '영선']
 IOT1.forEach(student => console.log(student))
 
-// forEach는 기본으로 들어오는 retirn 값이 없다. 
+// forEach는 기본으로 들어오는 return 값이 없다. 
 console.log("====")
 
 console.log("RETURN 값이 없다 .")
+console.log("-----")
+const IOT1 = ['수연', '승찬', '한석', '경희', '영선']
 const result = IOT1.forEach(
   student => console.log(student)
 )
+console.log("====")
 console.log("RETURN 값")
 console.log(result)
 

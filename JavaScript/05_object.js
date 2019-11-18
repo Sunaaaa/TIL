@@ -13,18 +13,17 @@ const me = {
 }
 
 // key가 한단어일 때 
-//me.name
+console.log(me.name)
 // "선호"
 
 // key가 여러단어일 때는 []를 통해 접근
-//me['name']
+console.log(me['name'])
 // "선호"
-//me['phone number']
+console.log(me['phone number'])
 // "01012345678"
 
-//me.appleProducts
+console.log(me.appleProducts)
 // { iphone : 'xs', watch : 'series5',  macbook : 'pro2019' }
 
-//me.appleProducts.iphone
-// "xs"
 console.log(me.appleProducts.iphone)
+// "xs"
