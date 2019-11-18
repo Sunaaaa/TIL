@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load bootstrap4 %}
 {% block body %}
 <div class="container">
   <hr>
@@ -9,7 +9,11 @@
 
   <hr>
     <div class="container">
+    {% if movie.poster %}
       <img class="mx-auto" src="{{movie.poster.url}}" alt="{{movie.title}}" style="display : block;">
+    {% else %}
+      <p>Sorry, no pic.</p>
+    {% endif %}
     </div>
     <div class="container">    
       <h3>줄거리</h3>
@@ -19,9 +23,7 @@
   
   <div class="ml-3">
     <a class="btn btn-warning" href="{% url 'movies:index' %}">INDEX</a>
-{% comment %} 
-    <a class="btn btn-default" href="{% url 'movies:update' movie.pk %}">[EDIT]</a>
- {% endcomment %}
+    <a class="btn btn-warning" href="{% url 'movies:edit' movie.pk %}">[EDIT]</a>
     <form action="{% url 'movies:delete' movie.pk %}" method="POST" style="display : inline">
     {% csrf_token %}
       <input class="btn btn-danger" type="submit" value="DELETE" >
@@ -29,6 +31,24 @@
     </form>
   
   </div>
+  <div class="ml-3">
+    {{ratings|length}}개의 평점이 있습니다. 
+  </div>
+  <div class="ml-3">
+    <form action=" {% url 'movies:rating' movie.pk%} " method="post">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      {% buttons submit='작성하기' %}
+      {% endbuttons %}
+    </form>
+  </div>
+  <div class="ml-3">
+    {% for rating in ratings %}
+    <p>{{ rating.score }} 점 : " {{ rating.content }} "</p>
+    
+    {% endfor %}
+  </div>
+  
 </div>
 
 {% endblock  %}

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Movie
+from .models import Movie, Rating
 
 # Django Model Form 
 # Model Form 
@@ -33,27 +33,30 @@ class MovieForm(forms.ModelForm):
         model = Movie
         fields = ('title', 'content', 'poster',)
 
-# Django Form 
-# class ArticleForm(forms.Form):
-#     title = forms.CharField(
-#         max_length=40, 
-#         # HTML TAG 와 동일
-#         label='제목',
-#         widget=forms.TextInput(
-#             attrs={
-#                 'class' : 'title',
-#                 'placeholder' : '제목을 입력해주세요~',
-#             }
-#         )
-#     )
-#     content = forms.CharField(
-#         label='내용',
-#         widget=forms.Textarea(
-#             attrs={
-#                 'class' : 'content',
-#                 'placeholder' : '내용을 입력해주세욥',
-#                 'rows' : 5,
-#                 'cols' : 30,
-#             }
-#         )
-#     )
+class RatingForm(forms.ModelForm):
+    score = forms.FloatField(
+        required=False, 
+        max_value=5, min_value=0, 
+        widget=forms.NumberInput(
+            attrs={
+                'id': 'score', 
+                'step': "0.01"
+            }
+        )
+    )
+
+    content=forms.CharField(
+        label="한줄평",
+        widget=forms.Textarea(
+            attrs={
+                'class' : 'content',
+                'placeholder' : '한줄평을 작성해주세요.',
+                'rows' : 1,
+                'cols' : 100,
+
+            }
+        )
+    )
+    class Meta:
+        model = Rating
+        fields = ('score', 'content', )
