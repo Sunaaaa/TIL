@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Movie
+from .models import Movie, Rating
 from .forms import MovieForm, RatingForm
 from django.contrib.auth.decorators import login_required
 
@@ -70,7 +70,11 @@ def detail(request, movie_pk):
 
 def delete(request, movie_pk):
     movie = Movie.objects.get(pk=movie_pk)
-    movie.delete()
+    if request.user.is_authenticated:
+        if request.user == movie.user:
+            movie.delete()
+        else :
+            return redirect('movies:detail', movie_pk)
 
     return redirect('movies:index')
 
@@ -78,15 +82,19 @@ def edit(request, movie_pk):
 
     movie = get_object_or_404(Movie, pk=movie_pk)
 
-    if request.method == "POST":
-        form = MovieForm(request.POST, request.FILES, instance=movie)
+    if request.user == movie.user:
 
-        if form.is_valid():
-            movie = form.save()
-            return redirect('movies:detail', movie_pk)
+        if request.method == "POST":
+            form = MovieForm(request.POST, request.FILES, instance=movie)
 
-    else : 
-        form = MovieForm(instance=movie)
+            if form.is_valid():
+                movie = form.save()
+                return redirect('movies:detail', movie_pk)
+
+        else : 
+            form = MovieForm(instance=movie)
+    else :
+        return redirect('movies:detail', movie_pk)
     context = {
         'form' : form,
     }
@@ -107,5 +115,18 @@ def rating(request, movie_pk):
             rating.user = user
             rating.movie = movie
             rating.save()
+
+    return redirect('movies:detail', movie_pk)
+
+    
+def rating_delete(request, movie_pk, rating_pk):
+
+    if request.user.is_authenticated:
+        movie = get_object_or_404(Movie, pk=movie_pk)
+        rating = get_object_or_404(Rating, pk=rating_pk)
+
+
+        if request.user == rating.user:
+            rating.delete()    
 
     return redirect('movies:detail', movie_pk)

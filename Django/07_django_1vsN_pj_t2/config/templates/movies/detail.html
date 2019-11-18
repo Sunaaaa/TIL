@@ -6,8 +6,10 @@
 
     <h1 class="text-center">{{movie.title}}</h1>
     <p class="text-center"> ( {{movie.created_at}} ,  {{movie.updated_at}} ) </p>
+    <p class="text-center"> ( 작성자 : {{movie.user}}) </p>
 
   <hr>
+
     <div class="container">
     {% if movie.poster %}
       <img class="mx-auto" src="{{movie.poster.url}}" alt="{{movie.title}}" style="display : block;">
@@ -19,16 +21,20 @@
       <h3>줄거리</h3>
       <p> {{movie.description}}</p>
     </div>
+
   <hr>
   
   <div class="ml-3">
     <a class="btn btn-warning" href="{% url 'movies:index' %}">INDEX</a>
-    <a class="btn btn-warning" href="{% url 'movies:edit' movie.pk %}">[EDIT]</a>
-    <form action="{% url 'movies:delete' movie.pk %}" method="POST" style="display : inline">
-    {% csrf_token %}
-      <input class="btn btn-danger" type="submit" value="DELETE" >
-      {% comment %} <a class="btn btn-default" href="{% url 'movies:delete' movie.pk %}">[DELETE]</a> {% endcomment %}
-    </form>
+    {% if request.user == movie.user %}
+
+      <a class="btn btn-warning" href="{% url 'movies:edit' movie.pk %}">EDIT</a>
+      <form action="{% url 'movies:delete' movie.pk %}" method="POST" style="display : inline">
+      {% csrf_token %}
+        <input class="btn btn-danger" type="submit" value="DELETE" >
+      </form>
+    
+    {% endif %}
   
   </div>
   <div class="ml-3">
@@ -44,11 +50,16 @@
   </div>
   <div class="ml-3">
     {% for rating in ratings %}
-    <p>{{ rating.score }} 점 : " {{ rating.content }} "</p>
-    
+      <p>[ {{rating.user}} 님 ] | {{ rating.score }} 점 : " {{ rating.content }} "</p>    
+
+      {% if request.user == rating.user %}
+        <form action=" {% url 'movies:rating_delete' movie.pk rating.pk%} " method="post">
+          {% buttons submit='삭제' %}
+          {% endbuttons %}   
+        </form>      
+      {% endif %}
     {% endfor %}
   </div>
-  
 </div>
 
 {% endblock  %}
