@@ -240,6 +240,22 @@ $ node [파일명]
 
 ### 2.1 if문
 
+```javascript
+const userName = prompt("What is your name?")
+
+message = ''
+
+if (userName === '도현'){
+  message = '<h1>유단자... 까불지마요..</h1>'
+    
+} else if (userName === '혁진'){ 	
+  message = '<h1>감자 ...혁진 감자합니다.</h1>'
+} else {
+  message = `<h1>${userName} .. 누구? ? </h1>`
+}
+
+document.write(message)		
+```
 
 
 
@@ -251,6 +267,57 @@ $ node [파일명]
 
 
 
+## 3. Loop
+
+### 3.1 while 문
 
 
 
+
+
+### 3.2 for 문
+
+
+
+
+
+
+
+## 4. 함수 (function)
+
+> 함수 선언식 (statement) : 코드가 실행되기 전에 로드된다.
+>
+> 함수 표현식 : 
+
+
+
+### 4.1 선언식 
+
+- 인터프리터가 함수에 닿지 않았는데 위로 끌어올려 (호이스팅) 실행시킨다. 
+
+
+
+### 4.2 표현식 
+
+- 함수 정의되기 전에 함수가 호출이 되면 ERROR
+
+
+
+
+
+
+
+<br>
+
+## 5. 화살표 함수 (Arrow Function)
+
+> ES6 이후에 나왔으며, 기존의 funciton과 중괄호 숫자를 줄이기 위해 고안된 문법
+>
+> 1. `function` 키워드 생략 가능
+> 2. 함수에 매개변수 하나 -> () 생략 가능
+> 3. 함수 바디에 표현식 하나 -> {}, return  생략 가능
+>
+> 
+>
+> - 화살표 함수의 경우 `function` 키워드로 정의한 함수와 100% 동일하지 않다. 
+> - 화살표 함수는 항상 **익명함수 (Anonymouse Function) !!!**
