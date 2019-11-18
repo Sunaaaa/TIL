@@ -18,9 +18,22 @@
 
 // 상수 
 // 초기값을 생략하면 ERROR
-const MY_FAV
+// const MY_FAV
 
 // MY_FAV를 상수로 정의하고 그 값을 7로 함
 const MY_FAV = 7
 console.log("My Favourite number is ... " + MY_FAV)
 
+// 상수 재할당 ERROR -> Assignment
+// MY_FAV = 10
+
+// 상수 재선언 ERROR
+// const MY_FAV = 20
+// let MY_FAV = 11
+
+if (MY_FAV === 7){
+  const MY_FAV = 11
+  console.log("My Favourite number is ... " + MY_FAV)
+}
+
+console.log("My Favourite number is ... " + MY_FAV)
