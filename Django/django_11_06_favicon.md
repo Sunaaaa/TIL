@@ -10,6 +10,15 @@
 
 <br>
 
+- base.html에 아래의 코드 추가!
+
+  ```javascript
+  <link rel="shortcut icon" href="{% static 'articles/favicon/favicon.ico' %}" type="image/x-icon" >
+  ```
+
+  
+<br>
+
 - favicon 적용 화면 
 
   ![1573003386470](https://user-images.githubusercontent.com/39547788/68260343-1cf73b80-0080-11ea-856e-217d7febfed3.png)

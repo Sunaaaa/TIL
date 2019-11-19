@@ -10,7 +10,7 @@
 - 특정 이벤트가 발생했을 때, 시스템에 의해 호출되는 함수
 - 자주 사용되는 대표적인 예 -> 이벤트 핸들러 처리 
 
-
+<br>
 
 - `<script>`태그 추가 
 
@@ -29,6 +29,8 @@
   ```
 
   ![1574128326646](tpassets/1574128326646.png)
+
+  <br>
 
 - 이벤트 핸들러 사용하기
 
@@ -53,6 +55,12 @@
 
     <br>
 
+  - 실행 화면
+
+    ![1574133361294](tpassets/1574133361294.png)
+
+    <br>
+
 
 
 ### 1.2 예시
@@ -68,7 +76,7 @@ undefined
 doSomething('해커톤')
 ```
 
-
+![1574133371485](tpassets/1574133371485.png)
 
 <br>
 
@@ -88,6 +96,14 @@ doSomething('해커톤')
   })
   undefined
   ```
+  
+  - 실행 화면
+  
+    ![1574133436125](tpassets/1574133436125.png)
+  
+    ![1574133442621](tpassets/1574133442621.png)
+  
+    <br>
 
 
 
@@ -95,11 +111,24 @@ doSomething('해커톤')
 
 - 우리가 원하는 시점에 함수를 호출해서 사용할 수 있게 되었다. 
 
+  ```javascript
+  function doSomething(task, callback) {
+  	alert(`자, 이제 ${task} 준비를 시작해볼까?`)|
+	callback()
+  }
+  function alertStart() {
+  	alert('당장 이번주 금요일부터 시작이야... :)')
+  }
+  doSomething('해커톤', alertStart)
   ```
   
-  ```
-
+  - 실행 화면
   
+    ![1574133588758](tpassets/1574133588758.png)
+  
+    ![1574133568524](tpassets/1574133568524.png)
+  
+    
 
 
 
@@ -168,7 +197,7 @@ doSomething('해커톤')
 </html>
 ```
 
-![1574130335045](../../../AppData/Roaming/Typora/typora-user-images/1574130335045.png)
+![1574133615102](tpassets/1574133615102.png)
 
 <br>
 
@@ -177,5 +206,44 @@ doSomething('해커톤')
 ## 3. Google dino
 
 ### 3.1 BOM & DOM
+
+#### 3.1.1 BOM
+
+> **BOM** (Browser Object Model) : JavaScript가 브라우저와 소통하기 위한 모델
+>
+> - 브라우저 제작사마다 세부사항이 다소 다르게 구현되고 한정적이다.
+> - 웹 브라우저의 창, 프레임을 추상화해서 프로그래밍 적으로 제어할 수 있도록 수단을 제공한다.
+> - 전역 객체인 `window`의 프로퍼티와 메소드들을 통해서 제어할 수 있다.
+>
+> 
+>
+> `window` 객체는 모든 브라우저로부터 지원 받으며, 이는 브라우저 window 자체를 의미한다.
+>
+> 
+>
+> **모든 전역 JavaScript 객체, 함수, 변수들은 자동으로 `window` 객체의 멤버가 된다.** 
+>
+> - HTML DOM에 있는 `document` 객체 역시 `window` 객체의 속성이다.
+>
+> ``` 
+> window.print()		// 인쇄창 열기
+> window.open()		// 브라우저 탭 열기
+> window.confirm() 	// 브라우저 대화상자 열기
+> window.document 	// document 역시 브라우저에 종속 -> window 전역 객체에 포함
+> ```
+
+
+
+#### 3.1.2 DOM
+
+> **DOM** (Browser Object Model) : JavaScript가 브라우저와 소통하기 위한 모델
+>
+> - JavaScript 로 브라우저를 조작하기 위한 언어
+>   - **DOM을 통해서 HTML 파일에 작성되는 여러 요소 (Element) 들을 조작**할 수 있다.
+>   - DOM 이라는 객체를 통해서 요소를 선택할 수 있고, 선택한 요소의 속성 값을 수정하거나 삭제할 수도 있다. 
+>   - 요소에 이벤트를 등록해서 특정 이벤트가 발생할 시 특정 함수가 실행하도록 만들 수 있다. 
+>   - HTML 문서에 작성하지 않은 새로운 요소를 생성해서 원하는 위치에 삽입할 수 있다. 
+
+<br>
 
 ### 3.2 사전 준비

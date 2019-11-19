@@ -1171,9 +1171,14 @@ console.log(areas)
 ### 8.2 map
 
 - `arr.map(callback(element))`
+  
   - 콜백 함수 1개를 받는다. 
+  
 - 배열 내의 모든 요소에 대하여 주어진 콜백 함수를 호출한 결과를 모아 새로운 배열을 return 한다. 
-- `map`, `filter` 둘 다 사본을 return 하고, 
+
+- `map`, `filter` 둘 다 사본을 return 하고, 원본은 바뀌지 않는다. 
+
+  만약 return을 작성하지 않으면, `undefined`가 배열에 담긴다. 
 
 <br>
 
@@ -1403,7 +1408,7 @@ console.log(newNumbers)       // 새로운 배열
 - `add.find(callback(element, index, array))`
 - 주어진 **판별 함수를 만족하는 첫번째 요소의 값을 return **한다.
   - 만약, 값이 없는 경우 `undefined`를 return 
-- dsklfhwsda uktlgasvd
+- 조건에 맞는 인덱스가 아니라, **요소 자체를 원할 때 ** 사용한다.
 
 
 
