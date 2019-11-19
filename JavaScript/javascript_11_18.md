@@ -1193,7 +1193,7 @@ console.log(areas)
   console.log(numbers)
   ```
 
-  ![1574123503023](tpassets/1574123503023.png)
+  ![1574123503023](https://user-images.githubusercontent.com/39547788/69109588-913bd100-0abb-11ea-9b09-128f32e1fcfe.png)
 
   <br>
 
@@ -1218,7 +1218,7 @@ console.log(areas)
   
   ```
 
-  ![1574123474853](tpassets/1574123474853.png)
+  ![1574123474853](https://user-images.githubusercontent.com/39547788/69109595-97ca4880-0abb-11ea-8781-6b5ae1f400b8.png)
 
 
 
@@ -1244,7 +1244,7 @@ const heights = images.map(image => image.height)
 console.log(heights)
 ```
 
-![1574123796691](tpassets/1574123796691.png)
+![1574123796691](https://user-images.githubusercontent.com/39547788/69109606-a153b080-0abb-11ea-8422-febce4df0bf8.png)
 
 <br>
 
@@ -1267,13 +1267,227 @@ console.log(speeds)
 console.log('speeds' + speeds)
 ```
 
-![1574124357352](tpassets/1574124357352.png)
+![1574124357352](https://user-images.githubusercontent.com/39547788/69109619-a7499180-0abb-11ea-96bb-1f5e63ef081f.png)
+
+<br>
+
+### 8.3 filter
+
+- `arr.filter(callback(element))`
+  - 콜백함수에 조건을 적어 원하는 **요소들만 filtering**
+- 주어진 콜백함수의 테스트를 통과하는 모든 요소를 모아서 새로운 배열로 return 한다.
 
 
 
 <br>
 
+> students 라는 배열의 객체들 중 type이 female인 요소들만 뽑기
 
+<br>
+
+#### [ ES5 ]
+
+- for loop 활용
+
+  ```javascript
+  var students = [
+    { name : '최주현', type : 'male' },
+    { name : '공선아', type : 'female' },
+    { name : '남찬우', type : 'male' },
+    { name : '이도현', type : 'female' },
+  ]
+  
+  
+  var strongStudents = []
+  
+  for (var i = 0; i<students.length; i++){
+    if(students[i].type === 'female'){
+      strongStudents.push(students[i])
+    }
+  }
+  
+  console.log(students)         // 원본 유지 
+  console.log(strongStudents)   // 새로운 배열
+  // console.log(students[i].name) // 객체 내 속성 접근하기
+  ```
+
+  ![1574127438334](https://user-images.githubusercontent.com/39547788/69109628-af093600-0abb-11ea-8156-57efb7272bb8.png)
+
+<br>
+
+#### [ ES6 + ]
+
+- filter Helper 활용
+
+  ```javascript
+  const STUDENTS = [
+    { name : '서혁진', type : 'male' },
+    { name : '공선아', type : 'female' },
+    { name : '남찬우', type : 'male' },
+    { name : '이도현', type : 'female' },
+  ]
+  /**
+  const STRONG_STUDENTS = STUDENTS.filter(function(student){
+    return student.type === 'female'
+  })
+    */ 
+  
+  const STRONG_STUDENTS = STUDENTS.filter(student => student.type === 'female')
+  console.log(STUDENTS)         // 원본 유지 
+  console.log(STRONG_STUDENTS)   // 새로운 배열
+  
+  ```
+
+  ![1574127389374](https://user-images.githubusercontent.com/39547788/69109647-bcbebb80-0abb-11ea-8c65-bb01aa36d559.png)
+
+  <br>
+
+#### [ 실습 ]
+
+##### 1. filter Helper를 사용해서 numbers 배열 중 50보다 큰 값만 필터링해서 새로운 배열에 저장해보자.
+
+```javascript
+const numbers = [15,35,13,36,69,3,61,55,99,5]
+const newNumbers = numbers.filter(number => number > 50)
+console.log(numbers)          // 원본 유지 
+console.log(newNumbers)       // 새로운 배열
+```
+
+![1574127335797](https://user-images.githubusercontent.com/39547788/69109656-c21c0600-0abb-11ea-8558-02a688c85a3f.png)
+
+
+
+<br>
+
+### 8.4 reduce
+
+- `arr.reduce(callback(acc, element, index))`
+  - `acc` : 누적 값 (전 단계의 결과물)
+  - `elemenr` : 현재 배열 요소 
+  - `index` : 배열 순서 (인덱스 번호)
+- 배열의 각 요소에 대해 주어진 콜백 함수를 실행하고 하나의 결과 값을 return 한다.
+  - **배열 내의 숫자 총합, 쳥균 계산 등 배열의 값을 하나로 줄이는 동작**을 한다.
+  - `map`은 배열의 각 요소를 변형, `reduce`는 배열 자체를 변형한다.
+  - `map`, `filter` 등 여러 메소드들의 동작을 대부분 대체 가능하다.
+
+<br>
+
+#### [ ES6 +]
+
+- Arrow Function으로 변환 시, 인자가 2개 이기 때문에 반드시 `( )`가 필요하다.
+
+  ```javascript
+  const Tests = [90,85,77,13,58]
+  
+  /** 
+  const sum = Tests.reduce(function(total, score){
+    return total += score
+  })
+  */
+  
+  const sum = Tests.reduce((total, score) => total += score)
+  
+  console.log(sum)
+  ```
+
+  ![1574127490685](https://user-images.githubusercontent.com/39547788/69109664-c8aa7d80-0abb-11ea-87c0-de6c0d4e7c8b.png)
+
+  <br>
+
+
+
+
+
+### 8.5 find
+
+- `add.find(callback(element, index, array))`
+- 주어진 **판별 함수를 만족하는 첫번째 요소의 값을 return **한다.
+  - 만약, 값이 없는 경우 `undefined`를 return 
+- dsklfhwsda uktlgasvd
+
+
+
+<br>
+
+#### [ ES5 ]
+
+- for loop 활용
+
+  ```javascript
+  var students = [
+    { name : '서혁진' , age : 25 },
+    { name : '오은애' , age : 24 },
+    { name : '공선아' , age : 24 },
+    { name : '이도현' , age : 25 },
+    { name : '최주현' , age : 27 },
+  ]
+  
+  var student = []
+  for (var i = 0; i<students.length; i++){
+    if (students[i].age === 27){
+      student = students[i]
+      break // 원하는 조건에 도달하면 escape loop
+    }
+  }
+  
+  
+  console.log(student)
+  ```
+
+  ![1574127585804](https://user-images.githubusercontent.com/39547788/69109678-d102b880-0abb-11ea-912c-250eecc451b0.png)
+
+<br>
+
+#### [ ES6 + ]
+
+- find Helper 활용
+
+  - 찾는 데이터가 있는 경우 
+
+    ```javascript
+    const STUDENTS = [
+      { name : '서혁진' , age : 25 },
+      { name : '오은애' , age : 24 },
+      { name : '공선아' , age : 24 },
+      { name : '이도현' , age : 25 },
+      { name : '최주현' , age : 27 },
+    ]
+    
+    // const STUDENT = STUDENTS.find(function(student){
+    //   return student.age === 27
+    // })
+    const STUDENT = STUDENTS.find(student => student.age === 27)
+    
+    console.log(STUDENT)
+    ```
+
+    ![1574127621564](https://user-images.githubusercontent.com/39547788/69109684-d7913000-0abb-11ea-9e1e-cc42d26e4c26.png)
+
+  <br>
+
+  - 찾는 데이터가 없는 경우
+
+    ```javascript
+    const STUDENTS = [
+      { name : '서혁진' , age : 25 },
+      { name : '오은애' , age : 24 },
+      { name : '공선아' , age : 24 },
+      { name : '이도현' , age : 25 },
+      { name : '이수연' , age : 21 },
+    ]
+    
+    // const STUDENT = STUDENTS.find(function(student){
+    //   return student.age === 27
+    // })
+    const STUDENT = STUDENTS.find(student => student.age === 27)
+    
+    console.log(STUDENT)
+    ```
+
+    ![1574127649916](https://user-images.githubusercontent.com/39547788/69109691-dc55e400-0abb-11ea-926c-05f0fa4f7982.png)
+
+
+<br>
 
 
 
