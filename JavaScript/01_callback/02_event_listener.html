@@ -1,0 +1,24 @@
+<html>
+  <head></head>
+  <body>
+    <div id="my">
+    </div>
+
+    <button id="this-button"> Click me!</button>
+
+    <script>
+      // 1. 무엇을 -> 버튼을 (EventTarget)
+      const button = document.querySelector('#this-button')
+      // 2. 언제 -> 'click' 하면 (type : 'click')
+      button.addEventListener('click', function(event){
+        console.log(event)
+        const area = document.querySelector('#my')
+        // 3. 어떻게 -> '뿅'하고 나온다.
+        area.innerHTML = '<h1>뿅</h1>'
+
+      })
+
+    </script>
+
+  </body>
+</html>
