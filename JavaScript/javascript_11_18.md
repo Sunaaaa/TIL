@@ -1166,6 +1166,115 @@ console.log(areas)
   <br>
 
 
+<br>
+
+### 8.2 map
+
+- `arr.map(callback(element))`
+  - 콜백 함수 1개를 받는다. 
+- 배열 내의 모든 요소에 대하여 주어진 콜백 함수를 호출한 결과를 모아 새로운 배열을 return 한다. 
+- `map`, `filter` 둘 다 사본을 return 하고, 
+
+<br>
+
+#### [ ES5 ]
+
+- for loop을 하며 doubleNumbers 배열에 `push`한다.
+
+  ```javascript
+  // 원본을 건드리지 않았기 때문에 원본이 유지된다.
+  var numbers = [1,2,3]
+  var doubleNumbers = []
+  
+  for (var i = 0; i<numbers.length; i++){
+    doubleNumbers.push(numbers[i]*2)
+  }
+  console.log(doubleNumbers)
+  console.log(numbers)
+  ```
+
+  ![1574123503023](tpassets/1574123503023.png)
+
+  <br>
+
+#### [  ES6+ 형식 ]
+
+> Helper Method를 사용해서 바꿔보자!
+
+<br>
+
+- `return` 하는 값이 있기 때문에 바로 DOUBLE_NUMBERS 배열에 담을 수 있다.
+
+  ```javascript
+  // 원본을 건드리지 않았기 때문에 원본이 유지된다.
+  const NUMBERS = [1,2,3]
+  // const DOUBLE_NUMBERS = NUMBERS.map(function(number){ return number*2 })
+  
+  // 화살표 함수로 한줄로 바꿔보자 
+  const DOUBLE_NUMBERS = NUMBERS.map(number => number*2 )
+  
+  console.log(DOUBLE_NUMBERS)
+  console.log(NUMBERS)
+  
+  ```
+
+  ![1574123474853](tpassets/1574123474853.png)
+
+
+
+<br>
+
+#### [ 실습 ]
+
+##### 1. map Helper를 사용해서 images 배열 안의 객체들의 height들만 저장되어 있는 heights 배열을 만들어보자.
+
+```javascript
+const images = [
+  { height : '34px', width : '59px' },
+  { height : '22px', width : '135px' },
+  { height : '681px', width : '592px' },
+]
+
+/**
+const heights = images.map(function(image){
+  return image.height
+})
+*/
+const heights = images.map(image => image.height)
+console.log(heights)
+```
+
+![1574123796691](tpassets/1574123796691.png)
+
+<br>
+
+##### 2. map Helper를 사용해서 "distance/time => 속도"를 저장하는 speeds 배열을 만들어보자.
+
+```javascript
+const trips = [
+  { distance : 34, time : 10 },
+  { distance : 90, time : 20 },
+  { distance : 111, time : 28 },
+]
+
+/* 
+const speeds = trips.map(function(trip){
+  return trip.distance / trip.time
+})
+ */
+const speeds = trips.map(trip => trip.distance/trip.time)
+console.log(speeds)
+console.log('speeds' + speeds)
+```
+
+![1574124357352](tpassets/1574124357352.png)
+
+
+
+<br>
+
+
+
 
 
 
