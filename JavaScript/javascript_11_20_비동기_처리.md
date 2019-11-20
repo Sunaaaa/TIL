@@ -782,6 +782,8 @@ response.content
 > 쿠키에 CSRF 를 담아서 서버로 전송한다.
 >
 > - Django 공식 문서 [참고](https://docs.djangoproject.com/en/2.2/ref/csrf/)
+>
+> ![1574234378982](tpassets/1574234378982.png)
 
 <br>
 
