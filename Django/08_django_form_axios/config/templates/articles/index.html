@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block body %}
+  <h1>Articles</h1>
+  <hr>
+  <a href="{% url 'articles:create' %}">[NEW]</a>
+  <hr>
+  <div class="row">
+    {% for article in articles %}
+      <!-- 모듈화 시켜둔 article 템플릿 가져오기 -->
+      {% include 'articles/_article.html' %}
+    {% endfor %}  
+  </div>
+  <script>
+    
+    // 1. 모든 좋아요 버튼 가져오기
+    const likeButtons = document.querySelectorAll('.like-button')
+
+    // 2. forEach 함수 활용 -> 각각의 버튼 하나하나를 꺼내서 특정 동작을 추가한다.
+    likeButtons.forEach(button => {
+      button.addEventListener('click', function(e){
+        console.log(e)
+
+        // event.target.classList, event.target.dataset.id
+        // 1. data-id에 article.pk가 들어있다. ==> 동적 라우팅 활용
+        const articleId = e.target.dataset.id
+
+        // Django가 Ajax 요청을 구분하게 하기 위해서 XHR 객체를 담아 보내준다. 
+        axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+        axios.defaults.xsrfCookieName = 'csrftoken'
+        axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+        // 2. 해당 게시글의 '좋아요' 요청 보내기
+
+        {% if user.is_authenticated %}
+        axios.post(`/articles/${articleId}/like/`)
+        // 3. 응답 결과 확인
+        .then( response => {
+
+          // 알맞은 id 값을 가진 span 태그를 선택해서,
+          // 사용자가 '좋아요' 누를 때마다 response.data.count 값으로 갱신시킨다. 
+          // span 태그 찾기                                   // 넘겨 받은 count로 갱신ㅇ        
+          document.querySelector(`#like-count-${articleId}`).innerHTML = response.data.count
+
+          if (response.data.liked){
+            e.target.style.color = 'crimson'
+          } else {
+            e.target.style.color = "gray"
+          }
+        })
+        .catch(error => {console.log(error)})
+        {% else %}
+        alert('로그인을 해야 좋아요를 사용할 수 있습니다. ')
+        {% endif %}
+      })
+    })
+
+  </script>
+
+
+{% endblock  %}
