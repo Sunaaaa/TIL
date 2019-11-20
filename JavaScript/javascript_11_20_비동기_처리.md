@@ -372,11 +372,17 @@ HTTP -> Ajax -> WebSocket
 
 ### AJAX 
 
-- Asynchronous JavaScript and XML (비동기 적인 JavaScript와 XML)
-- 브라우저에서 웹 페이지를 요청하거나 링크를 클릭하면, 화면 갱신 (새로고침) 이 발생한다. 이는 브라우저와 서버 간의 **통신**이 일어났다는 것이다. 
-- JavaScript를 활용해서 비동기적으로 서버와 브라우저가 데이터를 교환할 수 있는 통신 방식이다. 
-- 페이지 전체를 다시 로드하는 것이 아니라, 페이지에서 갱신이 필요한 일부분만 로드함으로써 빠른 퍼포먼스와 부드러운 화면 표시가 가능하다.
-  - 사용자 경험 (UX) 향상 + 서버 자원 이용 절감 => 두 마리 토끼 다 잡기
+> **Asynchronous JavaScript and XML** (비동기 적인 JavaScript와 XML)
+>
+> 브라우저에서 웹 페이지를 요청하거나 링크를 클릭하면, 화면 갱신 (새로고침) 이 발생한다. 이는 브라우저와 서버 간의 **통신**이 일어났다는 것이다. 
+>
+> 
+>
+> JavaScript를 활용해서 **비동기적으로 서버와 브라우저가 데이터를 교환**할 수 있는 통신 방식이다. 
+>
+> 페이지 전체를 다시 로드하는 것이 아니라, 페이지에서 갱신이 필요한 일부분만 로드함으로써 빠른 퍼포먼스와 부드러운 화면 표시가 가능하다.
+>
+> - 사용자 경험 (UX) 향상 + 서버 자원 이용 절감 => 두 마리 토끼 다 잡기
 
 <br>
 
@@ -393,15 +399,17 @@ HTTP -> Ajax -> WebSocket
 ### 2.1 좋아요 버튼을 부-드럽게
 
 - 이전에 우리가 구현해본 DJango Code에서는 '좋아요' 버튼을 누르면 페이지 전환(요청)을 통해 '좋아요' 기능이 이루어진다.
-- 하지만 `axios`를 사용하면 페이지 전환없이 '좋아요' 기능을 구현할 수 있다.  
+- 하지만 `axios`를 사용하면 **페이지 전환없이** '좋아요' 기능을 구현할 수 있다.  
+
+<br>
 
 
 
-_article.html
-
-- 기존의 '좋아요' 기능 코드
+- 수정 전 '좋아요' 기능 코드
 
   ```django
+  <!-- article/_article.html -->
+  
   <a href="{% url 'articles:like' article.pk %}">
       <!-- 사용자가 좋아요 누른 상태 -> 꽉찬 하트 -->
       {% if request.user in article.like_users.all %}
@@ -426,7 +434,7 @@ _article.html
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   ```
 
-  
+  <br>
 
 - `i` 태그에 class를 지정한다.
 
@@ -436,7 +444,7 @@ _article.html
     <i class="like-button fas fa-heart"></i>
     ```
 
-
+<br>
 
 - `i` 태그에 `data-id`를 새로 추가한다.
 
@@ -451,7 +459,11 @@ _article.html
     {% endif %}
     ```
 
+- 실행 화면 
 
+  - 기본적으로 가득 차있는 하트 모양의 아이콘으로 아이콘을 설정한다.
+
+  ![1574231799094](tpassets/1574231799094.png)
 
 <br>
 
@@ -507,16 +519,18 @@ _article.html
 
 #### 2.1.3 View 수정
 
-- 좋아요 버튼의 `articleId`를 찾아서 좋아요 요청을 보냈을 때, View 로직에서 보내준 boolean 값에 따라 클래스를 지우거나 추가한다.
+- '좋아요' 버튼의 `articleId`를 찾아서 좋아요 요청을 보냈을 때, View 로직에서 보내준 boolean 값에 따라 클래스를 지우거나 추가한다.
 
 - redirect 응답에 대한 결과로 `index.html`을 받는게 아니라, JSON 형태로 응답 결과를 반환받는다. 
 
-  - 좋아요 -> `liked = True`
-  - 좋아요 취소 -> `liked = False`
+  - '좋아요' -> `liked = True`
+  - '좋아요' 취소 -> `liked = False`
 
   <br>
 
 > Django에서 제공하는 JsonResponse 를 사용해서 JSON 형태로 결과를 반환해보자. 
+
+<br>
 
 **참고문서 JsonResponse 사용 예제**
 
@@ -572,7 +586,6 @@ response.content
 
     ```javascript
     <script>
-    
         // 1. 모든 좋아요 버튼 가져오기
         const likeButtons = document.querySelectorAll('.like-button')
     
@@ -602,9 +615,13 @@ response.content
     </script>
     ```
 
+  <br>
+
 - 실행 화면
 
-  
+  ![1574232380295](tpassets/1574232380295.png)
+
+  <br>
 
 
 
@@ -614,90 +631,125 @@ response.content
 
 - views.py
 
-  ```
-  @login_required
-  def like(request, article_pk):
-      # 좋아요 누른 게시글 가져오기
-      article = get_object_or_404(Article, pk=article_pk)
-      # 현재 접속하고 있는 User
-      user = request.user
-      # 현재 게시글에 좋아요를 누른 사람의 목록에서
-      # 현재 접속한 User가 있는 경우 -> 좋아요 취소
-      if user in article.like_users.all():
-          article.like_users.remove(user)
-          liked = False
-      # 현재 접속한 User가 없는 경우 -> 좋아요 
-      # User를 현재 게시글에 좋아요를 누른 사람의 목록에 추가한다. 
-      else : 
-          # article.like_users.add(user)
-          article.like_users.add(user)
-          liked = True
-  
-      context = {
-          'liked' : liked,
-          'count' : article.like_users.count(),    
-      }
-      # return redirect('articles:index')
-      return JsonResponse(context)
-  ```
+  - `'count' : article.like_users.count(),`를 함께 전달한다.
 
+    새로운 화면을 rendering하는게 아니라 수정되는 부분만 변경된다. 
 
+    ```python 
+    @login_required
+    def like(request, article_pk):
+        article = get_object_or_404(Article, pk=article_pk)
+        user = request.user
+    
+        # 좋아요 취소
+        if user in article.like_users.all():
+            article.like_users.remove(user)
+            liked = False
+    
+        # 좋아요 
+        else : 
+            # article.like_users.add(user)
+            article.like_users.add(user)
+            liked = True
+    
+        context = {
+            'liked' : liked,
+            'count' : article.like_users.count(),    
+        }
+        return JsonResponse(context)
+    ```
+
+<br>
 
 - _article.html
 
-  ```
+  ```django
   <span id="like-count-{{article.pk}}"> {{ article.like_users.all|length }} </span>명이 이 글을 좋아합니다. <br>
   ```
 
-- index.html script 코드 작성
+<br>
 
-  ```
-  <script>
-      
-      // 1. 모든 좋아요 버튼 가져오기
-      const likeButtons = document.querySelectorAll('.like-button')
-  
-      // 2. forEach 함수 활용 -> 각각의 버튼 하나하나를 꺼내서 특정 동작을 추가한다.
-      likeButtons.forEach(button => {
+- index.html의 script 코드 작성
+
+  - 알맞은 id 값을 가진 span 태그를 선택해서, 사용자가 '좋아요' 누를 때마다 response.data.count 값으로 갱신시킨다.
+
+    ```javascript
+    <script>
+        const likeButtons = document.querySelectorAll('.like-button')
+        likeButtons.forEach(button => {
         button.addEventListener('click', function(e){
-          console.log(e)
-  
-          // event.target.classList, event.target.dataset.id
-          // 1. data-id에 article.pk가 들어있다. ==> 동적 라우팅 활용
-          const articleId = e.target.dataset.id
-  
-          // 2. 해당 게시글의 '좋아요' 요청 보내기
-          axios.get(`/articles/${articleId}/like/`)
-          // 3. 응답 결과 확인
-          .then( response => {
-  
-            // 알맞은 id 값을 가진 span 태그를 선택해서,
-            // 사용자가 '좋아요' 누를 때마다 response.data.count 값으로 갱신시킨다. 
-            // span 태그 찾기                                   // 넘겨 받은 count로 갱신ㅇ        
-            document.querySelector(`#like-count-${articleId}`).innerHTML = response.data.count
-  
-            if (response.data.liked){
-              e.target.style.color = 'crimson'
-            } else {
-              e.target.style.color = "gray"
-            }
-          })
-          .catch(error => {console.log(error)})
+            console.log(e)
+    
+            const articleId = e.target.dataset.id
+    
+            axios.get(`/articles/${articleId}/like/`)
+                .then( response => {
+    
+                // span 태그 찾기.넘겨 받은 count 값으로 갱신      
+                document.querySelector(`#like-count-${articleId}`).innerHTML = response.data.count
+    
+                if (response.data.liked){
+                    e.target.style.color = 'crimson'
+                } else {
+                    e.target.style.color = "gray"
+                }
+            })
+                .catch(error => {console.log(error)})
         })
-      })
-  
+    })
+    
     </script>
-  ```
+    ```
+
+<br>
+
+- _article.html
+
+  - '좋아요' 아이콘과 style 수정
+
+    - 빈 하트 -> gray 색으로 꽉 찬 하트
+
+      - '좋아요'가 된 경우 'crimson' 색으로 style 변경
+
+      - '좋아요'가 취소된 경우 'gray' 색으로 style 변경
+
+        ```django
+        {% if request.user in article.like_users.all %}
+        <i data-id="{{article.pk}}" class="like-button fas fa-heart"  style="color : crimson; cursor : pointer; "></i>
+        {% else %}
+        <i data-id="{{article.pk}}" class="like-button fas fa-heart"  style="color : gray; cursor : pointer; "></i>
+        {% endif %}
+        ```
+
+      <br>
+
+- 실행 화면
+
+  - 초기 화면
+
+    ![1574233104952](tpassets/1574233104952.png)
+
+    <br> 
+
+  - '좋아요'가 된 경우 'crimson' 색으로 하트 색이 변경되고, '좋아요'를 누른 사람 수도 +1
+
+    ![1574233279775](tpassets/1574233279775.png)
+
+    <br>
+
+  - '좋아요'가 최소된 경우 'gray' 색으로 하트 색이 변경되고, '좋아요'를 누른 사람 수도 -1
+
+    ![1574233289625](tpassets/1574233289625.png)
+
+    <br> 
 
   
-
-
 
 
 
 ## 3. Like (POST 요청)
 
-> '좋아요' 는 데이터 베이스에 조작을 영향이 미치는 로직이기 때문에, GET 요청이 아니라 POST 요청이 적절하다. 
+> '좋아요' 는 데이터 베이스에 조작을 영향이 미치는 로직이기 때문에, GET 요청이 아닌 POST 요청이 적절하다. 
 >
 > - POST 요청으로 변경해보자!
 
@@ -787,7 +839,11 @@ response.content
 
 - 실행 화면
 
-  
+  - 정상적으로 동작함
+
+    ![1574233367613](tpassets/1574233367613.png)
+
+    <br>
 
 
 
@@ -797,109 +853,104 @@ response.content
 
 
 
-ajax 요청이면 좋아요 기능 수행, 아니면 400 ERROR
+### 3.1 is_ajax() 분기
 
-```
-from django.http import JsonResponse, HttpResponseBadRequest
+- **ajax 요청이면 좋아요 기능 수행, 아니면 400 ERROR**
 
-
-```
-
-![1574230116480](tpassets/1574230116480.png)
-
-- 요청을 보낼 때, Header에 XHR 객체를 담아서 보내야 함
-
-  ```javascript
-  // Django가 Ajax 요청을 구분하게 하기 위해서 XHR 객체를 담아 보내준다. 
-  axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+  ```python 
+  from django.http import JsonResponse, HttpResponseBadRequest
   ```
+
+  ![1574230116480](tpassets/1574230116480.png)
+
+  - 요청을 보낼 때, Header에 XHR 객체를 담아서 보내야 함
+
+    ```javascript
+    // Django가 Ajax 요청을 구분하게 하기 위해서 XHR 객체를 담아 보내준다. 
+    axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+    ```
+
+    <br>
 
   - 실행 화면
 
-    - 정상적으로 좋아여 기능 수행 
+    - 정상적으로 '좋아요' 기능 수행
 
       ![1574230311079](tpassets/1574230311079.png)
 
+<br>
+
+
+
+- **회원인 경우에만 Ajax 요청이 가능**
+
+  - index.html의 script 코드 
+
+    - DTL을 이용해 alert 창으로 로그인이 필요한 서비스임을 알린다. 
+
+      ```javascript
+      <script>
+          .
+          .
+      	<!-- 로그인을 한 경우 -->
+          {% if user.is_authenticated %}
+          
+          axios.post(`/articles/${articleId}/like/`)
+              .then( response => {
+              document.querySelector(`#like-count-${articleId}`).innerHTML = response.data.count
+      
+              if (response.data.liked){
+                  e.target.style.color = 'crimson'
+              } else {
+                  e.target.style.color = "gray"
+              }
+          })
+              .catch(error => {console.log(error)})
+      
+      	<!-- 로그인을 하지 않은 경우 -->
+           {% else %}
+           
+           alert('로그인을 해야 좋아요를 사용할 수 있습니다. ')
+      
+           {% endif %}
+           })
+      
+       </script>
+      ```
+
+      
+
+  <br>
+
+  - views.py
+
+    ```python
+    # 좋아요 기능
+    @login_required
+    def like(request, article_pk):
+        if request.is_ajax():
+            article = get_object_or_404(Article, pk=article_pk)
+        
+            .
+            .
+            
+            return JsonResponse(context)
+        else:
+            return HttpResponseBadRequest
+    ```
+
+  <br>
+
+  - 실행 화면
+
+    - 비 로그인 인 경우, 알림 창을 보인다.
+
+      ![1574230587479](tpassets/1574230587479.png)
+
+    <br>
+
+    - 로그인을 한 경우, 정상적으로 '좋아요' 기능이 실행된다. 
+
+      ![1574234041789](tpassets/1574234041789.png)
+
       <br>
-
-
-
-
-
-### is_ajax() 분기
-
-- 회원인 경우에만 Ajax 요청이 가능하도록
-
-- script 코드 
-
-  - DTL을 이용해 alert 창으로 로그인이 필요한 서비스임을 알린다. 
-
-    ![1574230587479](tpassets/1574230587479.png)
-
-- views.py
-
-  ```python
-  # 좋아요 기능
-  @login_required
-  def like(request, article_pk):
-      if request.is_ajax():
-          article = get_object_or_404(Article, pk=article_pk)
-          
-          .
-          .
-          
-          return JsonResponse(context)
-      else:
-          return HttpResponseBadRequest
-  ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
