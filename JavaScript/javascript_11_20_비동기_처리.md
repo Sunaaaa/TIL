@@ -34,6 +34,8 @@ HTTP -> Ajax -> WebSocket
 
 [웹소켓](https://engineering.huiseoul.com/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EB%8A%94-%EC%96%B4%EB%96%BB%EA%B2%8C-%EC%9E%91%EB%8F%99%ED%95%98%EB%8A%94%EA%B0%80-%EC%9B%B9%EC%86%8C%EC%BC%93-%EB%B0%8F-http-2-sse-1ccde9f9dc51) 
 
+
+
 ## 0. 설치
 
 - node.js 설치 시, npm 가 함께 설치된다. 
@@ -45,6 +47,14 @@ HTTP -> Ajax -> WebSocket
   - 설치가 완료되면, 폴더가 생긴다. 
 
     ![1574211323799](tpassets/1574211323799.png)
+
+<br>
+
+### jsonplaceholder
+
+> 가상의 데이터를 제공하여 테스트시에 용이하게 사용할 수 있다. 
+>
+> ![1574215415886](tpassets/1574215415886.png)
 
 <br>
 
@@ -76,6 +86,16 @@ HTTP -> Ajax -> WebSocket
 > - `axios`를 이용하여 강아지 API로부터 랜덤으로 강아지 사진을 가져온다. 
 
 <br>
+
+### 1.2 Dog
+
+`response.data`구조
+
+![1574215947664](tpassets/1574215947664.png)
+
+<br>
+
+#### [ 기본 ]
 
 - img url  찾기
 
@@ -164,39 +184,163 @@ HTTP -> Ajax -> WebSocket
 
   <br>
 
+#### [ 콜백 함수 ]
+
 - 함수로 작성하여, 함수를 호출할 때마다 강아지 사진이 랜덤으로 추가된다. 
 
-  - 코드
+  - script 코드
 
     `const getDogImage = () => {}`안의 위의 script 코드를 작성한다.
 
-    ```
+    ```javascript
     <script>
-          const getDogImage = () => {
+        const getDogImage = () => {
             axios.get('https://dog.ceo/api/breeds/image/random')
-            .then(response => {
-              // 1. img URL 을 변수에 담는다.
-              const imgUrl = response.data.message
+                .then(response => {
+                // 1. img URL 을 변수에 담는다.
+                const imgUrl = response.data.message
     
-              // 2. img 태그를 만든다.
-              const imgTag = document.createElement('img')
+                // 2. img 태그를 만든다.
+                const imgTag = document.createElement('img')
     
-              // 3. src를 추가한다.
-              imgTag.src = imgUrl
+                // 3. src를 추가한다.
+                imgTag.src = imgUrl
     
-              // 4. HTML 문서에 요소를 위치시킨다.
-              document.querySelector('.animals').appendChild(imgTag)
+                // 4. HTML 문서에 요소를 위치시킨다.
+                document.querySelector('.animals').appendChild(imgTag)
             })
-            .catch(error => {
-              console.log(error)
+                .catch(error => {
+                console.log(error)
             })
-          }
-        </script>
+        }
+    </script>
     ```
 
+<br>
+
+- 실행 화면
+  - console 창에 함수를 호출할 때마다 강아지 사진이 추가된다. 
 
 
-- 버튼을 선택하고, 버튼을 클릭하면 만들어둔 콜백함수가 실행된다. 
+
+<br>
+
+#### [ 버튼 + 콜백 함수 ]
+
+- 버튼을 선택하고, 버튼을 클릭하면 만들어둔 콜백함수가 실행되도록 수정한다
+
+  - script 코드 : 버튼에 콜백함수를 이벤트로 지정한다.
+
+    `const dogButton = document.querySelector('#dog')
+    dogButton.addEventListener('click', getDogImage)`
+
+    ```javascript
+    <button id="dog">댕댕이 나와라</button>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        const getDogImage = () => {
+            axios.get('https://dog.ceo/api/breeds/image/random')
+                .then(response => {
+                // 1. img URL 을 변수에 담는다.
+                const imgUrl = response.data.message
+    
+                // 2. img 태그를 만든다.
+                const imgTag = document.createElement('img')
+    
+                // 3. src를 추가한다.
+                imgTag.src = imgUrl
+                imgTag.style.width = '200px'
+                imgTag.style.height = '200px'
+    
+                // 4. HTML 문서에 요소를 위치시킨다.
+                document.querySelector('.animals').appendChild(imgTag)
+            })
+                .catch(error => {
+                console.log(error)
+            })
+        }
+    
+        axios.get('https://api.thecatapi.com/v1/images/search')
+            .then(response => {
+            console.log(response.data[0].url)
+        })
+            .catch(error => {
+            console.log(error)
+        })
+    
+        // 버튼을 선택하고, 버튼을 클릭하면 만들어둔 콜백함수가 실행된다. 
+        const dogButton = document.querySelector('#dog')
+        dogButton.addEventListener('click', getDogImage)
+    </script>
+    ```
+
+  <br>
+
+- 실행 화면
+  - 버튼을 누를 때마다 강아지 사진이 추가된다.
+
+
+
+<br>
+
+### 1.3 Cat 
+
+> 고양이 버튼을 만들어, 고양이 사진을 가져온다. 
+>
+> [고양이 API 바로가기](https://docs.thecatapi.com/)
+
+<br>
+
+#### [ 버튼 + 콜백 함수 ]
+
+`response.data` 구조
+
+![1574215778452](tpassets/1574215778452.png)
+
+
+
+<br>
+
+- script 코드
+
+  ```javascript
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+      .
+  	.
+      const getCatImage = () => {
+          axios.get('https://api.thecatapi.com/v1/images/search')
+              .then(response => {
+  
+              const imgUrl = response.data[0].url
+              const imgTag = document.createElement('img')
+  
+              imgTag.src = imgUrl
+              imgTag.style.width = '200px'
+              imgTag.style.height = '200px'
+  
+              document.querySelector('.animals').appendChild(imgTag)
+          })
+              .catch(error => {
+              console.log(error)
+          })
+      }
+  
+      // 버튼을 선택하고, 버튼을 클릭하면 만들어둔 콜백함수가 실행된다. 
+      const catButton = document.querySelector('#cat')
+      catButton.addEventListener('click', getCatImage)
+  </script>
+  ```
+
+- 실행 화면
+
+  ![1574215658541](tpassets/1574215658541.png)
+
+  <br>
+
+  
+
+  
 
 
 
