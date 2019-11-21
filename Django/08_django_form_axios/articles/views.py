@@ -24,7 +24,7 @@ def index(request):
 
     # 3. 해당하는 page의 article만 가져오기
     # print(dir(paginator))
-    print(dir(articles))
+    # print(dir(articles))
     # print(dir(articles.paginator))
     articles = paginator.get_page(page)
 
@@ -238,3 +238,21 @@ def hashtag(request, hash_pk):
     }
 
     return render(request, 'articles/hashtag.html', context)
+
+
+def search(request):
+    # 1. 사용자가 입력한 검색어 가져오기
+    query = request.GET.get('query')
+
+    # 2. DB에서 query가 포함된 제목을 갖는 article 가져오기
+    # 결과가 0 또는 1 이상이기 때문에 filter 사용
+    # - __contains : 지정한 문자열 포함하는 자료검색
+    # - __icontains : 지정한 문자열 포함하는 자료검색 (대소문자 구별 X)
+    articles = Article.objects.filter(title__icontains=query)
+
+    # 3. context로 전달
+    context = {
+        'articles' : articles,
+        'query' : query,
+    }
+    return render(request, 'articles/search.html', context)

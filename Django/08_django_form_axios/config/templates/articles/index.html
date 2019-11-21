@@ -4,6 +4,18 @@
   <hr>
   <a href="{% url 'articles:create' %}">[NEW]</a>
   <hr>
+
+  <form class="mb-4" action="{% url 'articles:search' %}">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-9  col-md-10 mb-3">
+      <input type="text" name="query" class="form-control" placeholder="Search">
+    </div>
+    <div class="col-6 col-sm-3  col-md-2">
+      <input type="submit" class="form-control btn btn-warning" value="검색">
+    </div>
+  </div>
+  </form>
+
   <div class="row">
     {% for article in articles %}
       <!-- 모듈화 시켜둔 article 템플릿 가져오기 -->
