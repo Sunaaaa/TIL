@@ -310,13 +310,13 @@
 
     - index 페이지 초기화
 
-      ![1574325626580](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1574325626580.png)
+      ![1574325626580](https://user-images.githubusercontent.com/39547788/69321382-5cc84080-0c86-11ea-9f0a-4a58511a2937.png)
 
       <br>
 
     - 두번째 페이지
 
-      ![1574325661038](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1574325661038.png)
+      ![1574325661038](https://user-images.githubusercontent.com/39547788/69321383-5e920400-0c86-11ea-83d0-854a90b35414.png)
 
       <br>
 
