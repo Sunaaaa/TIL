@@ -10,7 +10,7 @@
 >
 > - 현재 index 페이지
 >
->   ![1574297501466](tpassets/1574297501466.png)
+>   ![1574297501466](https://user-images.githubusercontent.com/39547788/69303818-bcf8bb80-0c61-11ea-94e0-73add990cd72.png)
 
 <br>
 
@@ -76,19 +76,19 @@
 
     - 총 7개 중 4개의 게시글만 보인다.
 
-      ![1574300576691](tpassets/1574300576691.png)
+      ![1574300576691](https://user-images.githubusercontent.com/39547788/69303825-c1bd6f80-0c61-11ea-82c5-339e28e8778f.png)
 
       <br>
 
   - URL을 통해 Query String `page=2`를 작성하여 두번째 페이지로 이동한다.
 
-    ![1574300706171](tpassets/1574300706171.png)
+    ![1574300706171](https://user-images.githubusercontent.com/39547788/69303831-c41fc980-0c61-11ea-89ae-b6d37daa6f53.png)
 
     <br>
 
   - URL을 통해 Query String `page=1`를 작성하여 다시 첫번째 페이지로 이동한다.
 
-    ![1574300710589](tpassets/1574300710589.png)
+    ![1574300710589](https://user-images.githubusercontent.com/39547788/69303836-c97d1400-0c61-11ea-9d0c-0ef0ba51876f.png)
 
     
 
@@ -144,7 +144,7 @@
 
   - 실행 화면
 
-  ![1574300880663](tpassets/1574300880663.png)
+  ![1574300880663](https://user-images.githubusercontent.com/39547788/69303972-43ad9880-0c62-11ea-9885-f651e641d95a.png)
 
 <br>
 
@@ -163,7 +163,7 @@
 
     - URL에 `page=1`을 작성하여 'Previous' 버튼이 사라지는 것을 확인한다.
 
-      ![1574300956422](tpassets/1574300956422.png)
+      ![1574300956422](https://user-images.githubusercontent.com/39547788/69303838-cb46d780-0c61-11ea-848f-0cbf7eb7340c.png)
 
     <br>
 
@@ -186,7 +186,7 @@
 
     - URL에 `page=2` 를 작성하여 'Next' 버튼이 사라지는 것을 확인한다.
 
-      ![1574300989645](tpassets/1574300989645.png)
+      ![1574300989645](https://user-images.githubusercontent.com/39547788/69303842-cd109b00-0c61-11ea-9c57-58558825d01f.png)
 
     <br>
 
@@ -225,19 +225,19 @@
 
       - 'Previous' 버튼은 보이지 않는다.
 
-        ![1574301377182](tpassets/1574301377182.png)
+        ![1574301377182](https://user-images.githubusercontent.com/39547788/69303853-d1d54f00-0c61-11ea-8199-6ed9dafd11b7.png)
 
         <br>
 
     - 'Next' 버튼을 누르면 두번째 페이지로 이동한다.
 
-      ![1574301416906](tpassets/1574301416906.png)
+      ![1574301416906](https://user-images.githubusercontent.com/39547788/69303865-e74a7900-0c61-11ea-8b3c-7f0b8fbb746c.png)
 
       <br>
 
     - 'Previous' 버튼을 누르면 다시 첫번째 페이지로 이동한다.
 
-      ![1574301436461](tpassets/1574301436461.png)
+      ![1574301436461](https://user-images.githubusercontent.com/39547788/69303872-ea456980-0c61-11ea-9f1c-c425bd860619.png)
 
       <br>
 
@@ -253,7 +253,7 @@
     <h1>{{articles.paginator.page_range}}</h1>
     ```
 
-    ![1574301709081](tpassets/1574301709081.png)
+    ![1574301709081](https://user-images.githubusercontent.com/39547788/69303873-ec0f2d00-0c61-11ea-8e60-7043c70de730.png)
 
   - 페이지 수만큼 페이지 번호 버튼이 생성한 뒤, 특정 페이지 번호 버튼을 클릭하면 해당 페이지로 이동한다.
 
@@ -273,19 +273,19 @@
 
       - 총 페이지의 수는 2개이므로, 1과 2 페이지 숫자 버튼이 'Previous' 와 'Next' 버튼 사이에 생성된다. 
 
-        ![1574302196645](tpassets/1574302196645.png)
+        ![1574302196645](https://user-images.githubusercontent.com/39547788/69303874-efa2b400-0c61-11ea-9812-3c01c6a5b174.png)
 
         <br>
 
     - 페이지 숫자 2 버튼을 누르면 두번째 페이지로 이동한다.
 
-      ![1574302257981](tpassets/1574302257981.png)
+      ![1574302257981](https://user-images.githubusercontent.com/39547788/69303882-f5989500-0c61-11ea-8b17-52c55689b148.png)
 
       <br>
 
     -  페이지 숫자 1 버튼을 누르면 다시 첫번째 페이지로 이동한다.
 
-      ![1574302266578](tpassets/1574302266578.png)
+      ![1574302266578](https://user-images.githubusercontent.com/39547788/69303877-f3363b00-0c61-11ea-85fd-08cd563188c4.png)
 
       <br>
 
@@ -341,19 +341,19 @@
 
   - 브라우저 최소화 된 크기
 
-    ![1574302521473](tpassets/1574302521473.png)
+    ![1574302521473](https://user-images.githubusercontent.com/39547788/69303885-f92c1c00-0c61-11ea-993c-89ad14e119fe.png)
 
   <br>
 
   - 브라우저 중간 크기 
 
-    ![1574302531345](tpassets/1574302531345.png)
+    ![1574302531345](https://user-images.githubusercontent.com/39547788/69304066-99824080-0c62-11ea-863b-cbf43a09a3b1.png)
 
     <br>
 
   - 브라우저 최대화 된 크기 
 
-    ![1574302543032](tpassets/1574302543032.png)
+    ![1574302543032](https://user-images.githubusercontent.com/39547788/69303892-ffba9380-0c61-11ea-82ff-0c8ce29ef1a5.png)
 
     
 
@@ -489,7 +489,7 @@
 
     - 검색 키워드를 입력하는 input 창과 검색 버튼이 있다. 
 
-      ![1574309258691](tpassets/1574309258691.png)
+      ![1574309258691](https://user-images.githubusercontent.com/39547788/69303894-01845700-0c62-11ea-9088-4279dcc6d149.png)
 
       <br>
 
@@ -497,13 +497,13 @@
 
       - 제목 : "폴킴 안녕" 게시글 작성
 
-        ![1574309575212](tpassets/1574309575212.png)
+        ![1574309575212](https://user-images.githubusercontent.com/39547788/69303898-03e6b100-0c62-11ea-9910-bb7cbc13aa3e.png)
 
         <br>
 
       - 게시글 생성 완료 (두번째 페이지)
 
-        ![1574309584373](tpassets/1574309584373.png)
+        ![1574309584373](https://user-images.githubusercontent.com/39547788/69303903-06490b00-0c62-11ea-8c12-bd93afc2015d.png)
 
         <br>
 
@@ -511,7 +511,7 @@
 
       - 제목 : "폴킴 Spell" 게시글 작성
 
-        ![1574309597358](tpassets/1574309597358.png)
+        ![1574309597358](https://user-images.githubusercontent.com/39547788/69303906-0943fb80-0c62-11ea-99c1-c326a6336658.png)
 
         <br>
 
@@ -521,11 +521,11 @@
 
       - 게시글 생성 완료 (세번째 페이지)
 
-        ![1574309606219](tpassets/1574309606219.png)<br>
+        ![1574309606219](https://user-images.githubusercontent.com/39547788/69303912-0b0dbf00-0c62-11ea-8a05-15e9e83f4dc3.png)<br>
 
     - 제목이 "폴킴"인 게시글을 검색한다.
 
-      ![1574309661435](tpassets/1574309661435.png)
+      ![1574309661435](https://user-images.githubusercontent.com/39547788/69303919-0fd27300-0c62-11ea-94e1-f5b39ef9bec6.png)
 
       <br>
 
@@ -533,7 +533,7 @@
 
     - 제목에 "폴킴"을 포함하는 게시글의 목록을 보인다. 
 
-      ![1574309816844](tpassets/1574309816844.png)
+      ![1574309816844](https://user-images.githubusercontent.com/39547788/69303921-1103a000-0c62-11ea-8e81-ed6f80b33b55.png)
 
       <br>
 
