@@ -289,11 +289,40 @@
 
       <br>
 
+- **현재 페이지에 맞게 페이지 버튼을 active 하자!**
+
+  - index.html
+
+    - DTL로 버튼의 `class` 속성을 작성한다.
+
+      - `{% if num == articles.number %} active {% endif %}` : 현재 페이지 번호와 `num`이 같으면 해당 버튼을 activate한다.
+
+        ```django
+        <!-- 페이지 버튼 -->
+        {% for num in articles.paginator.page_range %}
+        <li class="page-item {% if num == articles.number %} active {% endif %} ">
+            <a class="page-link" href="{% url 'articles:index' %}?page={{num}}">{{num}}</a>
+        </li>    
+        {% endfor %}
+        ```
+
+  - 실행 화면
+
+    - index 페이지 초기화
+
+      ![1574325626580](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1574325626580.png)
+
+      <br>
+
+    - 두번째 페이지
+
+      ![1574325661038](C:\Users\student\AppData\Roaming\Typora\typora-user-images\1574325661038.png)
+
+      <br>
 
 
 
-
-
+<br>
 
 ## 2. Search
 

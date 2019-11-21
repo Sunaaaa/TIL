@@ -51,7 +51,7 @@ def login(request):
             # next 파라미터에 
             return redirect(request.GET.get('next') or 'articles:index')
     else : 
-                                   # For 세션 
+                                # For 세션 
         form = AuthenticationForm()
 
     context = {
