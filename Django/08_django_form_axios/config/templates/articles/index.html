@@ -10,6 +10,34 @@
       {% include 'articles/_article.html' %}
     {% endfor %}  
   </div>
+
+{% comment %} <h1>{{articles.paginator.page_range}}</h1> {% endcomment %}
+
+  <nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    {% if articles.has_previous %}
+    <!-- 이전 버튼 -->
+    <li class="page-item">
+      <a class="page-link" href="{% url 'articles:index' %}?page={{articles.previous_page_number}}" tabindex="-1" aria-disabled="true">Previous</a>
+    </li>
+    {% endif %}
+
+    <!-- 페이지 버튼 -->
+    {% for num in articles.paginator.page_range %}
+      <li class="page-item">
+        <a class="page-link" href="{% url 'articles:index' %}?page={{num}}">{{num}}</a>
+      </li>    
+    {% endfor %}
+
+    <!-- 다음 버튼 -->
+    {% if articles.has_next %}
+    <li class="page-item">
+      <a class="page-link" href=" {% url 'articles:index' %}?page={{articles.next_page_number}} ">Next</a>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+
   <script>
     
     // 1. 모든 좋아요 버튼 가져오기

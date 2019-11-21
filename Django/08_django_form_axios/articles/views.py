@@ -7,19 +7,30 @@ from .forms import ArticleForm, CommentForm
 from IPython import embed
 import hashlib
 from django.http import JsonResponse, HttpResponseBadRequest
+from django.core.paginator import Paginator
 
 # Create your views here.
 def index(request):
-    # embed()
-    # if request.user.is_authenticated:
-    #     gravatar_url = hashlib.md5(request.user.email.encode('utf-8').lower().strip()).hexdigest()
-    # else : 
-    #     gravatar_url = None
 
     articles = Article.objects.all()
+
+    # 1. articles를 Paginator에 넣기 
+    # = Paginator(전체 리스트, 보여줄 갯수)
+    paginator = Paginator(articles, 4)
+
+    # 2. 사용자가 요청한 page 가져오기
+    # - 사용자가 page를 선택한다.
+    page = request.GET.get('page')
+
+    # 3. 해당하는 page의 article만 가져오기
+    # print(dir(paginator))
+    print(dir(articles))
+    # print(dir(articles.paginator))
+    articles = paginator.get_page(page)
+
+
     context = {
         'articles' : articles,
-        # 'gravatar_url' : gravatar_url,
     }
     return render(request, 'articles/index.html', context)
 
