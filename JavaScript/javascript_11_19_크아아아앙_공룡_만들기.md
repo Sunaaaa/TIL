@@ -96,13 +96,13 @@ doSomething('해커톤')
   })
   undefined
   ```
-  
+
   - 실행 화면
-  
+
     ![1574133436125](tpassets/1574133436125.png)
-  
+
     ![1574133442621](tpassets/1574133442621.png)
-  
+
     <br>
 
 
@@ -114,20 +114,20 @@ doSomething('해커톤')
   ```javascript
   function doSomething(task, callback) {
   	alert(`자, 이제 ${task} 준비를 시작해볼까?`)|
-	callback()
+  callback()
   }
   function alertStart() {
   	alert('당장 이번주 금요일부터 시작이야... :)')
   }
   doSomething('해커톤', alertStart)
   ```
-  
+
   - 실행 화면
-  
+
     ![1574133588758](tpassets/1574133588758.png)
-  
+
     ![1574133568524](tpassets/1574133568524.png)
-  
+
     
 
 
@@ -225,7 +225,7 @@ doSomething('해커톤')
 >
 > - HTML DOM에 있는 `document` 객체 역시 `window` 객체의 속성이다.
 >
-> ``` 
+> ```
 > window.print()		// 인쇄창 열기
 > window.open()		// 브라우저 탭 열기
 > window.confirm() 	// 브라우저 대화상자 열기
@@ -321,6 +321,7 @@ doSomething('해커톤')
         const bg = document.querySelector('.bg')
         const dino = bg.querySelector('#dino')
     </script>
+    
     ```
 
     ![1574136854159](tpassets/1574136854159.png)
@@ -338,6 +339,7 @@ doSomething('해커톤')
 ```
 dino.alt
 dino.src
+
 ```
 
 ![1574142101690](tpassets/1574142101690.png)
@@ -368,6 +370,7 @@ dino.src = "https://miro.medium.com/max/300/0*9U_PkckAUtKGrb_R.png"
 ```
 dino.style
 dino.style.width = '300px'
+
 ```
 
 - `dino.style` 확인하기 
@@ -391,6 +394,7 @@ dino.style.width = '300px'
   ```javascript
   const dino = document.querySelector('#dino')
   dino.remove()
+  
   ```
 
   ![1574139786684](tpassets/1574139786684.png)
@@ -409,6 +413,7 @@ dino.style.width = '300px'
   bg.firstElementChild.remove() // 첫번째 자식 요소를 삭제
   bg.lastElementChild.remove()  // 마지막 자식 요소를 삭제
   bg.removeChild(dino) 		  // 자식 요소들 중 원하는 요소를 선택해 삭제
+  
   ```
 
   ![1574139905670](tpassets/1574139905670.png)
@@ -425,6 +430,7 @@ dino.style.width = '300px'
 
     ```javascript
     const newDino = document.createElement('img')
+    
     ```
 
     ![1574139664102](tpassets/1574139664102.png)
@@ -441,6 +447,7 @@ dino.style.width = '300px'
         newDino.id = 'dino'
         newDino.style.width = '100px'
         newDino.style.height = '100px'
+    
     ```
 
     ![1574139703546](tpassets/1574139703546.png)
@@ -463,6 +470,7 @@ dino.style.width = '300px'
 
     ```javascript
     bg.append(newDino)
+    
     ```
 
     <br>
@@ -471,6 +479,7 @@ dino.style.width = '300px'
 
     ```javascript
     bg.insertBefore(newDino, bg.firstElementChild)
+    
     ```
 
     
@@ -626,9 +635,9 @@ dino.style.width = '300px'
 >
 > - dino의 style에 margin 값을 부여하면...?
 >
->   ```
->   dino.style.marginRight = '20px'
->   ```
+> ```
+> dino.style.marginRight = '20px'
+> ```
 
 <br>
 
