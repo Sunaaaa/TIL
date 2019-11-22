@@ -190,7 +190,7 @@ def lotto(request, lottonum, bonus):
 
 
 
-   
+    
     result = '안녕, 수연입니다!'
 
     context = {
