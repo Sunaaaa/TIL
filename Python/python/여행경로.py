@@ -32,5 +32,6 @@ def solution(tickets):
             # 해당 도착지는 경로에서 삭제 (pop) / 슬라이싱
             routes[top] = routes[top][:-1]
 
+
     # path[::-1] 역순
     return path[::-1]
