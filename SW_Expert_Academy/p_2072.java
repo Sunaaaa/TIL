@@ -13,7 +13,6 @@ public class p_2072 {
 		int count = 0;		
 		int sum_array[] = new int[test];
 		while(count<test) {
-			System.out.println(count);
 			int number[] = new int[10];
 			int sum = 0;
 			
@@ -31,7 +30,7 @@ public class p_2072 {
 			
 		}		
 		for (int i = 0; i < test; i++) {
-			System.out.println("#"+i+" " + sum_array[i]);
+			System.out.println("#"+(i+1)+" " + sum_array[i]);
 		}
 	}	
 }

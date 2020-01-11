@@ -22,7 +22,7 @@ public class p_2071 {
 			count++;				
 		}
 		for (int i = 0; i < avg_array.length; i++) {
-			System.out.println("#"+i+" "+avg_array[i]);
+			System.out.println("#"+(i+1)+" "+avg_array[i]);
 		}
 	}
 }
