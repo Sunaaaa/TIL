@@ -4,7 +4,7 @@
 my_str = input('문자를 입력하세요: ')
 
 print(my_str[0], my_str[-1])
-print(my_str[0], my_str[len(str)-1])
+print(my_str[0], my_str[len(my_str)-1])
 
 
 # 문자를 입력하세요: python

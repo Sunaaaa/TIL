@@ -6,4 +6,4 @@ for friut in friuts:
     my_dict[friut] = my_dict.get(friut,0)+1
 
 for key, value in my_dict.items():
-    print(key, ":", value)
+    print(key, ":", value
